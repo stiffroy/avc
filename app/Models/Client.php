@@ -11,13 +11,18 @@ class Client extends Model
      *
      * @var array
      */
-    protected $fillable = ['external_id', 'name', 'alive'];
+    protected $fillable = ['external_id', 'name', 'api_token', 'alive'];
 
     /**
-     * Get the heartbeat associated with the client.
+     * This is to generate the API authentication token (if needed extra)
+     *
+     * @return mixed|string
      */
-    public function heartbeat()
+    public function generateToken()
     {
-        return $this->hasOne('App\Models\Heartbeat');
+        $this->api_token = str_random(60);
+        $this->save();
+
+        return $this->api_token;
     }
 }
