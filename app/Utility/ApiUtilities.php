@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-use App\Models\Client;
+use App\Entity\Client;
 
 class ApiHelpers
 {
