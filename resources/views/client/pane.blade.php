@@ -23,8 +23,10 @@
             <!-- /.box-header -->
             <div class="box-body">
                 @foreach($clients as $client)
-                    @if($client->health !== 'Healthy')
-                        @php ($heart = '-broken')
+                    @if($client->health === 'Not Active')
+                        @php($icon = 'ion-flag')
+                    @elseif($client->health !== 'Healthy')
+                        @php($heart = '-broken')
                     @endif
                     <div class="col-lg-3 col-xs-6">
                         <div class="small-box bg-{{ $client->bg }}">
@@ -33,9 +35,15 @@
                                 <p>{{ $client->external_id }}</p>
                                 <p>{{ $client->health }}</p>
                             </div>
+
                             <div class="icon">
+                                @if(!empty($icon))
+                                <i class="ion {{ $icon }}"></i>
+                                @elseif($heart)
                                 <i class="ion ion-heart{{ $heart }}"></i>
+                                @endif
                             </div>
+
                             <a href="{{ route('client.show', ['id' => $client->id]) }}" class="small-box-footer">
                                 More info <i class="fa fa-arrow-circle-right"></i>
                             </a>

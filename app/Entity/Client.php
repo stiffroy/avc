@@ -15,6 +15,13 @@ class Client extends Model
     protected $fillable = ['name', 'external_id', 'api_token', 'alive'];
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at', 'heartbeat_at'];
+
+    /**
      * This is to generate the API authentication token (if needed extra)
      *
      * @return mixed|string
@@ -26,13 +33,18 @@ class Client extends Model
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getStatusLabelAttribute()
     {
-        $label = 'danger';
-        if ($this->getHealthAttribute() === 'Warning') {
-            $label = 'warning';
-        } elseif ($this->getHealthAttribute() === 'Healthy') {
+        $label = 'info';
+        if ($this->getHealthAttribute() === 'Healthy') {
             $label = 'success';
+        } elseif ($this->getHealthAttribute() === 'Warning') {
+            $label = 'warning';
+        } elseif ($this->getHealthAttribute() === 'Critical') {
+            $label = 'danger';
         }
 
         return $label;
@@ -40,11 +52,13 @@ class Client extends Model
 
     public function getBgAttribute()
     {
-        $bg = 'red';
+        $bg = 'aqua';
         if ($this->getHealthAttribute() === 'Warning') {
             $bg = 'yellow';
         } elseif ($this->getHealthAttribute() === 'Healthy') {
             $bg = 'green';
+        } elseif ($this->getHealthAttribute() === 'Critical') {
+            $bg = 'red';
         }
 
         return $bg;
@@ -52,17 +66,33 @@ class Client extends Model
 
     public function getHealthAttribute()
     {
+        $now = Carbon::now();
+        $status = $this->getBaseHealthStatus();
+        if ($this->heartbeat_at) {
+            $diff = $now->diffInSeconds(Carbon::parse($this->heartbeat_at));
+            $status = $this->getHealthStatus($diff);
+        }
+
+        return $status;
+    }
+
+    private function getBaseHealthStatus()
+    {
+        return 'Not Active';
+    }
+
+    private function getHealthStatus($diff)
+    {
         $warning = 300;
         $critical = 3000;
-        $status = 'Healthy';
-        $lastUpdate = Carbon::parse($this->updated_at);
-        $now = Carbon::now();
-        $diff = $now->diffInSeconds($lastUpdate);
+        $status = $this->getBaseHealthStatus();
 
         if ($diff > $critical) {
             $status = 'Critical';
-        } elseif ($diff > $warning) {
+        } elseif ($diff > $warning ) {
             $status = 'Warning';
+        } else {
+            $status = 'Healthy';
         }
 
         return $status;
