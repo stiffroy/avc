@@ -53,15 +53,27 @@ class Client extends Model
     public function getBgAttribute()
     {
         $bg = 'aqua';
-        if ($this->getHealthAttribute() === 'Warning') {
-            $bg = 'yellow';
-        } elseif ($this->getHealthAttribute() === 'Healthy') {
+        if ($this->getHealthAttribute() === 'Healthy') {
             $bg = 'green';
+        } elseif ($this->getHealthAttribute() === 'Warning') {
+            $bg = 'yellow';
         } elseif ($this->getHealthAttribute() === 'Critical') {
             $bg = 'red';
         }
 
         return $bg;
+    }
+
+    public function getBgIconAttribute()
+    {
+        $bgIcon = 'ion-flag';
+        if ($this->getHealthAttribute() === 'Warning' || $this->getHealthAttribute() === 'Critical') {
+            $bgIcon = 'ion-heart-broken';
+        } elseif ($this->getHealthAttribute() === 'Healthy') {
+            $bgIcon = 'ion-heart';
+        }
+
+        return $bgIcon;
     }
 
     public function getHealthAttribute()
@@ -89,7 +101,7 @@ class Client extends Model
 
         if ($diff > $critical) {
             $status = 'Critical';
-        } elseif ($diff > $warning ) {
+        } elseif ($diff > $warning) {
             $status = 'Warning';
         } else {
             $status = 'Healthy';
