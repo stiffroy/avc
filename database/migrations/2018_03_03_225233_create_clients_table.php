@@ -15,8 +15,8 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('external_id')->unique();
             $table->string('name')->nullable();
+            $table->string('external_id')->unique();
             $table->string('api_token', 60)->unique()->nullable();
             $table->boolean('alive')->default(false);
             $table->timestamps();
