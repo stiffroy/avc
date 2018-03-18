@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\ApiHelpers;
+use App\Utilities\ApiUtilities;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -16,8 +16,9 @@ class ApiController extends Controller
     public function heartbeat(Request $request)
     {
         $token = $request->get('token');
-        $statusCode = ApiHelpers::updateLiveStatus($token);
+        $externalId = $request->get('external_id');
+        $status = ApiUtilities::updateLiveStatus($externalId, $token);
 
-        return response()->json(null, $statusCode);
+        return response()->json($status);
     }
 }

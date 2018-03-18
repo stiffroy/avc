@@ -10,4 +10,6 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/heartbeat', 'ApiController@heartbeat')->name('heartbeat');
+Route::prefix('v1/')->group(function () {
+    Route::post('heartbeat', 'ApiController@heartbeat')->name('heartbeat');
+});
