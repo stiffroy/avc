@@ -123,24 +123,7 @@
             </div>
 
             <!-- Sidebar Menu -->
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">SECTIONS</li>
-                <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-desktop"></i> <span>Clients</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{ route('client.overview') }}"><i class="fa fa-th"></i> Overview</a></li>
-                        <li><a href="{{ route('client.list') }}"><i class="fa fa-list"></i> List Clients</a></li>
-                        <li><a href="{{ route('client.create') }}"><i class="fa fa-plus"></i> Add Client</a></li>
-                    </ul>
-                </li>
-            </ul>
+            @include('components.menu')
             <!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -182,7 +165,6 @@
 
                             <div class="menu-info">
                                 <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
                                 <p>Will be 23 on April 24th</p>
                             </div>
                         </a>
@@ -253,12 +235,12 @@
 <!-- SlimScroll -->
 <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
 <!-- FastClick -->
-<script src="js/fastclick.js"></script>
+<script src="{{ asset('js/fastclick.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('js/demo.js') }}"></script>
-<!-- Demo App -->
+<!-- Customised App -->
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
