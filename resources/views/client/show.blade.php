@@ -10,7 +10,7 @@
         <ol class="breadcrumb">
             <li>Home</li>
             <li><a href="#">Clients</a></li>
-            <li class="active"><a href="#">List</a></li>
+            <li class="active"><a href="#">{{ $client->name }}</a></li>
         </ol>
     </section>
 
@@ -39,11 +39,19 @@
                             <td>{{ $client->external_id }}</td>
                         </tr>
                         <tr>
+                            <th>Group</th>
+                            <td>{{ $client->group->name }}</td>
+                        </tr>
+                        <tr>
                             <th>API Token</th>
                             <td>{{ $client->api_token }}</td>
                         </tr>
                         <tr>
                             <th>Status</th>
+                            <td><span>{{ $client->alive ? 'Alive' : 'Not active' }}</span></td>
+                        </tr>
+                        <tr>
+                            <th>Health</th>
                             <td><span class="label label-{{ $client->statusLabel }}">{{ $client->health }}</span></td>
                         </tr>
                         <tr>

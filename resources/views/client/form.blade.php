@@ -16,6 +16,14 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('group', 'Group', ['class' => 'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('group_id', \App\Entity\Group::pluck('name', 'id'), $client->group) !!}
+    </div>
+</div>
+
+
+<div class="form-group">
     <div class="col-sm-10 col-sm-offset-2">
         {!! Form::checkbox('alive', $client->alive, true) !!} Is Alive
     </div>

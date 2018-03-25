@@ -12,7 +12,7 @@ class Client extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'external_id', 'api_token', 'alive'];
+    protected $fillable = ['name', 'external_id', 'group_id', 'api_token', 'alive'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -22,15 +22,36 @@ class Client extends Model
     protected $dates = ['created_at', 'updated_at', 'heartbeat_at'];
 
     /**
+     * The hooks to the entity
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function($client) {
+            $client->api_token = $client->generateToken();
+            $client->alive = $client->alive ? 1 : 0;
+        });
+    }
+
+    /**
      * This is to generate the API authentication token (if needed extra)
      *
      * @return mixed|string
      */
     public function generateToken()
     {
-        $this->api_token = str_random(60);
+        $token = str_random(60);
 
-        return $this;
+        return $token;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo('App\Entity\Group');
     }
 
     /**
@@ -50,6 +71,9 @@ class Client extends Model
         return $label;
     }
 
+    /**
+     * @return string
+     */
     public function getBgAttribute()
     {
         $bg = 'aqua';
@@ -64,6 +88,9 @@ class Client extends Model
         return $bg;
     }
 
+    /**
+     * @return string
+     */
     public function getBgIconAttribute()
     {
         $bgIcon = 'ion-flag';
@@ -76,6 +103,9 @@ class Client extends Model
         return $bgIcon;
     }
 
+    /**
+     * @return string
+     */
     public function getHealthAttribute()
     {
         $now = Carbon::now();
@@ -88,11 +118,18 @@ class Client extends Model
         return $status;
     }
 
+    /**
+     * @return string
+     */
     private function getBaseHealthStatus()
     {
-        return 'Not Active';
+        return 'No records yet';
     }
 
+    /**
+     * @param $diff
+     * @return string
+     */
     private function getHealthStatus($diff)
     {
         $warning = 300;
@@ -103,7 +140,7 @@ class Client extends Model
             $status = 'Critical';
         } elseif ($diff > $warning) {
             $status = 'Warning';
-        } else {
+        } elseif ($diff < $warning) {
             $status = 'Healthy';
         }
 
