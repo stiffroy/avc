@@ -14,7 +14,7 @@ Auth::routes();
 
 Route::get('/', 'DashboardController@index')->name('home');
 
-Route::prefix('client')->group(function () {
+Route::group(['prefix' => 'client', 'middleware' => ['auth']], function () {
     Route::get('/', 'ClientController@overview')->name('client.overview');
     Route::get('/list', 'ClientController@listView')->name('client.list');
     Route::get('/create', 'ClientController@create')->name('client.create');
