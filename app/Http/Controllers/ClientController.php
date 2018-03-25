@@ -62,7 +62,7 @@ class ClientController extends Controller
      */
     public function store(StoreClient $request, Client $client)
     {
-        $client->create($request->except('_token'));
+        $client = $client->create($request->except('_token'));
 
         return redirect()->route('client.show', ['id' => $client->id])
             ->with('status', 'Successfully created the client!');
