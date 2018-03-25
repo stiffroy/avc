@@ -132,8 +132,8 @@ class Client extends Model
      */
     private function getHealthStatus($diff)
     {
-        $warning = 300;
-        $critical = 3000;
+        $warning = $this->group->warning;
+        $critical = $this->group->critical;
         $status = $this->getBaseHealthStatus();
 
         if ($diff > $critical) {
