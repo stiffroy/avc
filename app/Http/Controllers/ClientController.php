@@ -57,22 +57,12 @@ class ClientController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreClient $request
+     * @param Client $client
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreClient $request)
+    public function store(StoreClient $request, Client $client)
     {
-        $client = new Client();
-
-        try {
-            $client->name = $request->get('name');
-            $client->external_id = $request->get('external_id');
-            $client->alive = 0;
-            $client->generateToken();
-            $client->save();
-            $request->session()->flash('success', 'Successfully created the client');
-        } catch (\Exception $exception) {
-            $request->session()->flash('failure', $exception);
-        }
+        $client->create($request->except('_token'));
 
         return redirect()->route('client.show', ['id' => $client->id])
             ->with('status', 'Successfully created the client!');
