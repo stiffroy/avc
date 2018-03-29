@@ -4,7 +4,14 @@ $(function () {
 });
 
 function menuBuilder() {
+    highlightGroup();
     let activeLink = $('ul.sidebar-menu a[href="'+ window.location.href +'"]');
     activeLink.closest('li').addClass('active');
     activeLink.closest('li.treeview').addClass('active');
+}
+
+function highlightGroup() {
+    let section = window.location.pathname.split('/');
+    console.log(section);
+    $('ul.sidebar-menu li.' + section[1]).addClass('active');
 }

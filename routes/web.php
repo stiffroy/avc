@@ -24,3 +24,14 @@ Route::group(['prefix' => 'client', 'middleware' => ['auth']], function () {
     Route::post('/delete/{client}', 'ClientController@delete')->name('client.delete');
     Route::post('/update/{client}', 'ClientController@update')->name('client.update');
 });
+
+Route::group(['prefix' => 'group', 'middleware' => ['auth']], function () {
+    Route::get('/', 'GroupController@overview')->name('group.overview');
+    Route::get('/list', 'GroupController@listView')->name('group.list');
+    Route::get('/create', 'GroupController@create')->name('group.create');
+    Route::get('/show/{group}', 'GroupController@show')->name('group.show');
+    Route::get('/edit/{group}', 'GroupController@edit')->name('group.edit');
+    Route::post('/store', 'GroupController@store')->name('group.store');
+    Route::post('/delete/{group}', 'GroupController@delete')->name('group.delete');
+    Route::post('/update/{group}', 'GroupController@update')->name('group.update');
+});
