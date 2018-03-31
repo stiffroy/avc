@@ -12,6 +12,5 @@ function menuBuilder() {
 
 function highlightGroup() {
     let section = window.location.pathname.split('/');
-    console.log(section);
     $('ul.sidebar-menu li.' + section[1]).addClass('active');
 }
