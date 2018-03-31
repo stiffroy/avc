@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entity\Group;
 use App\Http\Requests\StoreGroup;
+use App\Utilities\GroupUtilities;
 use Illuminate\Support\Facades\Request;
 
 class GroupController extends Controller
@@ -15,7 +16,7 @@ class GroupController extends Controller
      */
     public function overview()
     {
-        $groups = Group::all();
+        $groups = GroupUtilities::formatData(Group::all());
 
         return view('group.pane', [
             'groups' => $groups,
