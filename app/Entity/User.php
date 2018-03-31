@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Ultraware\Roles\Traits\HasRoleAndPermission;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasRoleAndPermission;
 
     /**
      * The attributes that are mass assignable.
