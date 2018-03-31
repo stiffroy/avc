@@ -16,7 +16,7 @@ class ApiController extends Controller
     public function heartbeat(Request $request)
     {
         $token = $request->get('token');
-        $externalId = $request->get('external_id');
+        $externalId = $request->get('external-id');
         $status = ApiUtilities::updateLiveStatus($externalId, $token);
 
         return response()->json($status);
