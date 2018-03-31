@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
+    const NO_RECORDS_YET = 'No records yet';
+    const WARNING = 'Warning';
+    const CRITICAL = 'Critical';
+    const HEALTHY = 'Healthy';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -60,11 +65,11 @@ class Client extends Model
     public function getStatusLabelAttribute()
     {
         $label = 'info';
-        if ($this->getHealthAttribute() === 'Healthy') {
+        if ($this->getHealthAttribute() === self::HEALTHY) {
             $label = 'success';
-        } elseif ($this->getHealthAttribute() === 'Warning') {
+        } elseif ($this->getHealthAttribute() === self::WARNING) {
             $label = 'warning';
-        } elseif ($this->getHealthAttribute() === 'Critical') {
+        } elseif ($this->getHealthAttribute() === self::CRITICAL) {
             $label = 'danger';
         }
 
@@ -77,11 +82,11 @@ class Client extends Model
     public function getBgAttribute()
     {
         $bg = 'aqua';
-        if ($this->getHealthAttribute() === 'Healthy') {
+        if ($this->getHealthAttribute() === self::HEALTHY) {
             $bg = 'green';
-        } elseif ($this->getHealthAttribute() === 'Warning') {
+        } elseif ($this->getHealthAttribute() === self::WARNING) {
             $bg = 'yellow';
-        } elseif ($this->getHealthAttribute() === 'Critical') {
+        } elseif ($this->getHealthAttribute() === self::CRITICAL) {
             $bg = 'red';
         }
 
@@ -94,9 +99,9 @@ class Client extends Model
     public function getBgIconAttribute()
     {
         $bgIcon = 'ion-flag';
-        if ($this->getHealthAttribute() === 'Warning' || $this->getHealthAttribute() === 'Critical') {
+        if ($this->getHealthAttribute() === self::WARNING || $this->getHealthAttribute() === self::CRITICAL) {
             $bgIcon = 'ion-heart-broken';
-        } elseif ($this->getHealthAttribute() === 'Healthy') {
+        } elseif ($this->getHealthAttribute() === self::HEALTHY) {
             $bgIcon = 'ion-heart';
         }
 
@@ -123,7 +128,7 @@ class Client extends Model
      */
     private function getBaseHealthStatus()
     {
-        return 'No records yet';
+        return self::NO_RECORDS_YET;
     }
 
     /**
@@ -137,11 +142,11 @@ class Client extends Model
         $status = $this->getBaseHealthStatus();
 
         if ($diff > $critical) {
-            $status = 'Critical';
+            $status = self::CRITICAL;
         } elseif ($diff > $warning) {
-            $status = 'Warning';
+            $status = self::WARNING;
         } elseif ($diff < $warning) {
-            $status = 'Healthy';
+            $status = self::HEALTHY;
         }
 
         return $status;
