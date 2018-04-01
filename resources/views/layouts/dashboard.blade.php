@@ -242,8 +242,11 @@
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('js/demo.js') }}"></script>
+<!-- Sweet Alert 2 -->
+<script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
 <!-- Customised App -->
 <script src="{{ asset('js/app.js') }}"></script>
 @yield('footer-js')
+@include('vendor.sweetalert.view')
 </body>
 </html>

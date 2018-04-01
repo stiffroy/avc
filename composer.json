@@ -10,6 +10,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.6",
+        "softon/sweetalert": "^1.0",
         "ultraware/roles": "^5.6"
     },
     "require-dev": {
