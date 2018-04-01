@@ -1,7 +1,9 @@
 <?php
 
+use App\Entity\User;
 use Illuminate\Database\Seeder;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Ultraware\Roles\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,11 +14,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Stiff Roy',
-            'email' => 'stiff.roy@gmail.com',
-            'password' => bcrypt('avc123dash'),
-            'created_at' => Carbon::now()->timezone('Europe/Vienna'),
+        $user = User::create([
+            'name' => 'Admin',
+            'email' => 'admin@dashboard.avc',
+            'password' => Hash::make('avc123admin'),
         ]);
+
+        $role = Role::where('name', '=', 'Admin')->first();
+        $user->attachRole($role);
     }
 }
