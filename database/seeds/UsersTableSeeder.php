@@ -2,6 +2,7 @@
 
 use App\Entity\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Ultraware\Roles\Models\Role;
 
 class UsersTableSeeder extends Seeder
@@ -16,7 +17,7 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Admin',
             'email' => 'admin@dashboard.avc',
-            'password' => bcrypt('avc123admin'),
+            'password' => Hash::make('avc123admin'),
         ]);
 
         $role = Role::where('name', '=', 'Admin')->first();
