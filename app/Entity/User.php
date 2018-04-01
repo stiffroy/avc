@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Ultraware\Roles\Traits\HasRoleAndPermission;
 
 class User extends Authenticatable
@@ -28,4 +29,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Hash the plain password and set it via the Mutator method
+     *
+     * @param $pass
+     */
+    public function setPasswordAttribute($pass)
+    {
+        $this->attributes['password'] = Hash::make($pass);
+    }
 }
