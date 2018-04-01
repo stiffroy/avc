@@ -64,25 +64,25 @@
                         value    : {{ $group["data"][0] }},
                         color    : '#00c0ef',
                         highlight: '#00a7d0',
-                        label    : '{{ \App\Entity\Client::NO_RECORDS_YET }}'
+                        label    : '{{ \App\Utilities\ClientUtilities::NO_RECORDS_YET }}'
                     },
                     {
                         value    : {{ $group["data"][1] }},
                         color    : '#f39c12',
                         highlight: '#db8b0b',
-                        label    : '{{ \App\Entity\Client::WARNING }}'
+                        label    : '{{ \App\Utilities\ClientUtilities::WARNING }}'
                     },
                     {
                         value    : {{ $group["data"][2] }},
                         color    : '#dd4b39',
                         highlight: '#d33724',
-                        label    : '{{ \App\Entity\Client::CRITICAL }}'
+                        label    : '{{ \App\Utilities\ClientUtilities::CRITICAL }}'
                     },
                     {
                         value    : {{ $group["data"][3] }},
                         color    : '#00a65a',
                         highlight: '#008d4c',
-                        label    : '{{ \App\Entity\Client::HEALTHY }}'
+                        label    : '{{ \App\Utilities\ClientUtilities::HEALTHY }}'
                     }
                 ];
                 pieChart{{ $group["id"] }}.Pie(PieData{{ $group["id"] }});
