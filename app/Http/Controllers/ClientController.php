@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entity\Client;
 use App\Http\Requests\StoreClient;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -130,6 +130,7 @@ class ClientController extends Controller
             $request->session()->flash('failure', $exception);
         }
 
-        return back();
+        return redirect()->route('client.list')
+            ->with('status', 'Successfully deleted the client!');
     }
 }

@@ -2,16 +2,11 @@
 
 namespace App\Entity;
 
-use Carbon\Carbon;
+use App\Utilities\ClientUtilities;
 use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-    const NO_RECORDS_YET = 'No records yet';
-    const WARNING = 'Warning';
-    const CRITICAL = 'Critical';
-    const HEALTHY = 'Healthy';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -34,21 +29,18 @@ class Client extends Model
         parent::boot();
 
         self::creating(function($client) {
-            $client->api_token = $client->generateToken();
-            $client->alive = $client->alive ? 1 : 0;
+            $client->api_token = ClientUtilities::generateToken();
         });
     }
 
     /**
-     * This is to generate the API authentication token (if needed extra)
+     * Generate and set the API Token via Mutator method
      *
-     * @return mixed|string
+     * @param $status
      */
-    public function generateToken()
+    public function setAliveAttribute($status)
     {
-        $token = str_random(60);
-
-        return $token;
+        $this->attributes['alive'] = ClientUtilities::convertStatus($status);
     }
 
     /**
@@ -64,16 +56,7 @@ class Client extends Model
      */
     public function getStatusLabelAttribute()
     {
-        $label = 'info';
-        if ($this->getHealthAttribute() === self::HEALTHY) {
-            $label = 'success';
-        } elseif ($this->getHealthAttribute() === self::WARNING) {
-            $label = 'warning';
-        } elseif ($this->getHealthAttribute() === self::CRITICAL) {
-            $label = 'danger';
-        }
-
-        return $label;
+        return ClientUtilities::getStatusLabel($this->getHealthAttribute());
     }
 
     /**
@@ -81,16 +64,7 @@ class Client extends Model
      */
     public function getBgAttribute()
     {
-        $bg = 'aqua';
-        if ($this->getHealthAttribute() === self::HEALTHY) {
-            $bg = 'green';
-        } elseif ($this->getHealthAttribute() === self::WARNING) {
-            $bg = 'yellow';
-        } elseif ($this->getHealthAttribute() === self::CRITICAL) {
-            $bg = 'red';
-        }
-
-        return $bg;
+        return ClientUtilities::getBackground($this->getHealthAttribute());
     }
 
     /**
@@ -98,14 +72,7 @@ class Client extends Model
      */
     public function getBgIconAttribute()
     {
-        $bgIcon = 'ion-flag';
-        if ($this->getHealthAttribute() === self::WARNING || $this->getHealthAttribute() === self::CRITICAL) {
-            $bgIcon = 'ion-heart-broken';
-        } elseif ($this->getHealthAttribute() === self::HEALTHY) {
-            $bgIcon = 'ion-heart';
-        }
-
-        return $bgIcon;
+        return ClientUtilities::getBackgroundIcon($this->getHealthAttribute());
     }
 
     /**
@@ -113,42 +80,6 @@ class Client extends Model
      */
     public function getHealthAttribute()
     {
-        $now = Carbon::now();
-        $status = $this->getBaseHealthStatus();
-        if ($this->heartbeat_at) {
-            $diff = $now->diffInSeconds(Carbon::parse($this->heartbeat_at));
-            $status = $this->getHealthStatus($diff);
-        }
-
-        return $status;
-    }
-
-    /**
-     * @return string
-     */
-    private function getBaseHealthStatus()
-    {
-        return self::NO_RECORDS_YET;
-    }
-
-    /**
-     * @param $diff
-     * @return string
-     */
-    private function getHealthStatus($diff)
-    {
-        $warning = $this->group->warning;
-        $critical = $this->group->critical;
-        $status = $this->getBaseHealthStatus();
-
-        if ($diff > $critical) {
-            $status = self::CRITICAL;
-        } elseif ($diff > $warning) {
-            $status = self::WARNING;
-        } elseif ($diff < $warning) {
-            $status = self::HEALTHY;
-        }
-
-        return $status;
+        return ClientUtilities::getHealth($this->heartbeat_at, $this->group->warning, $this->group->critical);
     }
 }

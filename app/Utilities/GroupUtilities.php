@@ -2,7 +2,6 @@
 
 namespace App\Utilities;
 
-use App\Entity\Client;
 use App\Entity\Group;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -40,13 +39,13 @@ class GroupUtilities
         $clients = $group->clients()->where('alive', 1)->get();
 
         foreach ($clients as $client) {
-            if ($client->health === Client::NO_RECORDS_YET) {
+            if ($client->health === ClientUtilities::NO_RECORDS_YET) {
                 $na++;
-            } elseif ($client->health === Client::WARNING) {
+            } elseif ($client->health === ClientUtilities::WARNING) {
                 $warning++;
-            } elseif ($client->health === Client::CRITICAL) {
+            } elseif ($client->health === ClientUtilities::CRITICAL) {
                 $critical++;
-            } elseif ($client->health === Client::HEALTHY) {
+            } elseif ($client->health === ClientUtilities::HEALTHY) {
                 $healthy++;
             }
         }
