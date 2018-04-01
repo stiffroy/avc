@@ -24,8 +24,8 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="{{ route('group.overview') }}"><i class="fa fa-th"></i> Overview</a></li>
-            <li><a href="{{ route('group.list') }}"><i class="fa fa-list"></i> List Clients</a></li>
-            <li><a href="{{ route('group.create') }}"><i class="fa fa-plus"></i> Add Client</a></li>
+            <li><a href="{{ route('group.list') }}"><i class="fa fa-list"></i> List Groups</a></li>
+            <li><a href="{{ route('group.create') }}"><i class="fa fa-plus"></i> Add Group</a></li>
         </ul>
     </li>
     <li class="treeview client">
