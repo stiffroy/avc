@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Entity\Group;
 use App\Http\Requests\StoreGroup;
 use App\Utilities\GroupUtilities;
-use Illuminate\Support\Facades\Request;
+use Softon\SweetAlert\Facades\SWAL;
 
 class GroupController extends Controller
 {
@@ -60,10 +60,14 @@ class GroupController extends Controller
      */
     public function store(StoreGroup $request, Group $group)
     {
-        $group = $group->create($request->except('_token'));
+        try {
+            $group = $group->create($request->except('_token'));
+            SWAL::message('Group Created!', 'Successfully created a new group', 'success');
+        } catch (\Exception $exception) {
+            SWAL::message('We are Sorry', $exception['message'], 'error');
+        }
 
-        return redirect()->route('group.show', ['id' => $group->id])
-            ->with('status', 'Successfully created the client!');
+        return redirect()->route('group.show', ['id' => $group->id]);
     }
 
     /**
@@ -103,31 +107,29 @@ class GroupController extends Controller
     {
         try {
             $group->update($request->except('_token'));
-            $request->session()->flash('success', 'Successfully updated the client');
+            SWAL::message('Group Updated!', 'Successfully updated the group', 'success');
         } catch (\Exception $exception) {
-            $request->session()->flash('failure', $exception);
+            SWAL::message('We are Sorry', $exception['message'], 'error');
         }
 
-        return redirect()->route('group.show', ['id' => $group->id])
-            ->with('status', 'Successfully updated the client!');
+        return redirect()->route('group.show', ['id' => $group->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Request $request
      * @param Group $group
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete(Request $request, Group $group)
+    public function delete(Group $group)
     {
         try {
             $group->delete();
-            $request->session()->flash('success', 'Successfully deleted the client');
+            SWAL::message('Group Deleted!', 'Successfully deleted the group', 'success');
         } catch (\Exception $exception) {
-            $request->session()->flash('failure', $exception);
+            SWAL::message('We are Sorry', $exception['message'], 'error');
         }
 
-        return back();
+        return redirect()->route('group.list');
     }
 }

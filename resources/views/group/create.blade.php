@@ -22,12 +22,6 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                @if(Session::has('status'))
-                    <div class="alert alert-success">{{ Session::get('status') }}</div>
-                @elseif(Session::has('failure'))
-                    <div class="alert alert-danger">{{ Session::get('failure') }}</div>
-                @endif
-
                 <div class="col-sm-8 col-sm-offset-2">
                     @if ($errors->any())
                         <div class="alert alert-danger">
