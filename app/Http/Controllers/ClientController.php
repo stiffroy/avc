@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entity\Client;
 use App\Http\Requests\StoreClient;
-use Illuminate\Http\Request;
+use Softon\SweetAlert\Facades\SWAL;
 
 class ClientController extends Controller
 {
@@ -62,10 +62,14 @@ class ClientController extends Controller
      */
     public function store(StoreClient $request, Client $client)
     {
-        $client = $client->create($request->except('_token'));
+        try {
+            $client = $client->create($request->except('_token'));
+            SWAL::message('Client Created!', 'Successfully created a new client', 'success');
+        } catch (\Exception $exception) {
+            SWAL::message('We are Sorry', $exception['message'], 'error');
+        }
 
-        return redirect()->route('client.show', ['id' => $client->id])
-            ->with('status', 'Successfully created the client!');
+        return redirect()->route('client.show', ['id' => $client->id]);
     }
 
     /**
@@ -105,32 +109,29 @@ class ClientController extends Controller
     {
         try {
             $client->update($request->except('_token'));
-            $request->session()->flash('success', 'Successfully updated the client');
+            SWAL::message('Client Updated!', 'Successfully updated the client', 'success');
         } catch (\Exception $exception) {
-            $request->session()->flash('failure', $exception);
+            SWAL::message('We are Sorry', $exception['message'], 'error');
         }
 
-        return redirect()->route('client.show', ['id' => $client->id])
-            ->with('status', 'Successfully updated the client!');
+        return redirect()->route('client.show', ['id' => $client->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Request $request
      * @param Client $client
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function delete(Request $request, Client $client)
+    public function delete(Client $client)
     {
         try {
             $client->delete();
-            $request->session()->flash('success', 'Successfully deleted the client');
+            SWAL::message('Client Deleted!', 'Successfully deleted the client', 'success');
         } catch (\Exception $exception) {
-            $request->session()->flash('failure', $exception);
+            SWAL::message('We are Sorry', $exception['message'], 'error');
         }
 
-        return redirect()->route('client.list')
-            ->with('status', 'Successfully deleted the client!');
+        return redirect()->route('client.list');
     }
 }
