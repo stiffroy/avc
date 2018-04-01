@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entity\User;
 use App\Http\Requests\StoreUser;
+use Softon\SweetAlert\Facades\SWAL;
 
 class UserController extends Controller
 {
@@ -58,10 +59,14 @@ class UserController extends Controller
      */
     public function store(StoreUser $request, User $user)
     {
-        $user = $user->create($request->except('_token'));
+        try {
+            $user = $user->create($request->except('_token'));
+            SWAL::message('User Created!', 'Successfully created a new user', 'success');
+        } catch (\Exception $exception) {
+            SWAL::message('We are Sorry', $exception['message'], 'error');
+        }
 
-        return redirect()->route('user.show', ['id' => $user->id])
-            ->with('status', 'Successfully created the user!');
+        return redirect()->route('user.show', ['id' => $user->id]);
     }
 
     /**
@@ -99,17 +104,14 @@ class UserController extends Controller
      */
     public function update(StoreUser $request, User $user)
     {
-        $status = 'Successfully updated the user!';
         try {
             $user->update($request->except('_token'));
-            $request->session()->flash('success', $status);
+            SWAL::message('User Updated!', 'Successfully updated the user', 'success');
         } catch (\Exception $exception) {
-            $request->session()->flash('failure', $exception);
-            $status = $exception['message'];
+            SWAL::message('We are Sorry', $exception['message'], 'error');
         }
 
-        return redirect()->route('user.show', ['id' => $user->id])
-            ->with('status', $status);
+        return redirect()->route('user.show', ['id' => $user->id]);
     }
 
     /**
@@ -120,14 +122,13 @@ class UserController extends Controller
      */
     public function delete(User $user)
     {
-        $status = 'Successfully deleted the user!';
         try {
             $user->delete();
+            SWAL::message('User Deleted!', 'Successfully deleted the user', 'success');
         } catch (\Exception $exception) {
-            $status = $exception['message'];
+            SWAL::message('We are Sorry', $exception['message'], 'error');
         }
 
-        return redirect()->route('user.list')
-            ->with('status', $status);
+        return redirect()->route('user.list');
     }
 }
