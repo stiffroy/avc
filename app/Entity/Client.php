@@ -34,6 +34,14 @@ class Client extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\Entity\User');
+    }
+
+    /**
      * Generate and set the API Token via Mutator method
      *
      * @param $status

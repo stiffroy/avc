@@ -38,4 +38,12 @@ class Group extends Model
     {
         return $this->hasMany('App\Entity\Client');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function users()
+    {
+        return $this->hasMany('App\Entity\User');
+    }
 }

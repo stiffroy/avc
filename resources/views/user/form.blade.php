@@ -25,6 +25,13 @@
 @endif
 
 <div class="form-group">
+    {!! Form::label('group_id', 'Group', ['class' => 'col-sm-2 control-label']) !!}
+    <div class="col-sm-10">
+        {!! Form::select('group_id', $groups->pluck('name', 'id'), $user->group->id, ['id' => 'group_id', 'class' => 'form-control', 'placeholder' => 'Select']) !!}
+    </div>
+</div>
+
+<div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
         {!! Form::submit('Save', ['class' => 'btn btn-primary btn-flat']) !!}
         <a href="{{ route('user.list') }}" class="btn btn-danger btn-flat">Cancel</a>

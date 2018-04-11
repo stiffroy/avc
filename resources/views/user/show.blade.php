@@ -33,6 +33,10 @@
                             <td>{{ $user->email }}</td>
                         </tr>
                         <tr>
+                            <th>Group</th>
+                            <td>{{ $user->group ? $user->group->name : 'Null' }}</td>
+                        </tr>
+                        <tr>
                             <th>Created On</th>
                             <td>{{ $user->created_at }}</td>
                         </tr>

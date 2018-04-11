@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entity\Group;
 use App\Entity\User;
 use App\Http\Requests\StoreUser;
 use Softon\SweetAlert\Facades\SWAL;
@@ -44,9 +45,11 @@ class UserController extends Controller
     public function create()
     {
         $user = new User();
+        $groups = Group::all();
 
         return view('user.create', [
-            'user' => $user,
+            'user'      => $user,
+            'groups'    => $groups,
         ]);
     }
 
@@ -63,6 +66,7 @@ class UserController extends Controller
             $user = $user->create($request->except('_token'));
             SWAL::message('User Created!', 'Successfully created a new user', 'success');
         } catch (\Exception $exception) {
+            \Log::debug($exception['message']);
             SWAL::message('We are Sorry', $exception['message'], 'error');
         }
 
@@ -90,8 +94,11 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $groups = Group::all();
+
         return view('user.edit', [
-            'user' => $user,
+            'user'      => $user,
+            'groups'    => $groups,
         ]);
     }
 
