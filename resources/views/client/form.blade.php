@@ -16,9 +16,9 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('group', 'Group', ['class' => 'col-sm-2 control-label']) !!}
+    {!! Form::label('group_id', 'Group', ['class' => 'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::select('group_id', \App\Entity\Group::pluck('name', 'id'), $client->group) !!}
+        {!! Form::select('group_id', $groups->pluck('name', 'id'), $client->group, ['id' => 'group_id', 'class' => 'form-control', 'placeholder' => 'Select']) !!}
     </div>
 </div>
 

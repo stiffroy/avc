@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entity\Client;
+use App\Entity\Group;
 use App\Http\Requests\StoreClient;
 use Softon\SweetAlert\Facades\SWAL;
 
@@ -47,9 +48,11 @@ class ClientController extends Controller
     public function create()
     {
         $client = new Client();
+        $groups = Group::all();
 
         return view('client.create', [
             'client' => $client,
+            'groups' => $groups,
         ]);
     }
 
@@ -93,8 +96,11 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
+        $groups = Group::all();
+
         return view('client.edit', [
             'client' => $client,
+            'groups' => $groups,
         ]);
     }
 
