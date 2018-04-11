@@ -52,7 +52,7 @@
 
 @section('footer-js')
     <script type="text/javascript">
-        $(function () {
+        $(document).ready(function() {
             @foreach($groups as $group)
             @if($group['clients'] > 0)
                 let pieChartCanvas{{ $group["id"] }} = $('#group-{{ $group["id"] }}').get(0).getContext('2d');
@@ -88,6 +88,6 @@
                 pieChart{{ $group["id"] }}.Pie(PieData{{ $group["id"] }});
             @endif
             @endforeach
-        })
+        }),(jQuery);
     </script>
 @endsection

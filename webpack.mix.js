@@ -1,6 +1,6 @@
 let mix = require('laravel-mix');
 
-/*
+/**
  |--------------------------------------------------------------------------
  | Mix Asset Management
  |--------------------------------------------------------------------------
@@ -10,6 +10,13 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.autoload({
+    jquery: [ '$', 'jQuery', 'jquery', 'window.jQuery', 'window.$', "window.jquery"],
+});
+
+mix.extract([
+    'datatables.net-bs', 'jquery-slimscroll', 'fastclick', 'chartjs', 'admin-lte', 'sweetalert2'
+]);

@@ -1,14 +1,21 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
-// Variables
-@import "variables";
-
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap3/dist/css/bootstrap.min.css';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+// Font Awesome
+@import '~font-awesome/scss/font-awesome';
+
+// Ion Icons
+@import '~ionicons-npm/scss/ionicons';
+
+// Bootstrap Data Tables
+@import '~datatables.net-bs/css/dataTables.bootstrap.css';
+
+// Admin LTE
+@import '~admin-lte/dist/css/AdminLTE.min.css';
+
+// Admin LTE Theme
+@import '~admin-lte/dist/css/skins/skin-blue.min.css';
+
+.user-panel>.image {
+  color: #ffffff;
 }

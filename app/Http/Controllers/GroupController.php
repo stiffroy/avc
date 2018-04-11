@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entity\Group;
 use App\Http\Requests\StoreGroup;
 use App\Utilities\GroupUtilities;
+use JavaScript;
 use Softon\SweetAlert\Facades\SWAL;
 
 class GroupController extends Controller
@@ -17,6 +18,12 @@ class GroupController extends Controller
     public function overview()
     {
         $groups = GroupUtilities::formatData(Group::all());
+
+//        dump(json_encode($groups));
+
+        JavaScript::put([
+            'groups' => json_encode($groups),
+        ]);
 
         return view('group.pane', [
             'groups' => $groups,

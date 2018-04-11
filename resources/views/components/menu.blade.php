@@ -4,7 +4,7 @@
     <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
     <li class="treeview user">
         <a href="#">
-            <i class="fa ion-person-stalker"></i> <span>Users</span>
+            <i class="fa fa-users"></i> <span>Users</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -17,7 +17,7 @@
     </li>
     <li class="treeview group">
         <a href="#">
-            <i class="fa ion-cube"></i> <span>Groups</span>
+            <i class="fa fa-connectdevelop"></i> <span>Groups</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
             </span>

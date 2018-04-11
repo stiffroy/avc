@@ -7,17 +7,17 @@
     <title>{{ config('app.name', 'AV Comparatives') }}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">--}}
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">--}}
     <!-- Ionicons -->
-    <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">--}}
     <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">--}}
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">--}}
     <!-- AdminLTE Skins -->
-    <link rel="stylesheet" href="{{ asset('css/skins/skin-blue.min.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('css/skins/skin-blue.min.css') }}">--}}
     <!-- App Custom Design -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -226,26 +226,31 @@
 
 <!-- REQUIRED JS SCRIPTS -->
 <!-- jQuery 3 -->
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<!-- DataTables -->
-<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
-<!-- SlimScroll -->
-<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
-<!-- FastClick -->
-<script src="{{ asset('js/fastclick.js') }}"></script>
-<!-- Chart JS -->
-<script src="{{ asset('js/chart.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('js/demo.js') }}"></script>
-<!-- Sweet Alert 2 -->
-<script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
-<!-- Customised App -->
-<script src="{{ asset('js/app.js') }}"></script>
+{{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
+{{--<!-- Bootstrap 3.3.7 -->--}}
+{{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
+{{--<!-- DataTables -->--}}
+{{--<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>--}}
+{{--<script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>--}}
+{{--<!-- SlimScroll -->--}}
+{{--<script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>--}}
+{{--<!-- FastClick -->--}}
+{{--<script src="{{ asset('js/fastclick.js') }}"></script>--}}
+{{--<!-- Chart JS -->--}}
+{{--<script src="{{ asset('js/chart.min.js') }}"></script>--}}
+{{--<!-- AdminLTE App -->--}}
+{{--<script src="{{ asset('js/adminlte.min.js') }}"></script>--}}
+{{--<!-- AdminLTE for demo purposes -->--}}
+{{--<script src="{{ asset('js/demo.js') }}"></script>--}}
+{{--<!-- Sweet Alert 2 -->--}}
+{{--<script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>--}}
+{{--<!-- Customised App -->--}}
+{{--<script src="{{ asset('js/app.js') }}"></script>--}}
+
+<script type="text/javascript" src="{{ asset('/js/manifest.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/vendor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
+
 @yield('footer-js')
 @include('vendor.sweetalert.view')
 </body>
