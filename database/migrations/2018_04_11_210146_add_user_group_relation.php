@@ -13,12 +13,20 @@ class AddUserGroupRelation extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedInteger('group_id')->after('name')->nullable();
+        Schema::create('group_user', function (Blueprint $table) {
+            $table->unsignedInteger('group_id')->nullable();
             $table->foreign('group_id')
                 ->references('id')
                 ->on('groups')
                 ->onDelete('cascade');
+
+            $table->unsignedInteger('user_id')->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+            $table->timestamps();
         });
     }
 
@@ -29,9 +37,6 @@ class AddUserGroupRelation extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['group_id']);
-            $table->dropColumn('group_id');
-        });
+        Schema::drop('group_user');
     }
 }

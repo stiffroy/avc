@@ -40,10 +40,10 @@ class Group extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users()
     {
-        return $this->hasMany('App\Entity\User');
+        return $this->belongsToMany('App\Entity\User')->withTimestamps();
     }
 }
