@@ -4,7 +4,7 @@
 <div class="form-group">
     {!! Form::label('name', 'Name', ['class' => 'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::text('name', $group->name, ['id' => 'name', 'class' => 'form-control', 'placeholder' => 'Name of the client']) !!}
+        {!! Form::text('name', $group->name, ['id' => 'name', 'class' => 'form-control', 'placeholder' => 'Name of the group']) !!}
     </div>
 </div>
 

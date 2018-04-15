@@ -4,12 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Client
+            Clients
             <small>Edit</small>
         </h1>
         <ol class="breadcrumb">
             <li>Home</li>
-            <li><a href="#">Client</a></li>
+            <li><a href="#">Clients</a></li>
             <li class="active"><a href="#">Edit</a></li>
         </ol>
     </section>

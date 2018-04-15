@@ -4,7 +4,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Client
+            Clients
             <small>Details</small>
         </h1>
         <ol class="breadcrumb">
@@ -58,7 +58,8 @@
                         </tr>
                     </table>
                     {!! Form::open(['route' => ['client.delete', $client->id]]) !!}
-                        <a href="{{ url()->previous() }}" class="btn btn-warning btn-flat">Back</a>
+                        <a href="{{ route('client.list') }}" class="btn btn-warning btn-flat">List</a>
+                        <a href="{{ route('client.create') }}" class="btn btn-success btn-flat">Create</a>
                         <a href="{{ route('client.edit', ['id' => $client->id]) }}" class="btn btn-primary btn-flat">Edit</a>
                         <button class="btn btn-danger btn-flat"><i class="ion ion-close-round"></i> Delete</button>
                     {!! Form::close() !!}

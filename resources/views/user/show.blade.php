@@ -33,8 +33,12 @@
                             <td>{{ $user->email }}</td>
                         </tr>
                         <tr>
-                            <th>Group</th>
-                            <td>{{ $user->group ? $user->group->name : 'Null' }}</td>
+                            <th>Groups</th>
+                            <td>
+                                @foreach($user->groups as $group)
+                                    <a href="{{ route('group.show', ['id' => $group->id]) }}">{{ $group->name }}</a>,
+                                @endforeach
+                            </td>
                         </tr>
                         <tr>
                             <th>Created On</th>
@@ -46,7 +50,8 @@
                         </tr>
                     </table>
                     {!! Form::open(['route' => ['user.delete', $user->id]]) !!}
-                        <a href="{{ url()->previous() }}" class="btn btn-warning btn-flat">Back</a>
+                        <a href="{{ route('user.list') }}" class="btn btn-warning btn-flat">List</a>
+                        <a href="{{ route('user.create') }}" class="btn btn-success btn-flat">Create</a>
                         <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-primary btn-flat">Edit</a>
                         <button class="btn btn-danger btn-flat"><i class="ion ion-close-round"></i> Delete</button>
                     {!! Form::close() !!}

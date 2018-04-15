@@ -48,15 +48,16 @@
                         </tr>
                         <tr>
                             <th>Created On</th>
-                            <td>{{ $group->created_at }}</td>
+                            <td>{{ $group->created_at->format('d.m.Y H:i') }}</td>
                         </tr>
                         <tr>
                             <th>Last Updated</th>
-                            <td>{{ $group->updated_at }}</td>
+                            <td>{{ $group->updated_at->format('d.m.Y H:i') }}</td>
                         </tr>
                     </table>
                     {!! Form::open(['route' => ['group.delete', $group->id]]) !!}
-                        <a href="{{ url()->previous() }}" class="btn btn-warning btn-flat">Back</a>
+                        <a href="{{ route('group.list') }}" class="btn btn-warning btn-flat">List</a>
+                        <a href="{{ route('group.create') }}" class="btn btn-success btn-flat">Create</a>
                         <a href="{{ route('group.edit', ['id' => $group->id]) }}" class="btn btn-primary btn-flat">Edit</a>
                         <button class="btn btn-danger btn-flat"><i class="ion ion-close-round"></i> Delete</button>
                     {!! Form::close() !!}

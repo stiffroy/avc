@@ -4,12 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Clients
+            Groups
             <small>Overview Mode</small>
         </h1>
         <ol class="breadcrumb">
             <li>Home</li>
-            <li><a href="#">Clients</a></li>
+            <li><a href="#">Groups</a></li>
             <li class="active"><a href="#">Overview</a></li>
         </ol>
     </section>

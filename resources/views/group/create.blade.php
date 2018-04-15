@@ -4,12 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Group
+            Groups
             <small>Create</small>
         </h1>
         <ol class="breadcrumb">
             <li>Home</li>
-            <li><a href="#">Client</a></li>
+            <li><a href="#">Group</a></li>
             <li class="active"><a href="#">Create</a></li>
         </ol>
     </section>
@@ -18,7 +18,7 @@
     <section class="content container-fluid">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">Create New Client</h3>
+                <h3 class="box-title">Create New Group</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">

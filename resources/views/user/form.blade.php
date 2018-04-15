@@ -25,9 +25,9 @@
 @endif
 
 <div class="form-group">
-    {!! Form::label('group_id', 'Group', ['class' => 'col-sm-2 control-label']) !!}
+    {!! Form::label('groups', 'Group', ['class' => 'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
-        {!! Form::select('group_id', $groups->pluck('name', 'id'), $user->group->id, ['id' => 'group_id', 'class' => 'form-control', 'placeholder' => 'Select']) !!}
+        {!! Form::select('groups[]', $groups->pluck('name', 'id'), $user->groups->pluck('id'), ['id' => 'groups', 'class' => 'form-control','multiple' => 'multiple']) !!}
     </div>
 </div>
 
