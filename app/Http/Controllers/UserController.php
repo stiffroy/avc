@@ -67,8 +67,8 @@ class UserController extends Controller
             $user->groups()->sync($request->get('groups'));
             SWAL::message('User Created!', 'Successfully created a new user', 'success');
         } catch (\Exception $exception) {
-            \Log::debug($exception['message']);
-            SWAL::message('We are Sorry', $exception['message'], 'error');
+            \Log::debug($exception->getMessage());
+            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
         }
 
         return redirect()->route('user.show', ['id' => $user->id]);
@@ -117,7 +117,8 @@ class UserController extends Controller
             $user->groups()->sync($request->get('groups'));
             SWAL::message('User Updated!', 'Successfully updated the user', 'success');
         } catch (\Exception $exception) {
-            SWAL::message('We are Sorry', $exception['message'], 'error');
+            \Log::debug($exception->getMessage());
+            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
         }
 
         return redirect()->route('user.show', ['id' => $user->id]);
@@ -135,7 +136,8 @@ class UserController extends Controller
             $user->delete();
             SWAL::message('User Deleted!', 'Successfully deleted the user', 'success');
         } catch (\Exception $exception) {
-            SWAL::message('We are Sorry', $exception['message'], 'error');
+            \Log::debug($exception->getMessage());
+            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
         }
 
         return redirect()->route('user.list');

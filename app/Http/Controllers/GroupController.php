@@ -64,7 +64,8 @@ class GroupController extends Controller
             $group = $group->create($request->except('_token'));
             SWAL::message('Group Created!', 'Successfully created a new group', 'success');
         } catch (\Exception $exception) {
-            SWAL::message('We are Sorry', $exception['message'], 'error');
+            \Log::debug($exception->getMessage());
+            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
         }
 
         return redirect()->route('group.show', ['id' => $group->id]);
@@ -109,7 +110,8 @@ class GroupController extends Controller
             $group->update($request->except('_token'));
             SWAL::message('Group Updated!', 'Successfully updated the group', 'success');
         } catch (\Exception $exception) {
-            SWAL::message('We are Sorry', $exception['message'], 'error');
+            \Log::debug($exception->getMessage());
+            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
         }
 
         return redirect()->route('group.show', ['id' => $group->id]);
@@ -127,7 +129,8 @@ class GroupController extends Controller
             $group->delete();
             SWAL::message('Group Deleted!', 'Successfully deleted the group', 'success');
         } catch (\Exception $exception) {
-            SWAL::message('We are Sorry', $exception['message'], 'error');
+            \Log::debug($exception->getMessage());
+            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
         }
 
         return redirect()->route('group.list');
