@@ -22,11 +22,6 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <div v-show="errors !== null" class="alert alert-danger">
-                            <ul>
-                                <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-                            </ul>
-                        </div>
                         <client-form :groups="groups" :client="client"></client-form>
                     </div>
                 </div>
@@ -49,7 +44,6 @@
                     group_id: '',
                     alive: '',
                 },
-                errors: null,
                 groups: {},
             }
         },
@@ -65,8 +59,7 @@
                             app.refreshData(response);
                         })
                         .catch(function (response) {
-                            alert("Could not load groups");
-                            console.log(response);
+                            console.dir(response);
                         });
                 }
             },

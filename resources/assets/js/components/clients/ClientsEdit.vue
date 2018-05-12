@@ -22,11 +22,6 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <div v-if="errors !== null" class="alert alert-danger">
-                            <ul>
-                                <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
-                            </ul>
-                        </div>
                         <client-form :groups="groups" :client="client"></client-form>
                     </div>
                 </div>
@@ -42,7 +37,6 @@
     export default {
         data: function () {
             return {
-                errors: null,
                 client: {},
                 groups: {},
             }
@@ -60,8 +54,7 @@
                             this.refreshClient(response);
                         })
                         .catch(function (response) {
-                            alert("Could not load clients");
-                            console.log(response);
+                            console.dir(response);
                         });
                 }
             },
@@ -72,8 +65,7 @@
                             this.refreshGroup(response);
                         })
                         .catch(function (response) {
-                            alert("Could not load clients");
-                            console.log(response);
+                            console.dir(response);
                         });
                 }
             },
@@ -82,9 +74,6 @@
             },
             refreshGroup(response) {
                 this.groups = response.data.data;
-            },
-            saveClient() {
-                console.log('saving the form');
             }
         },
         components: {
