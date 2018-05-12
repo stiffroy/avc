@@ -19,7 +19,6 @@
         "popper.js": "^1.12",
         "vue": "^2.5.7",
         "vue-devtools": "^3.1.9",
-        "vue-moment": "^3.2.0",
         "vue-router": "^3.0.1",
         "vue2-admin-lte": "^0.4.3"
     }
