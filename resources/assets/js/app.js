@@ -3,10 +3,10 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
 require('./bootstrap');
 
 window.Vue = require('vue');
+
 import VueRouter from 'vue-router';
 /**
  * Importing the Vue2 Admin LTE
@@ -31,7 +31,6 @@ import ClientShow from './components/clients/ClientsShow';
 import ClientEdit from './components/clients/ClientsEdit';
 
 window.Vue.use(VueRouter);
-Vue.use(require('vue-moment'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -40,7 +39,6 @@ Vue.use(require('vue-moment'));
  */
 
 Vue.component('side-menu', require('./components/SideMenu'));
-// Vue.component(ClientsList, require('./components/ClientsList.vue'));
 
 const routes = [
     {path: '/', component: Home, name: 'home'},
@@ -62,5 +60,4 @@ const routes = [
 ];
 
 const router = new VueRouter({ routes });
-
 const app = new Vue({ router }).$mount('#app');
