@@ -42,8 +42,10 @@
                                 <span v-if="!client.alive" class="label label-danger label-as-badge" v-on:click="makeAlive(client)">enable</span>
                             </td>
                             <td>{{ client.external_id }}</td>
-                            <td><router-link :to="{ name: 'showGroup', params: { id: client.group_id }}">{{ client.group_name }}</router-link></td>
-                            <td>{{ client.updated_at.date | moment('DD-MM-YYYY HH:mm') }}</td>
+                            <td>
+                                <router-link :to="{ name: 'showGroup', params: { id: client.group_id }}">{{ client.group_name }}</router-link>
+                            </td>
+                            <td>{{ client.updated_at }}</td>
                             <td><span :class="'label label-' + client.status_label">{{ client.health }}</span></td>
                             <td>
                                 <router-link :to="{name: 'showClient', params: {id: client.id}}" class="pull-left btn btn-link">
@@ -52,11 +54,9 @@
                                 <router-link :to="{name: 'editClient', params: {id: client.id}}" class="pull-left btn btn-link">
                                     <i class="fa fa-edit"> Edit</i>
                                 </router-link>
-                                <a href="#"
-                                   class="btn btn-link"
-                                   v-on:click="deleteEntry(client.id, index)">
+                                <p class="btn btn-link" v-on:click="deleteEntry(client.id, index)">
                                     <i class="fa fa-times-circle"> Delete</i>
-                                </a>
+                                </p>
                             </td>
                         </tr>
                         </tbody>
@@ -71,9 +71,14 @@
                         </tr>
                         </tfoot>
                     </table>
+                    <div v-if="links.prev !== links.next" class="pull-right">
+                        <p class="btn btn-link" v-on:click="mountData(links.first)">First</p>
+                        <p class="btn btn-link" v-on:click="mountData(links.prev)">Prev</p>
+                        <p class="btn btn-link" v-on:click="mountData(links.next)">Next</p>
+                        <p class="btn btn-link" v-on:click="mountData(links.last)">Last</p>
+                    </div>
                 </div>
             </div>
-
         </section>
         <!-- /.content -->
     </div>
@@ -83,40 +88,51 @@
     export default {
         data: function () {
             return {
-                clients: []
+                clients: [],
+                links: []
             }
         },
         mounted() {
-            var app = this;
-            axios.get('/api/v1/clients')
-                .then(response => {
-                    app.clients = response.data.data;
-                })
-                .catch(function (resp) {
-                    alert("Could not load clients");
-                });
+            this.mountData('/api/v1/clients');
         },
         methods: {
+            mountData(link) {
+                if (link !== null) {
+                    axios.get(link)
+                        .then(response => {
+                            this.refreshData(response);
+                        })
+                        .catch(function (response) {
+                            alert("Could not load clients");
+                            console.log(response);
+                        });
+                }
+            },
+            refreshData(response) {
+                this.clients = response.data.data;
+                this.links = response.data.links;
+            },
             deleteEntry(id, index) {
                 if (confirm("Do you really want to delete it?")) {
-                    var app = this;
                     axios.delete('/api/v1/clients/' + id)
-                        .then(function (resp) {
-                            app.clients.splice(index, 1);
+                        .then(function (response) {
+                            this.clients.splice(index, 1);
                         })
-                        .catch(function (resp) {
+                        .catch(function (response) {
                             alert("Could not delete company");
+                            console.log(response);
                         });
                 }
             },
             makeAlive(client) {
                 event.preventDefault();
                 axios.post('/api/v1/client/alive', {id: client.id})
-                    .then(function (resp) {
-                        client.alive = resp.data.data.alive;
+                    .then(function (response) {
+                        client.alive = response.data.data.alive;
                     })
-                    .catch(function (resp) {
+                    .catch(function (response) {
                         alert("Could not make the client alive");
+                        console.log(response);
                     });
             }
         }

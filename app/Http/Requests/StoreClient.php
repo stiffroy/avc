@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class StoreClient extends FormRequest
 {
@@ -14,7 +13,7 @@ class StoreClient extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -27,6 +26,7 @@ class StoreClient extends FormRequest
         return [
             'name'          => 'required|max:255|unique:clients,name,'. $this->get('id'),
             'external_id'   => 'required|max:255|unique:clients,external_id,'. $this->get('id'),
+            'group_id'      => 'required',
         ];
     }
 }

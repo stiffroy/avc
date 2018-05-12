@@ -76,11 +76,11 @@ class ClientUtilities
      */
     public static function getBackgroundIcon($health)
     {
-        $bgIcon = 'ion-flag';
+        $bgIcon = 'flag';
         if ($health === self::WARNING || $health === self::CRITICAL) {
-            $bgIcon = 'ion-heart-broken';
+            $bgIcon = 'ban';
         } elseif ($health === self::HEALTHY) {
-            $bgIcon = 'ion-heart';
+            $bgIcon = 'heart';
         }
 
         return $bgIcon;
