@@ -64,7 +64,7 @@
                                         <div class="pull-right">
                                             <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();">
+                                                document.getElementById('logout-form').submit();">
                                                 Logout
                                             </a>
 
