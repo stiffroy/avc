@@ -9,7 +9,7 @@
             <ol class="breadcrumb">
                 <li>Home</li>
                 <li><a href="#">Clients</a></li>
-                <li class="active"><a href="#">Create</a></li>
+                <li class="active"><a href="#">Edit</a></li>
             </ol>
         </section>
 
@@ -17,7 +17,7 @@
         <section class="content container-fluid">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Create New Client</h3>
+                    <h3 class="box-title">Edit {{ client.name }}</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
