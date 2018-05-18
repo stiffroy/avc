@@ -2,7 +2,6 @@
 
 namespace App\Utilities;
 
-use App\Entity\Group;
 use Illuminate\Database\Eloquent\Collection;
 
 class GroupUtilities
@@ -15,7 +14,7 @@ class GroupUtilities
     {
         $formattedGroup = [];
         foreach ($groups as $group) {
-            $getData = self::getData($group);
+            $getData = self::getData($group->clients);
             $formattedGroup[] = [
                 'id' => $group->id,
                 'name' => $group->name,
@@ -30,13 +29,17 @@ class GroupUtilities
     }
 
     /**
-     * @param Group $group
+     * @param $clients
      * @return array
      */
-    public static function getData(Group $group)
+    public static function getData($clients)
     {
         $na = $warning = $critical = $healthy = 0;
-        $clients = $group->clients()->where('alive', 1)->get();
+        $clients = $clients->map(function ($data) {
+            if ($data->alive) {
+                return $data;
+            }
+        });
 
         foreach ($clients as $client) {
             if ($client->health === ClientUtilities::NO_RECORDS_YET) {
