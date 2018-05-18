@@ -8,6 +8,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router';
+import Vue2Filters from 'vue2-filters';
 /**
  * Importing the Vue2 Admin LTE
  */
@@ -31,6 +32,7 @@ import ClientShow from './components/clients/ClientsShow';
 import ClientEdit from './components/clients/ClientsEdit';
 
 window.Vue.use(VueRouter);
+window.Vue.use(Vue2Filters);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
