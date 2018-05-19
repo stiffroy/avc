@@ -34,8 +34,8 @@
                             <tr>
                                 <th>Group</th>
                                 <td>
-                                    <router-link :to="{name: 'showGroup', params: {id: client.group_id}}">
-                                        {{ client.group_name }}
+                                    <router-link :to="{name: 'showGroup', params: {id: client.group.value}}">
+                                        {{ client.group.label }}
                                     </router-link>
                                 </td>
                             </tr>
@@ -45,7 +45,10 @@
                             </tr>
                             <tr>
                                 <th>Status</th>
-                                <td><span>{{ client.alive }}</span></td>
+                                <td>
+                                    <span v-if="client.alive">Active</span>
+                                    <span v-else>Inactive</span>
+                                </td>
                             </tr>
                             <tr>
                                 <th>Health</th>

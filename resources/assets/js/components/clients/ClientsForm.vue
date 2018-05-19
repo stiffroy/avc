@@ -18,17 +18,9 @@
         </div>
 
         <div class="form-group">
-            <label for="group_id" class="col-sm-2 control-label">Group</label>
+            <label for="group" class="col-sm-2 control-label">Group</label>
             <div class="col-sm-10">
-                <select name="group_id" id="group_id" class="form-control" v-model="client.group_id">
-                    <option
-                            v-for="(group, index) in groups"
-                            :key="index"
-                            :value="group.id"
-                            :selected="group.id === client.group_id"
-                    >{{ group.name }}</option>
-                </select>
-                <p v-for="validation in errors.group_id" class="text text-danger">{{ validation }}</p>
+                <v-select name="group" id="group" v-model="client.group" :options="groups"></v-select>
             </div>
         </div>
 
@@ -49,6 +41,8 @@
 </template>
 
 <script>
+    import vSelect from 'vue-select';
+
     export default {
         data: function () {
             return {
@@ -57,10 +51,39 @@
                     name: [],
                     external_id: [],
                 },
+                groups: [],
             }
         },
-        props: ['client', 'groups'],
+        props: ['client'],
+        mounted() {
+            this.mountData('/api/v1/groups/');
+        },
         methods: {
+            mountData(link) {
+                if (link !== null) {
+                    axios.get(link)
+                        .then(response => {
+                            this.refreshData(response);
+                        })
+                        .catch(function (response) {
+                            alert("Could not load groups");
+                            console.dir(response);
+                        });
+                }
+            },
+            refreshData(response) {
+                let data = response.data.data;
+                console.log(data);
+                let groups = this.groups;
+                data.forEach(function (value, key) {
+                    let group = {
+                        'value': value.id,
+                        'label': value.name,
+                    };
+                    groups.push(group);
+                });
+                console.log(this.groups);
+            },
             saveClient() {
                 let app = this;
                 axios.post('/api/v1/clients', app.client)
@@ -72,6 +95,9 @@
                         app.errors = error.response.data.errors;
                     });
             }
+        },
+        components: {
+            'v-select': vSelect
         }
     }
 </script>

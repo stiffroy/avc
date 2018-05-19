@@ -43,7 +43,7 @@
                             </td>
                             <td>{{ client.external_id }}</td>
                             <td>
-                                <router-link :to="{ name: 'showGroup', params: { id: client.group_id }}">{{ client.group_name }}</router-link>
+                                <router-link :to="{ name: 'showGroup', params: { id: client.group.value }}">{{ client.group.label }}</router-link>
                             </td>
                             <td>{{ client.updated_at }}</td>
                             <td><span :class="'label label-' + client.status_label">{{ client.health }}</span></td>

@@ -34,11 +34,11 @@ class Client extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function users()
+    public function group()
     {
-        return $this->belongsToMany('App\Entity\User');
+        return $this->belongsTo('App\Entity\Group');
     }
 
     /**
@@ -49,14 +49,6 @@ class Client extends Model
     public function setAliveAttribute($status)
     {
         $this->attributes['alive'] = ClientUtilities::convertStatus($status);
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function group()
-    {
-        return $this->belongsTo('App\Entity\Group');
     }
 
     /**

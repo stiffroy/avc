@@ -15,14 +15,18 @@ class Client extends JsonResource
      */
     public function toArray($request)
     {
+        $group = [
+            'value' => $this->group->id,
+            'label' => $this->group->name,
+        ];
+
         return [
             'id' => $this->id,
             'name' => $this->name,
             'external_id' => $this->external_id,
             'api_token' => $this->api_token,
             'alive' => $this->alive,
-            'group_id' => $this->group->id,
-            'group_name' => $this->group->name,
+            'group' => $group,
             'status_label' => $this->statusLabel,
             'bg' => $this->bg,
             'bg_icon' => $this->bgIcon,

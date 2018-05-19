@@ -26,7 +26,6 @@ class StoreClient extends FormRequest
         return [
             'name'          => 'required|max:255|unique:clients,name,'. $this->get('id'),
             'external_id'   => 'required|max:255|unique:clients,external_id,'. $this->get('id'),
-            'group_id'      => 'required',
         ];
     }
 }

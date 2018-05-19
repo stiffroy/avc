@@ -35,11 +35,15 @@ class ClientController extends Controller
      */
     public function store(StoreClient $request)
     {
+        $group = $request->get('group');
+        $groupId = $group['value'];
+        $request->merge(['group_id' => $groupId]);
+
         if ($request->id) {
             $client = Client::findOrFail($request->id);
-            $client->update($request->except('_token'));
+            $client->update($request->except('_token', 'group'));
         } else {
-            $client = Client::create($request->except('_token'));
+            $client = Client::create($request->except('_token', 'group'));
         }
 
         return new ClientResource($client);

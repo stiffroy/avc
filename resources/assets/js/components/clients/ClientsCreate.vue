@@ -22,7 +22,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <client-form :groups="groups" :client="client"></client-form>
+                        <client-form :client="client"></client-form>
                     </div>
                 </div>
             </div>
@@ -44,27 +44,6 @@
                     group_id: '',
                     alive: '',
                 },
-                groups: {},
-            }
-        },
-        mounted() {
-            this.getGroup('/api/v1/groups');
-        },
-        methods: {
-            getGroup(link) {
-                let app = this;
-                if (link !== null) {
-                    axios.get(link)
-                        .then(function (response) {
-                            app.refreshData(response);
-                        })
-                        .catch(function (response) {
-                            console.dir(response);
-                        });
-                }
-            },
-            refreshData(response) {
-                this.groups = response.data.data;
             }
         },
         components: {
