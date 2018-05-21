@@ -76,11 +76,11 @@ class ClientUtilities
      */
     public static function getBackgroundIcon($health)
     {
-        $bgIcon = 'ion-flag';
+        $bgIcon = 'flag';
         if ($health === self::WARNING || $health === self::CRITICAL) {
-            $bgIcon = 'ion-heart-broken';
+            $bgIcon = 'ban';
         } elseif ($health === self::HEALTHY) {
-            $bgIcon = 'ion-heart';
+            $bgIcon = 'heart';
         }
 
         return $bgIcon;
@@ -88,17 +88,16 @@ class ClientUtilities
 
     /**
      * @param $heartbeat
-     * @param $warning
-     * @param $critical
+     * @param $group
      * @return string
      */
-    public static function getHealth($heartbeat, $warning, $critical)
+    public static function getHealth($heartbeat, $group)
     {
         $now = Carbon::now();
         $status = self::getBaseHealth();
-        if ($heartbeat) {
+        if ($heartbeat && $group) {
             $diff = $now->diffInSeconds(Carbon::parse($heartbeat));
-            $status = self::getHealthStatus($diff, $warning, $critical);
+            $status = self::getHealthStatus($diff, $group->warning, $group->critical);
         }
 
         return $status;

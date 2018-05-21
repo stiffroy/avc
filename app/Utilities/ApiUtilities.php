@@ -42,6 +42,42 @@ class ApiUtilities
     }
 
     /**
+     * Formatting collection of entities for Vue-select
+     *
+     * @param $entities
+     * @return array
+     */
+    public static function formatRelatedEntities($entities)
+    {
+        $formattedEntities = [];
+
+        foreach ($entities as $entity) {
+            $formattedEntities[] = [
+                'value' => $entity->id,
+                'label' => $entity->name,
+            ];
+        }
+
+        return $formattedEntities;
+    }
+
+    /**
+     * Formatting entity for Vue-select
+     *
+     * @param $entity
+     * @return array
+     */
+    public static function formatRelatedEntity($entity)
+    {
+        return [
+            'value' => $entity->id,
+            'label' => $entity->name,
+        ];
+    }
+
+
+
+    /**
      * Helper class for getting the status code
      *
      * @param $client

@@ -11,5 +11,12 @@
 |
 */
 Route::prefix('v1/')->group(function () {
-    Route::post('heartbeat', 'ApiController@heartbeat')->name('heartbeat');
+    Route::post('client/heartbeat', 'Api\ClientController@heartbeat')->name('heartbeat');
+    Route::post('client/alive', 'Api\ClientController@makeAlive')->name('alive');
+
+    Route::apiResources([
+        'clients'   => 'Api\ClientController',
+        'groups'    => 'Api\GroupController',
+        'users'     => 'Api\UserController',
+    ]);
 });
