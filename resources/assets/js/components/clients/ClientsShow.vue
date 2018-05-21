@@ -34,8 +34,8 @@
                             <tr>
                                 <th>Group</th>
                                 <td>
-                                    <router-link :to="{name: 'showGroup', params: {id: client.group.value}}">
-                                        {{ client.group.label }}
+                                    <router-link v-if="client.group" :to="{name: 'showGroup', params: {id: client.group.id}}">
+                                        {{ client.group.name }}
                                     </router-link>
                                 </td>
                             </tr>
@@ -91,10 +91,11 @@
             }
         },
         mounted() {
+            let app = this;
             let id = this.$route.params.id;
             axios.get('/api/v1/clients/' + id)
-                .then(response => {
-                    this.client = response.data.data;
+                .then(function (response) {
+                    app.client = response.data.data;
                 })
                 .catch(function (response) {
                     alert("Could not load clients");

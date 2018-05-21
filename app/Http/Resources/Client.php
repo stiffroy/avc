@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Group as GroupResource;
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -15,18 +16,13 @@ class Client extends JsonResource
      */
     public function toArray($request)
     {
-        $group = [
-            'value' => $this->group->id,
-            'label' => $this->group->name,
-        ];
-
         return [
             'id' => $this->id,
             'name' => $this->name,
             'external_id' => $this->external_id,
             'api_token' => $this->api_token,
             'alive' => $this->alive,
-            'group' => $group,
+            'group' => new GroupResource($this->group),
             'status_label' => $this->statusLabel,
             'bg' => $this->bg,
             'bg_icon' => $this->bgIcon,

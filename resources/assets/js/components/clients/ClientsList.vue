@@ -43,7 +43,9 @@
                             </td>
                             <td>{{ client.external_id }}</td>
                             <td>
-                                <router-link :to="{ name: 'showGroup', params: { id: client.group.value }}">{{ client.group.label }}</router-link>
+                                <router-link v-if="client.group" :to="{ name: 'showGroup', params: { id: client.group.id }}">
+                                    {{ client.group.name }}
+                                </router-link>
                             </td>
                             <td>{{ client.updated_at }}</td>
                             <td><span :class="'label label-' + client.status_label">{{ client.health }}</span></td>
@@ -97,10 +99,11 @@
         },
         methods: {
             mountData(link) {
+                let app = this;
                 if (link !== null) {
                     axios.get(link)
-                        .then(response => {
-                            this.refreshData(response);
+                        .then(function (response) {
+                            app.refreshData(response);
                         })
                         .catch(function (response) {
                             alert("Could not load clients");

@@ -60,10 +60,11 @@
         },
         methods: {
             mountData(link) {
+                let app = this;
                 if (link !== null) {
                     axios.get(link)
-                        .then(response => {
-                            this.refreshData(response);
+                        .then(function (response) {
+                            app.refreshData(response);
                         })
                         .catch(function (response) {
                             alert("Could not load groups");
@@ -73,7 +74,6 @@
             },
             refreshData(response) {
                 let data = response.data.data;
-                console.log(data);
                 let groups = this.groups;
                 data.forEach(function (value, key) {
                     let group = {
@@ -82,7 +82,6 @@
                     };
                     groups.push(group);
                 });
-                console.log(this.groups);
             },
             saveClient() {
                 let app = this;

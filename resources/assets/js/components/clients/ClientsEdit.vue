@@ -22,7 +22,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <client-form :groups="groups" :client="client"></client-form>
+                        <client-form :client="client"></client-form>
                     </div>
                 </div>
             </div>
@@ -38,43 +38,33 @@
         data: function () {
             return {
                 client: {},
-                groups: {},
             }
         },
         mounted() {
-            this.getClient('/api/v1/clients/');
-            this.getGroup('/api/v1/groups');
+            this.mountData('/api/v1/clients/');
         },
         methods: {
-            getClient(link) {
+            mountData(link) {
+                let app = this;
                 let id = this.$route.params.id;
                 if (link !== null) {
                     axios.get(link + id)
-                        .then(response => {
-                            this.refreshClient(response);
+                        .then(function (response) {
+                            app.refreshData(response);
                         })
                         .catch(function (response) {
                             console.dir(response);
                         });
                 }
             },
-            getGroup(link) {
-                if (link !== null) {
-                    axios.get(link)
-                        .then(response => {
-                            this.refreshGroup(response);
-                        })
-                        .catch(function (response) {
-                            console.dir(response);
-                        });
-                }
-            },
-            refreshClient(response) {
+            refreshData(response) {
                 this.client = response.data.data;
+                let group = {
+                    'value': this.client.group.id,
+                    'label': this.client.group.name,
+                };
+                this.client.group = group;
             },
-            refreshGroup(response) {
-                this.groups = response.data.data;
-            }
         },
         components: {
             ClientForm

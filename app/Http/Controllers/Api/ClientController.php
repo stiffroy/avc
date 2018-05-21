@@ -24,7 +24,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return ClientResource::collection(Client::paginate(self::PER_PAGE));
+        $client = Client::with('group')->paginate(self::PER_PAGE);
+        return ClientResource::collection($client);
     }
 
     /**
@@ -57,7 +58,8 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        return new ClientResource(Client::findOrFail($id));
+        $client = Client::with('group')->findOrFail($id);
+        return new ClientResource($client);
     }
 
     /**

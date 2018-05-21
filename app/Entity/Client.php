@@ -80,6 +80,6 @@ class Client extends Model
      */
     public function getHealthAttribute()
     {
-        return ClientUtilities::getHealth($this->heartbeat_at, $this->group->warning, $this->group->critical);
+        return ClientUtilities::getHealth($this->heartbeat_at, $this->group);
     }
 }
