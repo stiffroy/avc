@@ -20,7 +20,7 @@ class User extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'groups' => GroupResource::collection($this->groups),
+            'groups' => GroupResource::collection($this->whenLoaded('groups')),
             'created_at' => Carbon::parse($this->created_at)->format('d.m.Y H:i'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d.m.Y H:i'),
         ];

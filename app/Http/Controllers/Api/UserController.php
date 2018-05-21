@@ -22,7 +22,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return UserResource::collection(User::paginate(self::PER_PAGE));
+        $groups = User::with('groups')->paginate(self::PER_PAGE);
+        return UserResource::collection($groups);
     }
 
     /**
@@ -54,7 +55,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return new UserResource(User::findOrFail($id));
+        $group = User::with('groups')->findOrFail($id);
+        return new UserResource($group);
     }
 
     /**

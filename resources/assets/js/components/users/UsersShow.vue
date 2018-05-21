@@ -76,10 +76,11 @@
             }
         },
         mounted() {
+            let app = this;
             let id = this.$route.params.id;
             axios.get('/api/v1/users/' + id)
-                .then(response => {
-                    this.user = response.data.data;
+                .then(function (response) {
+                    app.user = response.data.data;
                 })
                 .catch(function (response) {
                     alert("Could not load clients");

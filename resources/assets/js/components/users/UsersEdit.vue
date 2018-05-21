@@ -45,11 +45,12 @@
         },
         methods: {
             mountData(link) {
+                let app = this;
                 let id = this.$route.params.id;
                 if (link !== null) {
                     axios.get(link + id)
-                        .then(response => {
-                            this.refreshData(response);
+                        .then(function (response) {
+                            app.refreshData(response);
                         })
                         .catch(function (response) {
                             console.dir(response);
