@@ -41,23 +41,34 @@
             }
         },
         mounted() {
-            this.getGroup('/api/v1/groups/');
+            this.mountData('/api/v1/groups/');
         },
         methods: {
-            getGroup(link) {
+            mountData(link) {
+                let app = this;
                 let id = this.$route.params.id;
                 if (link !== null) {
                     axios.get(link + id)
-                        .then(response => {
-                            this.refreshGroup(response);
+                        .then(function (response) {
+                            app.refreshData(response);
                         })
                         .catch(function (response) {
                             console.dir(response);
                         });
                 }
             },
-            refreshGroup(response) {
+            refreshData(response) {
+                let clients = [];
+                let users = [];
                 this.group = response.data.data;
+                this.group.clients.forEach(function (value, key) {
+                    clients.push({'value': value.id, 'label': value.name})
+                });
+                this.group.clients = clients;
+                this.group.users.forEach(function (value, key) {
+                    users.push({'value': value.id, 'label': value.name})
+                });
+                this.group.users = users;
             }
         },
         components: {

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Entity\Client;
 use App\Entity\Group;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGroup;
 use App\Http\Resources\Group as GroupResource;
+use Illuminate\Support\Collection;
 
 class GroupController extends Controller
 {
@@ -21,7 +23,8 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return GroupResource::collection(Group::paginate(self::PER_PAGE));
+        $groups = Group::with('clients', 'users')->paginate(self::PER_PAGE);
+        return GroupResource::collection($groups);
     }
 
     /**
@@ -32,12 +35,18 @@ class GroupController extends Controller
      */
     public function store(StoreGroup $request)
     {
+        $clientIds = Collection::make($request->get('clients'))->pluck('value');
+        $userIds = Collection::make($request->get('users'))->pluck('value');
         if ($request->id) {
             $group = Group::findOrFail($request->id);
-            $group->update($request->except('_token'));
+            $group->update($request->except('_token', 'clients', 'users'));
+            $group->users()->sync($userIds);
         } else {
-            $group = Group::create($request->except('_token'));
+            $group = Group::create($request->except('_token', 'clients', 'users'));
+            $group->users()->sync($userIds);
         }
+
+        $this->updateClient($group, $clientIds);
 
         return new GroupResource($group);
     }
@@ -50,7 +59,8 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        return new GroupResource(Group::findOrFail($id));
+        $group = Group::with('clients', 'users')->findOrFail($id);
+        return new GroupResource($group);
     }
 
     /**
@@ -80,6 +90,30 @@ class GroupController extends Controller
 
         if ($group->delete()) {
             return new GroupResource($group);
+        }
+    }
+
+    /**
+     * @param $group
+     * @param $clientIds
+     */
+    private function updateClient($group, $clientIds)
+    {
+        $clients = $group->clients->keyBy('id');
+
+        foreach ($clientIds as $clientId) {
+            if ($clients->contains('id', $clientId)) {
+                $clients = $clients->forget($clientId);
+            } else {
+                $client = Client::findOrFail($clientId);
+                $client->group()->associate($group);
+                $client->save();
+            }
+        }
+
+        foreach ($clients as $client) {
+            $client->group()->dissociate();
+            $client->save();
         }
     }
 }

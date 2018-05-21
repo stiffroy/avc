@@ -84,10 +84,11 @@
         },
         methods: {
             mountData(link) {
+                let app = this;
                 if (link !== null) {
                     axios.get(link)
-                        .then(response => {
-                            this.refreshData(response);
+                        .then(function (response) {
+                            app.refreshData(response);
                         })
                         .catch(function (response) {
                             alert("Could not load clients");

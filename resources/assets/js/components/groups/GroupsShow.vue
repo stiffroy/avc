@@ -40,10 +40,20 @@
                                 <td>
                                     <router-link v-for="(client, index) in group.clients" :key="index"
                                                  :to="{name: 'showClient', params: {id: client.id}}" class="btn-link">
-                                        <p :class="'label label-' + client.status_label">{{ client.name }}</p>
+                                        {{ client.name }}
                                     </router-link>
                                 </td>
                             </tr>
+                            <tr>
+                                <th>Users</th>
+                                <td>
+                                    <router-link v-for="(user, index) in group.users" :key="index"
+                                                 :to="{name: 'showUser', params: {id: user.id}}" class="btn-link">
+                                        {{ user.name }}
+                                    </router-link>
+                                </td>
+                            </tr>
+
                             <tr>
                                 <th>Created On</th>
                                 <td>{{ group.created_at }}</td>
@@ -80,10 +90,11 @@
             }
         },
         mounted() {
+            let app = this;
             let id = this.$route.params.id;
             axios.get('/api/v1/groups/' + id)
-                .then(response => {
-                    this.group = response.data.data;
+                .then(function (response) {
+                    app.group = response.data.data;
                 })
                 .catch(function (response) {
                     alert("Could not load clients");

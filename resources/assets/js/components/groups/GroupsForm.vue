@@ -26,6 +26,20 @@
         </div>
 
         <div class="form-group">
+            <label for="users" class="col-sm-2 control-label">Users</label>
+            <div class="col-sm-10">
+                <v-select multiple="multiple" name="users" id="users" v-model="group.users" :options="users"></v-select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="clients" class="col-sm-2 control-label">Clients</label>
+            <div class="col-sm-10">
+                <v-select multiple="multiple" name="clients" id="clients" v-model="group.clients" :options="clients"></v-select>
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button class="btn btn-primary btn-flat">Save</button>
                 <router-link :to="{name: 'listGroups'}" class="btn btn-danger btn-flat">Cancel</router-link>
@@ -35,6 +49,8 @@
 </template>
 
 <script>
+    import vSelect from 'vue-select';
+
     export default {
         data: function () {
             return {
@@ -44,10 +60,60 @@
                     warning: [],
                     critical: [],
                 },
+                clients: [],
+                users: [],
             }
+        },
+        mounted() {
+            this.mountClients('/api/v1/clients/');
+            this.mountUsers('/api/v1/users/');
         },
         props: ['group'],
         methods: {
+            mountClients(link) {
+                let app = this;
+                axios.post(link)
+                    .then(function (response) {
+                        app.refreshClients(response);
+                    })
+                    .catch(function (response) {
+                        alert("Could not load clients");
+                        console.dir(response);
+                    });
+            },
+            mountUsers(link) {
+                let app = this;
+                axios.post(link)
+                    .then(function (response) {
+                        app.refreshUsers(response);
+                    })
+                    .catch(function (response) {
+                        alert("Could not load users");
+                        console.dir(response);
+                    });
+            },
+            refreshClients(response) {
+                let data = response.data.data;
+                let clients = this.clients;
+                data.forEach(function (value, key) {
+                    let client = {
+                        'value': value.id,
+                        'label': value.name,
+                    };
+                    clients.push(client);
+                });
+            },
+            refreshUsers(response) {
+                let data = response.data.data;
+                let users = this.users;
+                data.forEach(function (value, key) {
+                    let user = {
+                        'value': value.id,
+                        'label': value.name,
+                    };
+                    users.push(user);
+                });
+            },
             saveGroup() {
                 let app = this;
                 axios.post('/api/v1/groups', app.group)
@@ -59,6 +125,9 @@
                         app.errors = error.response.data.errors;
                     });
             }
+        },
+        components: {
+            'v-select': vSelect
         }
     }
 </script>

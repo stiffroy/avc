@@ -14,14 +14,13 @@ class GroupUtilities
     {
         $formattedGroup = [];
         foreach ($groups as $group) {
-            $getData = self::getData($group->clients);
             $formattedGroup[] = [
                 'id' => $group->id,
                 'name' => $group->name,
                 'critical' => $group->critical,
                 'warning' => $group->warning,
-                'clients' => $getData['clients'],
-                'data' => $getData['data'],
+                'clients' => $group->clients->count(),
+                'data' => self::getData($group),
             ];
         }
 
@@ -29,33 +28,34 @@ class GroupUtilities
     }
 
     /**
-     * @param $clients
+     * @param $group
      * @return array
      */
-    public static function getData($clients)
+    public static function getData($group)
     {
         $na = $warning = $critical = $healthy = 0;
-        $clients = $clients->map(function ($data) {
-            if ($data->alive) {
-                return $data;
-            }
-        });
 
-        foreach ($clients as $client) {
-            if ($client->health === ClientUtilities::NO_RECORDS_YET) {
-                $na++;
-            } elseif ($client->health === ClientUtilities::WARNING) {
-                $warning++;
-            } elseif ($client->health === ClientUtilities::CRITICAL) {
-                $critical++;
-            } elseif ($client->health === ClientUtilities::HEALTHY) {
-                $healthy++;
+        if ($group->clients) {
+            foreach ($group->clients as $client) {
+                if ($client->alive && $client->health === ClientUtilities::NO_RECORDS_YET) {
+                    $na++;
+                } elseif ($client->alive && $client->health === ClientUtilities::WARNING) {
+                    $warning++;
+                } elseif ($client->alive && $client->health === ClientUtilities::CRITICAL) {
+                    $critical++;
+                } elseif ($client->alive && $client->health === ClientUtilities::HEALTHY) {
+                    $healthy++;
+                }
             }
         }
 
-        return [
-            'clients' => count($clients),
-            'data'    => [$na, $warning, $critical, $healthy]
-        ];
+        $data = [$na, $warning, $critical, $healthy];
+
+        return $data;
+    }
+
+    public static function countClients($group)
+    {
+        return $group->clients ? $group->clients->count() : 0;
     }
 }
