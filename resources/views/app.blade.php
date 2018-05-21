@@ -85,7 +85,7 @@
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
-        <aside class="main-sidebar">
+        <aside id="slider" class="main-sidebar">
             @auth
             <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
