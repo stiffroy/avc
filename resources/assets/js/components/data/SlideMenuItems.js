@@ -77,7 +77,7 @@ module.exports = [
     {
         type: 'tree',
         icon: 'fa fa-desktop',
-        name: 'Groups',
+        name: 'Clients',
         items: [
             {
                 type: 'item',
