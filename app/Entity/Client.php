@@ -22,6 +22,15 @@ class Client extends Model
     protected $dates = ['created_at', 'updated_at', 'heartbeat_at'];
 
     /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'alive' => 'boolean',
+    ];
+
+    /**
      * The hooks to the entity
      */
     public static function boot()
