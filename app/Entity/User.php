@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Utilities\ApiUtilities;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
@@ -17,7 +18,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['name', 'email', 'password', 'api_token'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -25,6 +26,22 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * The hooks to the entity
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function($user) {
+            $user->api_token = ApiUtilities::generateToken();
+        });
+
+        self::saving(function($user) {
+            $user->api_token = $user->api_token ? $user->api_token : ApiUtilities::generateToken();
+        });
+    }
 
     /**
      * Hash the plain password and set it via the Mutator method

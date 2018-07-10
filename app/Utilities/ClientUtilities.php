@@ -12,14 +12,6 @@ class ClientUtilities
     const HEALTHY = 'Healthy';
 
     /**
-     * @return string
-     */
-    public static function generateToken()
-    {
-        return str_random(60);
-    }
-
-    /**
      * @param $status
      * @return int
      */

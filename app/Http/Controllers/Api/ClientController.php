@@ -6,7 +6,7 @@ use App\Entity\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClient;
 use App\Http\Resources\Client as ClientResource;
-use App\Utilities\ApiUtilities;
+use App\Services\ApiService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -102,7 +102,8 @@ class ClientController extends Controller
     {
         $token = $request->get('token');
         $externalId = $request->get('external-id');
-        $status = ApiUtilities::updateLiveStatus($externalId, $token);
+        $apiService = new ApiService();
+        $status = $apiService->updateLiveStatus($externalId, $token);
 
         return response()->json($status);
     }

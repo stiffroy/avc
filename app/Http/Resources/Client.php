@@ -20,7 +20,6 @@ class Client extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'external_id' => $this->external_id,
-            'api_token' => $this->api_token,
             'alive' => $this->alive,
             'group' => new GroupResource($this->group),
             'status_label' => $this->statusLabel,

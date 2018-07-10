@@ -88220,6 +88220,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -88308,6 +88312,12 @@ var render = function() {
                   _c("th", [_vm._v("Email ID")]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(_vm.user.email))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("API Token")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.user.api_token))])
                 ]),
                 _vm._v(" "),
                 _c("tr", [
@@ -92691,10 +92701,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -92815,12 +92821,6 @@ var render = function() {
                     ],
                     1
                   )
-                ]),
-                _vm._v(" "),
-                _c("tr", [
-                  _c("th", [_vm._v("API Token")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.client.api_token))])
                 ]),
                 _vm._v(" "),
                 _c("tr", [

@@ -12,7 +12,7 @@ class Client extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'external_id', 'group_id', 'api_token', 'alive'];
+    protected $fillable = ['name', 'external_id', 'group_id', 'alive'];
 
     /**
      * The attributes that should be mutated to dates.
@@ -29,18 +29,6 @@ class Client extends Model
     protected $casts = [
         'alive' => 'boolean',
     ];
-
-    /**
-     * The hooks to the entity
-     */
-    public static function boot()
-    {
-        parent::boot();
-
-        self::creating(function($client) {
-            $client->api_token = ClientUtilities::generateToken();
-        });
-    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

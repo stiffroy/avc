@@ -32,6 +32,10 @@
                                 <td>{{ user.email }}</td>
                             </tr>
                             <tr>
+                                <th>API Token</th>
+                                <td>{{ user.api_token }}</td>
+                            </tr>
+                            <tr>
                                 <th>Groups</th>
                                 <td>
                                     <router-link v-for="(group, index) in user.groups" :key="index"

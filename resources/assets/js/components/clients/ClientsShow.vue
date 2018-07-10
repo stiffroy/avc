@@ -40,10 +40,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th>API Token</th>
-                                <td>{{ client.api_token }}</td>
-                            </tr>
-                            <tr>
                                 <th>Status</th>
                                 <td>
                                     <span v-if="client.alive">Active</span>
