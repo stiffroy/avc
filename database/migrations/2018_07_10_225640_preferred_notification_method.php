@@ -16,7 +16,6 @@ class PreferredNotificationMethod extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->enum('preferred_method',['mail', 'slack'])
                 ->after('api_token')
-                ->unique()
                 ->nullable();
         });
     }
