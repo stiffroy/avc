@@ -26,8 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('notifications:health')
             ->timezone('Europe/Vienna')
-            ->everyFifteenMinutes()
-            ->withoutOverlapping(10)
+            ->everyMinute()
             ->unlessBetween('23:00', '4:00');
     }
 
