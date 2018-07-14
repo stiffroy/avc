@@ -30,7 +30,9 @@ class ApiService
             $user = User::where('api_token', $token)
                 ->first();
 
-            $status = $this->getStatus($user, $client);
+            if ($client && $user) {
+                $status = $this->getStatus($user, $client);
+            }
         }
 
         return $status;
@@ -45,7 +47,7 @@ class ApiService
     {
         $status = [
             'code'      => 401,
-            'message'   => 'You are not authorised to make the call',
+            'message'   => 'You are not authorised to make the call for ' . $client->name,
         ];
 
         if (ApiUtilities::checkClientForUser($user, $client)) {
@@ -69,12 +71,12 @@ class ApiService
             $client->save();
             $status = [
                 'code'      => 204,
-                'message'   => 'The last heartbeat recorded at '. $client->heartbeat_at,
+                'message'   => 'The last heartbeat recorded for ' . $client->name . ' at '. $client->heartbeat_at,
             ];
         } catch (\Exception $exception) {
             $status = [
                 'code'      => 404,
-                'message'   => 'Could not record the heartbeat',
+                'message'   => 'Could not record the heartbeat for ' . $client->name,
             ];
         }
 
