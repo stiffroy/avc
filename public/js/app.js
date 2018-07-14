@@ -91484,11 +91484,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             clients: [],
+            criticalClients: [],
+            warningClients: [],
+            healthyClients: [],
+            otherClients: [],
             links: []
         };
     },
@@ -91511,6 +91563,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         refreshData: function refreshData(response) {
             this.clients = response.data.data;
             this.links = response.data.links;
+            this.sortClients();
+        },
+        sortClients: function sortClients() {
+            var app = this;
+            this.clients.forEach(function (client) {
+                app.setClientInGroup(client);
+            });
+        },
+        setClientInGroup: function setClientInGroup(client) {
+            if (client.health === 'Critical') {
+                this.criticalClients.push(client);
+            } else if (client.health === 'Warning') {
+                this.warningClients.push(client);
+            } else if (client.health === 'Healthy') {
+                this.healthyClients.push(client);
+            } else {
+                this.otherClients.push(client);
+            }
+
+            this.checkPresentGroup(client);
+        },
+        checkPresentGroup: function checkPresentGroup(client) {
+            if (this.criticalClients.includes(client)) {
+                console.log(client.name + ' health is critical');
+            } else if (this.warningClients.includes(client)) {
+                console.log(client.name + ' health is warning');
+            } else if (this.healthyClients.includes(client)) {
+                console.log(client.name + ' health is healthy');
+            } else {
+                console.log(client.name + ' health is not defined');
+                // this.otherClients.splice(this.otherClients.indexOf(client), 1);
+            }
         }
     }
 });
@@ -91533,42 +91617,184 @@ var render = function() {
         _c(
           "div",
           { staticClass: "box-body" },
-          _vm._l(_vm.clients, function(client, index) {
-            return _c("div", { key: index, staticClass: "col-lg-3 col-xs-6" }, [
-              _c(
+          [
+            _vm._l(_vm.criticalClients, function(client) {
+              return _c(
                 "div",
-                { class: "small-box bg-" + client.bg },
+                { key: client.id, staticClass: "col-lg-3 col-xs-6" },
                 [
-                  _c("div", { staticClass: "inner" }, [
-                    _c("h3", [_vm._v(_vm._s(client.name))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(client.external_id))]),
-                    _vm._v(" "),
-                    _c("p", [_vm._v(_vm._s(client.health))])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "icon" }, [
-                    _c("i", { class: "fa fa-" + client.bg_icon })
-                  ]),
-                  _vm._v(" "),
                   _c(
-                    "router-link",
-                    {
-                      staticClass: "small-box-footer",
-                      attrs: {
-                        to: { name: "showClient", params: { id: client.id } }
-                      }
-                    },
+                    "div",
+                    { class: "small-box bg-" + client.bg },
                     [
-                      _vm._v("\n                            More info "),
-                      _c("i", { staticClass: "fa fa-arrow-circle-right" })
-                    ]
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(client.name))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(client.external_id))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(client.health))])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "icon" }, [
+                        _c("i", { class: "fa fa-" + client.bg_icon })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "small-box-footer",
+                          attrs: {
+                            to: {
+                              name: "showClient",
+                              params: { id: client.id }
+                            }
+                          }
+                        },
+                        [
+                          _vm._v("\n                            More info "),
+                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
+                        ]
+                      )
+                    ],
+                    1
                   )
-                ],
-                1
+                ]
               )
-            ])
-          })
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.warningClients, function(client) {
+              return _c(
+                "div",
+                { key: client.id, staticClass: "col-lg-3 col-xs-6 warning" },
+                [
+                  _c(
+                    "div",
+                    { class: "small-box bg-" + client.bg },
+                    [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(client.name))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(client.external_id))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(client.health))])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "icon" }, [
+                        _c("i", { class: "fa fa-" + client.bg_icon })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "small-box-footer",
+                          attrs: {
+                            to: {
+                              name: "showClient",
+                              params: { id: client.id }
+                            }
+                          }
+                        },
+                        [
+                          _vm._v("\n                            More info "),
+                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.healthyClients, function(client) {
+              return _c(
+                "div",
+                { key: client.id, staticClass: "col-lg-3 col-xs-6 healthy" },
+                [
+                  _c(
+                    "div",
+                    { class: "small-box bg-" + client.bg },
+                    [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(client.name))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(client.external_id))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(client.health))])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "icon" }, [
+                        _c("i", { class: "fa fa-" + client.bg_icon })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "small-box-footer",
+                          attrs: {
+                            to: {
+                              name: "showClient",
+                              params: { id: client.id }
+                            }
+                          }
+                        },
+                        [
+                          _vm._v("\n                            More info "),
+                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.otherClients, function(client) {
+              return _c(
+                "div",
+                { key: client.id, staticClass: "col-lg-3 col-xs-6 others" },
+                [
+                  _c(
+                    "div",
+                    { class: "small-box bg-" + client.bg },
+                    [
+                      _c("div", { staticClass: "inner" }, [
+                        _c("h3", [_vm._v(_vm._s(client.name))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(client.external_id))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(client.health))])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "icon" }, [
+                        _c("i", { class: "fa fa-" + client.bg_icon })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "small-box-footer",
+                          attrs: {
+                            to: {
+                              name: "showClient",
+                              params: { id: client.id }
+                            }
+                          }
+                        },
+                        [
+                          _vm._v("\n                            More info "),
+                          _c("i", { staticClass: "fa fa-arrow-circle-right" })
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            })
+          ],
+          2
         )
       ])
     ])

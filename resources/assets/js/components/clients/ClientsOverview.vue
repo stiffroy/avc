@@ -21,7 +21,55 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <div v-for="(client, index) in clients" :key="index" class="col-lg-3 col-xs-6">
+                    <div v-for="client in criticalClients" :key="client.id" class="col-lg-3 col-xs-6">
+                        <div :class="'small-box bg-' + client.bg">
+                            <div class="inner">
+                                <h3>{{ client.name }}</h3>
+                                <p>{{ client.external_id }}</p>
+                                <p>{{ client.health }}</p>
+                            </div>
+
+                            <div class="icon">
+                                <i :class="'fa fa-' + client.bg_icon"></i>
+                            </div>
+                            <router-link :to="{name: 'showClient', params: {id: client.id}}" class="small-box-footer">
+                                More info <i class="fa fa-arrow-circle-right"></i>
+                            </router-link>
+                        </div>
+                    </div>
+                    <div v-for="client in warningClients" :key="client.id" class="col-lg-3 col-xs-6 warning">
+                        <div :class="'small-box bg-' + client.bg">
+                            <div class="inner">
+                                <h3>{{ client.name }}</h3>
+                                <p>{{ client.external_id }}</p>
+                                <p>{{ client.health }}</p>
+                            </div>
+
+                            <div class="icon">
+                                <i :class="'fa fa-' + client.bg_icon"></i>
+                            </div>
+                            <router-link :to="{name: 'showClient', params: {id: client.id}}" class="small-box-footer">
+                                More info <i class="fa fa-arrow-circle-right"></i>
+                            </router-link>
+                        </div>
+                    </div>
+                    <div v-for="client in healthyClients" :key="client.id" class="col-lg-3 col-xs-6 healthy">
+                        <div :class="'small-box bg-' + client.bg">
+                            <div class="inner">
+                                <h3>{{ client.name }}</h3>
+                                <p>{{ client.external_id }}</p>
+                                <p>{{ client.health }}</p>
+                            </div>
+
+                            <div class="icon">
+                                <i :class="'fa fa-' + client.bg_icon"></i>
+                            </div>
+                            <router-link :to="{name: 'showClient', params: {id: client.id}}" class="small-box-footer">
+                                More info <i class="fa fa-arrow-circle-right"></i>
+                            </router-link>
+                        </div>
+                    </div>
+                    <div v-for="client in otherClients" :key="client.id" class="col-lg-3 col-xs-6 others">
                         <div :class="'small-box bg-' + client.bg">
                             <div class="inner">
                                 <h3>{{ client.name }}</h3>
@@ -49,6 +97,10 @@
         data: function () {
             return {
                 clients: [],
+                criticalClients: [],
+                warningClients: [],
+                healthyClients: [],
+                otherClients: [],
                 links: []
             }
         },
@@ -72,6 +124,36 @@
             refreshData(response) {
                 this.clients = response.data.data;
                 this.links = response.data.links;
+                this.sortClients();
+            },
+            sortClients() {
+                let app = this;
+                this.clients.forEach(function (client) {
+                    app.setClientInGroup(client);
+                });
+            },
+            setClientInGroup(client) {
+                if (client.health === 'Critical') {
+                    this.criticalClients.push(client);
+                } else if (client.health === 'Warning') {
+                    this.warningClients.push(client);
+                } else if (client.health === 'Healthy') {
+                    this.healthyClients.push(client);
+                } else {
+                    this.otherClients.push(client);
+                }
+            },
+            checkPresentGroup(client) {
+                if (this.criticalClients.includes(client)) {
+                    console.log(client.name + ' health is critical');
+                } else if (this.warningClients.includes(client)) {
+                    console.log(client.name + ' health is warning');
+                } else if (this.healthyClients.includes(client)) {
+                    console.log(client.name + ' health is healthy');
+                } else {
+                    console.log(client.name + ' health is not defined');
+                    // this.otherClients.splice(this.otherClients.indexOf(client), 1);
+                }
             }
         }
     }
