@@ -87744,6 +87744,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -87756,7 +87763,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 warning: [],
                 critical: []
             },
-            groups: []
+            groups: [],
+            notificationMethods: ['mail', 'slack']
         };
     },
     props: ['user'],
@@ -87969,6 +87977,36 @@ var render = function() {
             })
           ],
           2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "label",
+          { staticClass: "col-sm-2 control-label", attrs: { for: "groups" } },
+          [_vm._v("Preferred Method")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-sm-10" },
+          [
+            _c("v-select", {
+              attrs: {
+                name: "preferred-method",
+                id: "preferred-method",
+                options: _vm.notificationMethods
+              },
+              model: {
+                value: _vm.user.preferred_method,
+                callback: function($$v) {
+                  _vm.$set(_vm.user, "preferred_method", $$v)
+                },
+                expression: "user.preferred_method"
+              }
+            })
+          ],
+          1
         )
       ]),
       _vm._v(" "),
@@ -88224,6 +88262,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -88318,6 +88360,12 @@ var render = function() {
                   _c("th", [_vm._v("API Token")]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(_vm.user.api_token))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("Preferred Notification Method")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.user.preferred_method))])
                 ]),
                 _vm._v(" "),
                 _c("tr", [

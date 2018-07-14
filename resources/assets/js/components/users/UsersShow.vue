@@ -36,6 +36,10 @@
                                 <td>{{ user.api_token }}</td>
                             </tr>
                             <tr>
+                                <th>Preferred Notification Method</th>
+                                <td>{{ user.preferred_method }}</td>
+                            </tr>
+                            <tr>
                                 <th>Groups</th>
                                 <td>
                                     <router-link v-for="(group, index) in user.groups" :key="index"

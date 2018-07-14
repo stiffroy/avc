@@ -35,7 +35,13 @@ class ClientHealth extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'slack', 'broadcast', 'database'];
+        $method = ['mail', 'slack', 'database', 'broadcast'];
+
+        if ($notifiable->preferred_method) {
+            $method = [$notifiable->preferred_method, 'database', 'broadcast'];
+        }
+
+        return $method;
     }
 
     /**

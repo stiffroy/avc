@@ -26,6 +26,13 @@
         </div>
 
         <div class="form-group">
+            <label for="groups" class="col-sm-2 control-label">Preferred Method</label>
+            <div class="col-sm-10">
+                <v-select name="preferred-method" id="preferred-method" v-model="user.preferred_method" :options="notificationMethods"></v-select>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label for="groups" class="col-sm-2 control-label">Groups</label>
             <div class="col-sm-10">
                 <v-select multiple="multiple" name="groups" id="groups" v-model="user.groups" :options="groups"></v-select>
@@ -54,6 +61,7 @@
                     critical: [],
                 },
                 groups: [],
+                notificationMethods: ['mail', 'slack'],
             }
         },
         props: ['user'],
