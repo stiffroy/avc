@@ -56,7 +56,7 @@ class ClientHealth extends Notification
             ->error()
             ->subject('VM ' . $this->client->name . ' in danger')
             ->greeting('Hello,')
-            ->line('VM ' . $this->client->name . ' is in ' . $this->client->name . '.')
+            ->line('VM ' . $this->client->name . ' is in ' . $this->client->health . ' state.')
             ->line('Check-up time at: ' . Carbon::now('Europe/Vienna')->format('d.m.Y H:i'))
             ->action('Notification Action', url($this::BASE_URL . $this->client->id))
             ->line('Thank you.');
