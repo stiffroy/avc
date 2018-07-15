@@ -101,17 +101,23 @@
                 warningClients: [],
                 healthyClients: [],
                 otherClients: [],
-                links: []
+                links: [],
+                intervalTime: 30000,
+                timer: null
             }
         },
         mounted() {
-            this.mountData('/api/v1/clients');
+            this.mountData();
+            this.timer = setInterval(this.mountData, this.intervalTime);
         },
         methods: {
-            mountData(link) {
+            mountData() {
+                console.log('mounted');
+                let clientsLink = '/api/v1/clients';
+
                 let app = this;
-                if (link !== null) {
-                    axios.get(link)
+                if (clientsLink !== null) {
+                    axios.get(clientsLink)
                         .then(function (response) {
                             app.refreshData(response);
                         })
@@ -122,6 +128,10 @@
                 }
             },
             refreshData(response) {
+                this.criticalClients = [];
+                this.warningClients = [];
+                this.healthyClients = [];
+                this.otherClients = [];
                 this.clients = response.data.data;
                 this.links = response.data.links;
                 this.sortClients();
@@ -143,18 +153,9 @@
                     this.otherClients.push(client);
                 }
             },
-            checkPresentGroup(client) {
-                if (this.criticalClients.includes(client)) {
-                    console.log(client.name + ' health is critical');
-                } else if (this.warningClients.includes(client)) {
-                    console.log(client.name + ' health is warning');
-                } else if (this.healthyClients.includes(client)) {
-                    console.log(client.name + ' health is healthy');
-                } else {
-                    console.log(client.name + ' health is not defined');
-                    // this.otherClients.splice(this.otherClients.indexOf(client), 1);
-                }
-            }
+        },
+        beforeDestroy() {
+            clearInterval(this.timer)
         }
     }
 </script>
