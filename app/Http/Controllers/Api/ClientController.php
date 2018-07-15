@@ -115,7 +115,10 @@ class ClientController extends Controller
     {
         $id = Input::get('id');
         $client = Client::findOrFail($id);
-        $client->update(['alive' => true]);
+        $client->update([
+            'alive' => true,
+            'heartbeat_at' => null,
+        ]);
 
         return new ClientResource($client);
     }
