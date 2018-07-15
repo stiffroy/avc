@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 
-class Notifications extends Command
+class HealthNotification extends Command
 {
     /**
      * The name and signature of the console command.
@@ -44,7 +44,7 @@ class Notifications extends Command
      */
     public function handle()
     {
-        Log::debug('In Notifications:handle at: ' . Carbon::now('Europe/Vienna'));
+        Log::debug('In HealthNotification:handle at: ' . Carbon::now('Europe/Vienna'));
         $clients = Client::where('alive', true)->get();
 
         foreach ($clients as $client) {
