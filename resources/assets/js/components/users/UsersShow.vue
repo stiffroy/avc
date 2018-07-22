@@ -36,6 +36,10 @@
                                 <td>{{ user.api_token }}</td>
                             </tr>
                             <tr>
+                                <th>Slack URL</th>
+                                <td>{{ user.slack_webhook_url }}</td>
+                            </tr>
+                            <tr>
                                 <th>Preferred Notification Method</th>
                                 <td>{{ user.preferred_method | capitalize }}</td>
                             </tr>

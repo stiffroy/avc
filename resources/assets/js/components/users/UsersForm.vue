@@ -26,6 +26,14 @@
         </div>
 
         <div class="form-group">
+            <label for="slack-webhook-url" class="col-sm-2 control-label">Slack URL</label>
+            <div class="col-sm-10">
+                <input type="text" id="slack-webhook-url" name="critical" class="form-control" placeholder="Slack Webhook URL" v-model="user.slack_webhook_url">
+                <p v-for="validation in errors.slack_webhook_url" class="text text-danger">{{ validation }}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label for="groups" class="col-sm-2 control-label">Preferred Method</label>
             <div class="col-sm-10">
                 <v-select name="preferred-method" id="preferred-method" v-model="user.preferred_method" :options="notificationMethods"></v-select>

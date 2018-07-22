@@ -18,7 +18,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password', 'api_token', 'preferred_method'];
+    protected $fillable = ['name', 'email', 'password', 'slack_webhook_url', 'api_token', 'preferred_method'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -67,5 +67,15 @@ class User extends Authenticatable
     public function clients()
     {
         return $this->hasMany('App\Entity\Client');
+    }
+
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @return mixed
+     */
+    public function routeNotificationForSlack()
+    {
+        return $this->slack_webhook_url;
     }
 }

@@ -87754,6 +87754,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -87976,6 +87984,57 @@ var render = function() {
             }),
             _vm._v(" "),
             _vm._l(_vm.errors.password, function(validation) {
+              return _c("p", { staticClass: "text text-danger" }, [
+                _vm._v(_vm._s(validation))
+              ])
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _c(
+          "label",
+          {
+            staticClass: "col-sm-2 control-label",
+            attrs: { for: "slack-webhook-url" }
+          },
+          [_vm._v("Slack URL")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-sm-10" },
+          [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.user.slack_webhook_url,
+                  expression: "user.slack_webhook_url"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                id: "slack-webhook-url",
+                name: "critical",
+                placeholder: "Slack Webhook URL"
+              },
+              domProps: { value: _vm.user.slack_webhook_url },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.user, "slack_webhook_url", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.errors.slack_webhook_url, function(validation) {
               return _c("p", { staticClass: "text text-danger" }, [
                 _vm._v(_vm._s(validation))
               ])
@@ -88272,6 +88331,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -88371,6 +88434,12 @@ var render = function() {
                   _c("th", [_vm._v("API Token")]),
                   _vm._v(" "),
                   _c("td", [_vm._v(_vm._s(_vm.user.api_token))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("th", [_vm._v("Slack URL")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.user.slack_webhook_url))])
                 ]),
                 _vm._v(" "),
                 _c("tr", [
