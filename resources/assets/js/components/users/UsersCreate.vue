@@ -35,10 +35,10 @@
     import UserForm from './UsersForm';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 user: {
-                    id: '',
+                    id: 0,
                     name: '',
                     email: '',
                     password: '',

@@ -28,9 +28,6 @@
                 default: []
             }
         },
-        created () {
-
-        },
         components: {
             'va-slide-item': VASlideItem
         }

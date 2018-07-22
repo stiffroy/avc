@@ -88,7 +88,7 @@
 
 <script>
     export default {
-        data: function () {
+        data: () => {
             return {
                 clients: [],
                 links: []
@@ -99,13 +99,12 @@
         },
         methods: {
             mountData(link) {
-                let app = this;
                 if (link !== null) {
                     axios.get(link)
-                        .then(function (response) {
-                            app.refreshData(response);
+                        .then((response) => {
+                            this.refreshData(response);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not load clients");
                             console.log(response);
                         });
@@ -118,10 +117,10 @@
             deleteEntry(id, index) {
                 if (confirm("Do you really want to delete it?")) {
                     axios.delete('/api/v1/clients/' + id)
-                        .then(function (response) {
+                        .then((response) => {
                             this.clients.splice(index, 1);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not delete company");
                             console.log(response);
                         });
@@ -130,10 +129,10 @@
             makeAlive(client) {
                 event.preventDefault();
                 axios.post('/api/v1/client/alive', {id: client.id})
-                    .then(function (response) {
+                    .then((response) => {
                         client.alive = response.data.data.alive;
                     })
-                    .catch(function (response) {
+                    .catch((response) => {
                         alert("Could not make the client alive");
                         console.log(response);
                     });

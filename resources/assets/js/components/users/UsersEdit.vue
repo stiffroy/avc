@@ -35,7 +35,7 @@
     import UserForm from './UsersForm';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 user: {}
             }
@@ -45,14 +45,13 @@
         },
         methods: {
             mountData(link) {
-                let app = this;
                 let id = this.$route.params.id;
                 if (link !== null) {
                     axios.get(link + id)
-                        .then(function (response) {
-                            app.refreshData(response);
+                        .then((response) => {
+                            this.refreshData(response);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             console.dir(response);
                         });
                 }
@@ -60,7 +59,7 @@
             refreshData(response) {
                 let groups = [];
                 this.user = response.data.data;
-                this.user.groups.forEach(function (value, key) {
+                this.user.groups.forEach((value) => {
                     groups.push({'value': value.id, 'label': value.name})
                 });
                 this.user.groups = groups;

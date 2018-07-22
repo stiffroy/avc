@@ -35,7 +35,7 @@
     import GroupForm from './GroupsForm';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 group: {},
             }
@@ -45,14 +45,13 @@
         },
         methods: {
             mountData(link) {
-                let app = this;
                 let id = this.$route.params.id;
                 if (link !== null) {
                     axios.get(link + id)
-                        .then(function (response) {
-                            app.refreshData(response);
+                        .then((response) => {
+                            this.refreshData(response);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             console.dir(response);
                         });
                 }
@@ -61,11 +60,11 @@
                 let clients = [];
                 let users = [];
                 this.group = response.data.data;
-                this.group.clients.forEach(function (value, key) {
+                this.group.clients.forEach((value) => {
                     clients.push({'value': value.id, 'label': value.name})
                 });
                 this.group.clients = clients;
-                this.group.users.forEach(function (value, key) {
+                this.group.users.forEach((value) => {
                     users.push({'value': value.id, 'label': value.name})
                 });
                 this.group.users = users;

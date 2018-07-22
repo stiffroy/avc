@@ -7,7 +7,7 @@
     import slideMenuItems from './data/slideMenuItems';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 slideMenuItems: slideMenuItems,
             }

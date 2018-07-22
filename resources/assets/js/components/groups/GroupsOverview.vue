@@ -54,7 +54,7 @@
     import VAChart from 'vue2-admin-lte/src/components/VAChart';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 groups: [],
                 links: [],
@@ -84,13 +84,12 @@
         },
         methods: {
             mountData(link) {
-                let app = this;
                 if (link !== null) {
                     axios.get(link)
-                        .then(function (response) {
-                            app.refreshData(response);
+                        .then((response) => {
+                            this.refreshData(response);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not load clients");
                             console.log(response);
                         });
@@ -103,7 +102,7 @@
             },
             mountChartToData() {
                 let app = this;
-                this.groups.forEach(function (group, key) {
+                this.groups.forEach((group) => {
                     app.setChartToGroup(group);
                 });
             },

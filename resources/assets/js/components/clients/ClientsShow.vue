@@ -74,9 +74,10 @@
 
 <script>
     export default {
-        data: function () {
+        data: () => {
             return {
                 client: {
+                    id: 0,
                     created_at: {
                         date: ''
                     },
@@ -87,26 +88,24 @@
             }
         },
         mounted() {
-            let app = this;
             let id = this.$route.params.id;
             axios.get('/api/v1/clients/' + id)
-                .then(function (response) {
-                    app.client = response.data.data;
+                .then((response) => {
+                    this.client = response.data.data;
                 })
-                .catch(function (response) {
+                .catch((response) => {
                     alert("Could not load clients");
                     console.log(response);
                 });
         },
         methods: {
             deleteEntry(id) {
-                let app = this;
                 if (confirm("Do you really want to delete it?")) {
                     axios.delete('/api/v1/clients/' + id)
-                        .then(function (response) {
-                            app.$router.push("listClients");
+                        .then((response) => {
+                            this.$router.push({name: "listClients"});
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not delete company");
                             console.log(response);
                         });

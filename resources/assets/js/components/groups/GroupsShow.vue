@@ -40,7 +40,8 @@
                                 <td>
                                     <router-link v-for="(client, index) in group.clients" :key="index"
                                                  :to="{name: 'showClient', params: {id: client.id}}" class="btn-link">
-                                        {{ client.name }}
+                                        <span :class="'label label-' + client.status_label">{{ client.name }}</span>
+                                        &nbsp;
                                     </router-link>
                                 </td>
                             </tr>
@@ -50,6 +51,7 @@
                                     <router-link v-for="(user, index) in group.users" :key="index"
                                                  :to="{name: 'showUser', params: {id: user.id}}" class="btn-link">
                                         {{ user.name }}
+                                        &nbsp;
                                     </router-link>
                                 </td>
                             </tr>
@@ -77,9 +79,10 @@
 
 <script>
     export default {
-        data: function () {
+        data: () => {
             return {
                 group: {
+                    id: 0,
                     created_at: {
                         date: ''
                     },
@@ -90,25 +93,27 @@
             }
         },
         mounted() {
-            let app = this;
-            let id = this.$route.params.id;
-            axios.get('/api/v1/groups/' + id)
-                .then(function (response) {
-                    app.group = response.data.data;
-                })
-                .catch(function (response) {
-                    alert("Could not load clients");
-                    console.log(response);
-                });
+            this.mountData('/api/v1/groups/');
         },
         methods: {
+            mountData(link) {
+                let id = this.$route.params.id;
+                axios.get(link + id)
+                    .then((response) => {
+                        this.group = response.data.data;
+                    })
+                    .catch((response) => {
+                        alert("Could not load clients");
+                        console.log(response);
+                    });
+            },
             deleteEntry(id) {
                 if (confirm("Do you really want to delete it?")) {
                     axios.delete('/api/v1/groups/' + id)
-                        .then(function (response) {
-                            router.push("listGroups");
+                        .then((response) => {
+                            this.$router.push({name: "listGroups"});
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not delete company");
                             console.log(response);
                         });

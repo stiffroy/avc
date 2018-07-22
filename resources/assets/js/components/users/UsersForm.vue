@@ -52,7 +52,7 @@
     import vSelect from 'vue-select';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 errors: {
@@ -70,13 +70,12 @@
         },
         methods: {
             mountData(link) {
-                let app = this;
                 if (link !== null) {
                     axios.get(link)
-                        .then(function (response) {
-                            app.refreshData(response);
+                        .then((response) => {
+                            this.refreshData(response);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not load groups");
                             console.log(response);
                         });
@@ -85,7 +84,7 @@
             refreshData(response) {
                 let data = response.data.data;
                 let groups = this.groups;
-                data.forEach(function (value, key) {
+                data.forEach((value) => {
                     let group = {
                         'value': value.id,
                         'label': value.name,
@@ -94,14 +93,13 @@
                 })
             },
             saveUser() {
-                let app = this;
-                axios.post('/api/v1/users', app.user)
-                    .then(function (response) {
+                axios.post('/api/v1/users', this.user)
+                    .then((response) => {
                         let id = response.data.data.id;
-                        app.$router.push({ name: 'showUser', params: { id: id }});
+                        this.$router.push({name: 'showUser', params: { id: id }});
                     })
-                    .catch(function (error) {
-                        app.errors = error.response.data.errors;
+                    .catch((response) => {
+                        this.errors = response.response.data.errors;
                     });
             }
         },

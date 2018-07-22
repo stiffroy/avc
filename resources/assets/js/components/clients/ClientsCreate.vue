@@ -35,7 +35,7 @@
     import ClientForm from './ClientsForm';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 client: {
                     id: '',

@@ -35,7 +35,7 @@
     import ClientForm from './ClientsForm';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 client: {},
             }
@@ -45,25 +45,23 @@
         },
         methods: {
             mountData(link) {
-                let app = this;
                 let id = this.$route.params.id;
                 if (link !== null) {
                     axios.get(link + id)
-                        .then(function (response) {
-                            app.refreshData(response);
+                        .then((response) => {
+                            this.refreshData(response);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             console.dir(response);
                         });
                 }
             },
             refreshData(response) {
                 this.client = response.data.data;
-                let group = {
+                this.client.group = {
                     'value': this.client.group.id,
                     'label': this.client.group.name,
                 };
-                this.client.group = group;
             },
         },
         components: {

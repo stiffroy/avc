@@ -78,7 +78,7 @@
 
 <script>
     export default {
-        data: function () {
+        data: () => {
             return {
                 groups: [],
                 links: []
@@ -89,13 +89,12 @@
         },
         methods: {
             mountData(link) {
-                let app = this;
                 if (link !== null) {
                     axios.get(link)
-                        .then(function (response) {
-                            app.refreshData(response);
+                        .then((response) => {
+                            this.refreshData(response);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not load clients");
                             console.log(response);
                         });
@@ -108,10 +107,10 @@
             deleteEntry(id, index) {
                 if (confirm("Do you really want to delete it?")) {
                     axios.delete('/api/v1/groups/' + id)
-                        .then(function (response) {
+                        .then((response) => {
                             this.groups.splice(index, 1);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not delete company");
                             console.log(response);
                         });

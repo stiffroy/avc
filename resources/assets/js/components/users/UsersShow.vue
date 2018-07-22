@@ -37,7 +37,7 @@
                             </tr>
                             <tr>
                                 <th>Preferred Notification Method</th>
-                                <td>{{ user.preferred_method }}</td>
+                                <td>{{ user.preferred_method | capitalize }}</td>
                             </tr>
                             <tr>
                                 <th>Groups</th>
@@ -45,6 +45,7 @@
                                     <router-link v-for="(group, index) in user.groups" :key="index"
                                                  :to="{name: 'showGroup', params: {id: group.id}}" class="btn-link">
                                         <p class="label label-default">{{ group.name }}</p>
+                                        &nbsp;
                                     </router-link>
                                 </td>
                             </tr>
@@ -71,9 +72,10 @@
 
 <script>
     export default {
-        data: function () {
+        data: () => {
             return {
                 user: {
+                    id: 0,
                     created_at: {
                         date: ''
                     },
@@ -84,13 +86,12 @@
             }
         },
         mounted() {
-            let app = this;
             let id = this.$route.params.id;
             axios.get('/api/v1/users/' + id)
-                .then(function (response) {
-                    app.user = response.data.data;
+                .then((response) => {
+                    this.user = response.data.data;
                 })
-                .catch(function (response) {
+                .catch((response) => {
                     alert("Could not load clients");
                     console.dir(response);
                 });
@@ -99,10 +100,11 @@
             deleteEntry(id) {
                 if (confirm("Do you really want to delete it?")) {
                     axios.delete('/api/v1/users/' + id)
-                        .then(function (response) {
-                            router.push("listUsers");
+                        .then((response) => {
+                            this.$router.push({name: "listUsers"});
+                            console.log(response);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not delete company");
                             console.dir(response);
                         });

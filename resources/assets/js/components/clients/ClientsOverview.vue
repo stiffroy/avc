@@ -94,7 +94,7 @@
 
 <script>
     export default {
-        data: function () {
+        data: () => {
             return {
                 clients: [],
                 criticalClients: [],
@@ -112,16 +112,14 @@
         },
         methods: {
             mountData() {
-                console.log('mounted');
                 let clientsLink = '/api/v1/clients';
 
-                let app = this;
                 if (clientsLink !== null) {
                     axios.get(clientsLink)
-                        .then(function (response) {
-                            app.refreshData(response);
+                        .then((response) => {
+                            this.refreshData(response);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not load clients");
                             console.log(response);
                         });
@@ -137,9 +135,8 @@
                 this.sortClients();
             },
             sortClients() {
-                let app = this;
-                this.clients.forEach(function (client) {
-                    app.setClientInGroup(client);
+                this.clients.forEach((client) => {
+                    this.setClientInGroup(client);
                 });
             },
             setClientInGroup(client) {

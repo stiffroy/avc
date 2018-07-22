@@ -18,9 +18,9 @@
         </div>
 
         <div class="form-group">
-            <label for="group" class="col-sm-2 control-label">Group</label>
+            <label for="group_id" class="col-sm-2 control-label">Group</label>
             <div class="col-sm-10">
-                <v-select name="group" id="group" v-model="client.group" :options="groups"></v-select>
+                <v-select name="group_id" id="group_id" v-model="client.group" :options="groups"></v-select>
             </div>
         </div>
 
@@ -44,7 +44,7 @@
     import vSelect from 'vue-select';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 errors: {
@@ -60,13 +60,12 @@
         },
         methods: {
             mountData(link) {
-                let app = this;
                 if (link !== null) {
                     axios.get(link)
-                        .then(function (response) {
-                            app.refreshData(response);
+                        .then((response) => {
+                            this.refreshData(response);
                         })
-                        .catch(function (response) {
+                        .catch((response) => {
                             alert("Could not load groups");
                             console.dir(response);
                         });
@@ -75,7 +74,7 @@
             refreshData(response) {
                 let data = response.data.data;
                 let groups = this.groups;
-                data.forEach(function (value, key) {
+                data.forEach((value) => {
                     let group = {
                         'value': value.id,
                         'label': value.name,
@@ -84,14 +83,14 @@
                 });
             },
             saveClient() {
-                let app = this;
-                axios.post('/api/v1/clients', app.client)
-                    .then(function (response) {
+                axios.post('/api/v1/clients', this.client)
+                    .then((response) => {
                         let id = response.data.data.id;
-                        app.$router.push({ name: 'showClient', params: { id: id }});
+                        this.$router.push({name: 'showClient', params: { id: id }});
                     })
-                    .catch(function (error) {
-                        app.errors = error.response.data.errors;
+                    .catch((response) => {
+                        this.errors = response.response.data.errors;
+                        console.dir(response);
                     });
             }
         },

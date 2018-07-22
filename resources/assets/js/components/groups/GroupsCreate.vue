@@ -35,7 +35,7 @@
     import GroupForm from './GroupsForm';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 group: {
                     id: '',
@@ -45,10 +45,6 @@
                     clients: [],
                 },
             }
-        },
-        mounted() {
-        },
-        methods: {
         },
         components: {
             GroupForm

@@ -52,7 +52,7 @@
     import vSelect from 'vue-select';
 
     export default {
-        data: function () {
+        data: () => {
             return {
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 errors: {
@@ -71,23 +71,21 @@
         props: ['group'],
         methods: {
             mountClients(link) {
-                let app = this;
                 axios.post(link)
-                    .then(function (response) {
-                        app.refreshClients(response);
+                    .then((response) => {
+                        this.refreshClients(response);
                     })
-                    .catch(function (response) {
+                    .catch((response) => {
                         alert("Could not load clients");
                         console.dir(response);
                     });
             },
             mountUsers(link) {
-                let app = this;
                 axios.post(link)
-                    .then(function (response) {
-                        app.refreshUsers(response);
+                    .then((response) => {
+                        this.refreshUsers(response);
                     })
-                    .catch(function (response) {
+                    .catch((response) => {
                         alert("Could not load users");
                         console.dir(response);
                     });
@@ -95,7 +93,7 @@
             refreshClients(response) {
                 let data = response.data.data;
                 let clients = this.clients;
-                data.forEach(function (value, key) {
+                data.forEach((value) => {
                     let client = {
                         'value': value.id,
                         'label': value.name,
@@ -106,7 +104,7 @@
             refreshUsers(response) {
                 let data = response.data.data;
                 let users = this.users;
-                data.forEach(function (value, key) {
+                data.forEach((value) => {
                     let user = {
                         'value': value.id,
                         'label': value.name,
@@ -115,14 +113,13 @@
                 });
             },
             saveGroup() {
-                let app = this;
-                axios.post('/api/v1/groups', app.group)
-                    .then(function (response) {
+                axios.post('/api/v1/groups', this.group)
+                    .then((response) => {
                         let id = response.data.data.id;
-                        app.$router.push({ name: 'showGroup', params: { id: id }});
+                        this.$router.push({ name: 'showGroup', params: { id: id }});
                     })
-                    .catch(function (error) {
-                        app.errors = error.response.data.errors;
+                    .catch((response) => {
+                        this.errors = response.response.data.errors;
                     });
             }
         },

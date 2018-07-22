@@ -87317,10 +87317,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         mountData: function mountData(link) {
-            var app = this;
+            var _this = this;
+
             if (link !== null) {
                 axios.get(link).then(function (response) {
-                    app.refreshData(response);
+                    _this.refreshData(response);
                 }).catch(function (response) {
                     alert("Could not load clients");
                     console.dir(response);
@@ -87332,9 +87333,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.links = response.data.links;
         },
         deleteEntry: function deleteEntry(id, index) {
+            var _this2 = this;
+
             if (confirm("Do you really want to delete it?")) {
                 axios.delete('/api/v1/users/' + id).then(function (response) {
-                    this.users.splice(index, 1);
+                    _this2.users.splice(index, 1);
                 }).catch(function (response) {
                     alert("Could not delete company");
                     console.dir(response);
@@ -87680,7 +87683,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             user: {
-                id: '',
+                id: 0,
                 name: '',
                 email: '',
                 password: '',
@@ -87774,10 +87777,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         mountData: function mountData(link) {
-            var app = this;
+            var _this = this;
+
             if (link !== null) {
                 axios.get(link).then(function (response) {
-                    app.refreshData(response);
+                    _this.refreshData(response);
                 }).catch(function (response) {
                     alert("Could not load groups");
                     console.log(response);
@@ -87787,7 +87791,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         refreshData: function refreshData(response) {
             var data = response.data.data;
             var groups = this.groups;
-            data.forEach(function (value, key) {
+            data.forEach(function (value) {
                 var group = {
                     'value': value.id,
                     'label': value.name
@@ -87796,12 +87800,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         saveUser: function saveUser() {
-            var app = this;
-            axios.post('/api/v1/users', app.user).then(function (response) {
+            var _this2 = this;
+
+            axios.post('/api/v1/users', this.user).then(function (response) {
                 var id = response.data.data.id;
-                app.$router.push({ name: 'showUser', params: { id: id } });
-            }).catch(function (error) {
-                app.errors = error.response.data.errors;
+                _this2.$router.push({ name: 'showUser', params: { id: id } });
+            }).catch(function (response) {
+                _this2.errors = response.response.data.errors;
             });
         }
     },
@@ -88266,11 +88271,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             user: {
+                id: 0,
                 created_at: {
                     date: ''
                 },
@@ -88281,10 +88288,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var app = this;
+        var _this = this;
+
         var id = this.$route.params.id;
         axios.get('/api/v1/users/' + id).then(function (response) {
-            app.user = response.data.data;
+            _this.user = response.data.data;
         }).catch(function (response) {
             alert("Could not load clients");
             console.dir(response);
@@ -88293,9 +88301,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         deleteEntry: function deleteEntry(id) {
+            var _this2 = this;
+
             if (confirm("Do you really want to delete it?")) {
                 axios.delete('/api/v1/users/' + id).then(function (response) {
-                    router.push("listUsers");
+                    _this2.$router.push({ name: "listUsers" });
+                    console.log(response);
                 }).catch(function (response) {
                     alert("Could not delete company");
                     console.dir(response);
@@ -88365,7 +88376,11 @@ var render = function() {
                 _c("tr", [
                   _c("th", [_vm._v("Preferred Notification Method")]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(_vm.user.preferred_method))])
+                  _c("td", [
+                    _vm._v(
+                      _vm._s(_vm._f("capitalize")(_vm.user.preferred_method))
+                    )
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("tr", [
@@ -88386,7 +88401,10 @@ var render = function() {
                         [
                           _c("p", { staticClass: "label label-default" }, [
                             _vm._v(_vm._s(group.name))
-                          ])
+                          ]),
+                          _vm._v(
+                            "\n                                     \n                                "
+                          )
                         ]
                       )
                     })
@@ -88584,11 +88602,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         mountData: function mountData(link) {
-            var app = this;
+            var _this = this;
+
             var id = this.$route.params.id;
             if (link !== null) {
                 axios.get(link + id).then(function (response) {
-                    app.refreshData(response);
+                    _this.refreshData(response);
                 }).catch(function (response) {
                     console.dir(response);
                 });
@@ -88597,7 +88616,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         refreshData: function refreshData(response) {
             var groups = [];
             this.user = response.data.data;
-            this.user.groups.forEach(function (value, key) {
+            this.user.groups.forEach(function (value) {
                 groups.push({ 'value': value.id, 'label': value.name });
             });
             this.user.groups = groups;
@@ -88728,6 +88747,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart__ = __webpack_require__(312);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart__);
+var _this = this;
+
 //
 //
 //
@@ -88800,7 +88821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: !this.isMobile,
+                    maintainAspectRatio: !_this.isMobile,
                     legend: {
                         position: 'bottom',
                         display: true
@@ -88815,10 +88836,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         mountData: function mountData(link) {
-            var app = this;
+            var _this2 = this;
+
             if (link !== null) {
                 axios.get(link).then(function (response) {
-                    app.refreshData(response);
+                    _this2.refreshData(response);
                 }).catch(function (response) {
                     alert("Could not load clients");
                     console.log(response);
@@ -88832,7 +88854,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         mountChartToData: function mountChartToData() {
             var app = this;
-            this.groups.forEach(function (group, key) {
+            this.groups.forEach(function (group) {
                 app.setChartToGroup(group);
             });
         },
@@ -89965,10 +89987,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         mountData: function mountData(link) {
-            var app = this;
+            var _this = this;
+
             if (link !== null) {
                 axios.get(link).then(function (response) {
-                    app.refreshData(response);
+                    _this.refreshData(response);
                 }).catch(function (response) {
                     alert("Could not load clients");
                     console.log(response);
@@ -89980,9 +90003,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.links = response.data.links;
         },
         deleteEntry: function deleteEntry(id, index) {
+            var _this2 = this;
+
             if (confirm("Do you really want to delete it?")) {
                 axios.delete('/api/v1/groups/' + id).then(function (response) {
-                    this.groups.splice(index, 1);
+                    _this2.groups.splice(index, 1);
                 }).catch(function (response) {
                     alert("Could not delete company");
                     console.log(response);
@@ -90342,9 +90367,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         };
     },
-    mounted: function mounted() {},
-
-    methods: {},
     components: {
         GroupForm: __WEBPACK_IMPORTED_MODULE_0__GroupsForm___default.a
     }
@@ -90432,18 +90454,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['group'],
     methods: {
         mountClients: function mountClients(link) {
-            var app = this;
+            var _this = this;
+
             axios.post(link).then(function (response) {
-                app.refreshClients(response);
+                _this.refreshClients(response);
             }).catch(function (response) {
                 alert("Could not load clients");
                 console.dir(response);
             });
         },
         mountUsers: function mountUsers(link) {
-            var app = this;
+            var _this2 = this;
+
             axios.post(link).then(function (response) {
-                app.refreshUsers(response);
+                _this2.refreshUsers(response);
             }).catch(function (response) {
                 alert("Could not load users");
                 console.dir(response);
@@ -90452,7 +90476,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         refreshClients: function refreshClients(response) {
             var data = response.data.data;
             var clients = this.clients;
-            data.forEach(function (value, key) {
+            data.forEach(function (value) {
                 var client = {
                     'value': value.id,
                     'label': value.name
@@ -90463,7 +90487,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         refreshUsers: function refreshUsers(response) {
             var data = response.data.data;
             var users = this.users;
-            data.forEach(function (value, key) {
+            data.forEach(function (value) {
                 var user = {
                     'value': value.id,
                     'label': value.name
@@ -90472,12 +90496,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         saveGroup: function saveGroup() {
-            var app = this;
-            axios.post('/api/v1/groups', app.group).then(function (response) {
+            var _this3 = this;
+
+            axios.post('/api/v1/groups', this.group).then(function (response) {
                 var id = response.data.data.id;
-                app.$router.push({ name: 'showGroup', params: { id: id } });
-            }).catch(function (error) {
-                app.errors = error.response.data.errors;
+                _this3.$router.push({ name: 'showGroup', params: { id: id } });
+            }).catch(function (response) {
+                _this3.errors = response.response.data.errors;
             });
         }
     },
@@ -90949,11 +90974,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             group: {
+                id: 0,
                 created_at: {
                     date: ''
                 },
@@ -90964,21 +90992,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var app = this;
-        var id = this.$route.params.id;
-        axios.get('/api/v1/groups/' + id).then(function (response) {
-            app.group = response.data.data;
-        }).catch(function (response) {
-            alert("Could not load clients");
-            console.log(response);
-        });
+        this.mountData('/api/v1/groups/');
     },
 
     methods: {
+        mountData: function mountData(link) {
+            var _this = this;
+
+            var id = this.$route.params.id;
+            axios.get(link + id).then(function (response) {
+                _this.group = response.data.data;
+            }).catch(function (response) {
+                alert("Could not load clients");
+                console.log(response);
+            });
+        },
         deleteEntry: function deleteEntry(id) {
+            var _this2 = this;
+
             if (confirm("Do you really want to delete it?")) {
                 axios.delete('/api/v1/groups/' + id).then(function (response) {
-                    router.push("listGroups");
+                    _this2.$router.push({ name: "listGroups" });
                 }).catch(function (response) {
                     alert("Could not delete company");
                     console.log(response);
@@ -91064,10 +91098,13 @@ var render = function() {
                           }
                         },
                         [
+                          _c(
+                            "span",
+                            { class: "label label-" + client.status_label },
+                            [_vm._v(_vm._s(client.name))]
+                          ),
                           _vm._v(
-                            "\n                                    " +
-                              _vm._s(client.name) +
-                              "\n                                "
+                            "\n                                     \n                                "
                           )
                         ]
                       )
@@ -91094,7 +91131,7 @@ var render = function() {
                           _vm._v(
                             "\n                                    " +
                               _vm._s(user.name) +
-                              "\n                                "
+                              "\n                                     \n                                "
                           )
                         ]
                       )
@@ -91293,11 +91330,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         mountData: function mountData(link) {
-            var app = this;
+            var _this = this;
+
             var id = this.$route.params.id;
             if (link !== null) {
                 axios.get(link + id).then(function (response) {
-                    app.refreshData(response);
+                    _this.refreshData(response);
                 }).catch(function (response) {
                     console.dir(response);
                 });
@@ -91307,11 +91345,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var clients = [];
             var users = [];
             this.group = response.data.data;
-            this.group.clients.forEach(function (value, key) {
+            this.group.clients.forEach(function (value) {
                 clients.push({ 'value': value.id, 'label': value.name });
             });
             this.group.clients = clients;
-            this.group.users.forEach(function (value, key) {
+            this.group.users.forEach(function (value) {
                 users.push({ 'value': value.id, 'label': value.name });
             });
             this.group.users = users;
@@ -91553,13 +91591,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         mountData: function mountData() {
-            console.log('mounted');
+            var _this = this;
+
             var clientsLink = '/api/v1/clients';
 
-            var app = this;
             if (clientsLink !== null) {
                 axios.get(clientsLink).then(function (response) {
-                    app.refreshData(response);
+                    _this.refreshData(response);
                 }).catch(function (response) {
                     alert("Could not load clients");
                     console.log(response);
@@ -91576,9 +91614,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.sortClients();
         },
         sortClients: function sortClients() {
-            var app = this;
+            var _this2 = this;
+
             this.clients.forEach(function (client) {
-                app.setClientInGroup(client);
+                _this2.setClientInGroup(client);
             });
         },
         setClientInGroup: function setClientInGroup(client) {
@@ -91994,10 +92033,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         mountData: function mountData(link) {
-            var app = this;
+            var _this = this;
+
             if (link !== null) {
                 axios.get(link).then(function (response) {
-                    app.refreshData(response);
+                    _this.refreshData(response);
                 }).catch(function (response) {
                     alert("Could not load clients");
                     console.log(response);
@@ -92009,9 +92049,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.links = response.data.links;
         },
         deleteEntry: function deleteEntry(id, index) {
+            var _this2 = this;
+
             if (confirm("Do you really want to delete it?")) {
                 axios.delete('/api/v1/clients/' + id).then(function (response) {
-                    this.clients.splice(index, 1);
+                    _this2.clients.splice(index, 1);
                 }).catch(function (response) {
                     alert("Could not delete company");
                     console.log(response);
@@ -92513,10 +92555,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         mountData: function mountData(link) {
-            var app = this;
+            var _this = this;
+
             if (link !== null) {
                 axios.get(link).then(function (response) {
-                    app.refreshData(response);
+                    _this.refreshData(response);
                 }).catch(function (response) {
                     alert("Could not load groups");
                     console.dir(response);
@@ -92526,7 +92569,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         refreshData: function refreshData(response) {
             var data = response.data.data;
             var groups = this.groups;
-            data.forEach(function (value, key) {
+            data.forEach(function (value) {
                 var group = {
                     'value': value.id,
                     'label': value.name
@@ -92535,12 +92578,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         saveClient: function saveClient() {
-            var app = this;
-            axios.post('/api/v1/clients', app.client).then(function (response) {
+            var _this2 = this;
+
+            axios.post('/api/v1/clients', this.client).then(function (response) {
                 var id = response.data.data.id;
-                app.$router.push({ name: 'showClient', params: { id: id } });
-            }).catch(function (error) {
-                app.errors = error.response.data.errors;
+                _this2.$router.push({ name: 'showClient', params: { id: id } });
+            }).catch(function (response) {
+                _this2.errors = response.response.data.errors;
+                console.dir(response);
             });
         }
     },
@@ -92677,7 +92722,7 @@ var render = function() {
       _c("div", { staticClass: "form-group" }, [
         _c(
           "label",
-          { staticClass: "col-sm-2 control-label", attrs: { for: "group" } },
+          { staticClass: "col-sm-2 control-label", attrs: { for: "group_id" } },
           [_vm._v("Group")]
         ),
         _vm._v(" "),
@@ -92686,7 +92731,7 @@ var render = function() {
           { staticClass: "col-sm-10" },
           [
             _c("v-select", {
-              attrs: { name: "group", id: "group", options: _vm.groups },
+              attrs: { name: "group_id", id: "group_id", options: _vm.groups },
               model: {
                 value: _vm.client.group,
                 callback: function($$v) {
@@ -92979,6 +93024,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             client: {
+                id: 0,
                 created_at: {
                     date: ''
                 },
@@ -92989,10 +93035,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var app = this;
+        var _this = this;
+
         var id = this.$route.params.id;
         axios.get('/api/v1/clients/' + id).then(function (response) {
-            app.client = response.data.data;
+            _this.client = response.data.data;
         }).catch(function (response) {
             alert("Could not load clients");
             console.log(response);
@@ -93001,10 +93048,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         deleteEntry: function deleteEntry(id) {
-            var app = this;
+            var _this2 = this;
+
             if (confirm("Do you really want to delete it?")) {
                 axios.delete('/api/v1/clients/' + id).then(function (response) {
-                    app.$router.push("listClients");
+                    _this2.$router.push({ name: "listClients" });
                 }).catch(function (response) {
                     alert("Could not delete company");
                     console.log(response);
@@ -93309,11 +93357,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         mountData: function mountData(link) {
-            var app = this;
+            var _this = this;
+
             var id = this.$route.params.id;
             if (link !== null) {
                 axios.get(link + id).then(function (response) {
-                    app.refreshData(response);
+                    _this.refreshData(response);
                 }).catch(function (response) {
                     console.dir(response);
                 });
@@ -93321,11 +93370,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         refreshData: function refreshData(response) {
             this.client = response.data.data;
-            var group = {
+            this.client.group = {
                 'value': this.client.group.id,
                 'label': this.client.group.name
             };
-            this.client.group = group;
         }
     },
     components: {
@@ -93557,8 +93605,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             default: []
         }
     },
-    created: function created() {},
-
     components: {
         'va-slide-item': __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem___default.a
     }
