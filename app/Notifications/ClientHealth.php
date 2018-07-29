@@ -14,7 +14,7 @@ class ClientHealth extends Notification
 {
     use Queueable;
 
-    const BASE_URL = 'http://www.dashboard.avc/#/clients/show/';
+    const BASE_URL = 'http://www.dashboard.avc/#/clients/notified/';
     private $client;
 
     /**

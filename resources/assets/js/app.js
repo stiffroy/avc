@@ -30,6 +30,7 @@ import ClientsList from './components/clients/ClientsList';
 import ClientCreate from './components/clients/ClientsCreate';
 import ClientShow from './components/clients/ClientsShow';
 import ClientEdit from './components/clients/ClientsEdit';
+import ClientNotified from './components/clients/ClientsNotified';
 
 window.Vue.use(VueRouter);
 window.Vue.use(Vue2Filters);
@@ -59,6 +60,7 @@ const routes = [
     {path: '/clients/create', component: ClientCreate, name: 'createClient'},
     {path: '/clients/show/:id', component: ClientShow, name: 'showClient'},
     {path: '/clients/edit/:id', component: ClientEdit, name: 'editClient'},
+    {path: '/clients/notified/:id', component: ClientNotified, name: 'notifiedClient'},
 ];
 
 const router = new VueRouter({ routes });
