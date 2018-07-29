@@ -88,17 +88,20 @@
             }
         },
         mounted() {
-            let id = this.$route.params.id;
-            axios.get('/api/v1/clients/' + id)
-                .then((response) => {
-                    this.client = response.data.data;
-                })
-                .catch((response) => {
-                    alert("Could not load clients");
-                    console.log(response);
-                });
+            this.mountData('/api/v1/clients/');
         },
         methods: {
+            mountData(link) {
+                let id = this.$route.params.id;
+                axios.get(link + id)
+                    .then((response) => {
+                        this.client = response.data.data;
+                    })
+                    .catch((response) => {
+                        alert("Could not load clients");
+                        console.log(response);
+                    });
+            },
             deleteEntry(id) {
                 if (confirm("Do you really want to delete it?")) {
                     axios.delete('/api/v1/clients/' + id)
