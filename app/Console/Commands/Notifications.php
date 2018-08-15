@@ -48,7 +48,7 @@ class Notifications extends Command
 
         foreach ($clients as $client)
         {
-            if ($client->health === ClientUtilities::CRITICAL) {
+            if (!$client->notified_at && $client->health === ClientUtilities::CRITICAL) {
                 $this->sendNotification($client);
             }
         }

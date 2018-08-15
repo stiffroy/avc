@@ -19,7 +19,7 @@ class Client extends Model
      *
      * @var array
      */
-    protected $dates = ['created_at', 'updated_at', 'heartbeat_at'];
+    protected $dates = ['created_at', 'updated_at', 'heartbeat_at', 'notified_at'];
 
     /**
      * The hooks to the entity
