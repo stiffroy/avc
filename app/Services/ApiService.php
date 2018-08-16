@@ -66,6 +66,7 @@ class ApiService
     private function getStatusCode($client)
     {
         $client->heartbeat_at = Carbon::now();
+        $client->notified_at = null;
 
         try {
             $client->save();

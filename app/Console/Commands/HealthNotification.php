@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 
 class HealthNotification extends Command
 {
@@ -48,7 +49,7 @@ class HealthNotification extends Command
 
         foreach ($clients as $client) {
             Log::debug('Client Health: ' . $client->health);
-            if ($client->health === ClientUtilities::CRITICAL) {
+            if (!$client->notified_at && $client->health === ClientUtilities::CRITICAL) {
                 $this->sendNotification($client);
             }
         }
@@ -64,28 +65,7 @@ class HealthNotification extends Command
         $users = $client->group_id ? $client->group->users : new Collection();
 
         if (count($users) > 0) {
-            foreach ($users as $user) {
-                if ($this->alreadySent($user, $client)) {
-                    $user->notify(new ClientHealth($client));
-                }
-            }
+            Notification::send($users, new ClientHealth($client));
         }
-    }
-
-    /**
-     * @param $user
-     * @param $client
-     * @return bool
-     */
-    private function alreadySent($user, $client)
-    {
-        $sent = false;
-        foreach ($user->unreadNotifications as $notification) {
-            if ($notification->data['client_id'] == $client->id) {
-                $sent = true;
-            }
-        }
-
-        return $sent;
     }
 }

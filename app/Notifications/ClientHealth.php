@@ -23,8 +23,11 @@ class ClientHealth extends Notification
      */
     public function __construct($client)
     {
-        Log::debug('In ClientHealth:__construct at: ' . now());
+        $now = Carbon::now();
+        $client->notified_at = $now;
+        $client->save();
         $this->client = $client;
+        Log::debug('In ClientHealth:__construct at: ' . $now);
     }
 
     /**
