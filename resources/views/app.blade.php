@@ -18,9 +18,7 @@
         <side-menu></side-menu>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <router-view></router-view>
-        </div>
+        <router-view></router-view>
         <!-- /.content-wrapper -->
 
         <!-- Main Footer -->

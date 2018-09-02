@@ -88047,6 +88047,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {}
@@ -88067,17 +88082,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
+    return _c("div", { staticClass: "content-wrapper" }, [
+      _c("section", { staticClass: "content-header" }, [
+        _c("h1", [
+          _vm._v("\n            Dashboard\n            "),
+          _c("small", [_vm._v("Overview")])
+        ]),
+        _vm._v(" "),
+        _c("ol", { staticClass: "breadcrumb" }, [
+          _c("li", [_vm._v("Dashboard")])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("section", { staticClass: "content container-fluid" }, [
+        _c("div", { staticClass: "box" }, [
+          _c("div", { staticClass: "box-header" }, [
+            _c("h3", { staticClass: "box-title" }, [_vm._v("Dashboard")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "box-body" }, [
+            _c("div", { staticClass: "col-sm-10 text-center" }, [
               _vm._v(
-                "\n                    I'm an example component.\n                "
+                "\n                    Here comes the overview for the dashboard\n                "
               )
             ])
           ])
@@ -88245,7 +88271,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -88805,7 +88831,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -89597,7 +89623,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -89837,7 +89863,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -90154,7 +90180,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -91244,7 +91270,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -91544,7 +91570,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -92304,7 +92330,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -92549,7 +92575,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -92887,7 +92913,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -93164,7 +93190,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -93599,7 +93625,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -94352,7 +94378,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -94592,7 +94618,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -94911,7 +94937,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -95146,7 +95172,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
