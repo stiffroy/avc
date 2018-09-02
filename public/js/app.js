@@ -95516,8 +95516,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'va-slide-item': __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem___default.a
     },
     data: function data() {
-        console.log('slider');
-        console.log(localStorage);
         return {
             user: JSON.parse(localStorage.getItem('user'))
         };

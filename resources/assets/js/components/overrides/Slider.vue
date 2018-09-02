@@ -53,8 +53,6 @@
             'va-slide-item': VASlideItem
         },
         data: () => {
-            console.log('slider');
-            console.log(localStorage);
             return {
                 user: JSON.parse(localStorage.getItem('user')),
             }
