@@ -3,8 +3,8 @@
 </template>
 
 <script>
-    import VASlider from './overrides/Slider.vue';
-    import slideMenuItems from './data/slideMenuItems';
+    import VASlider from '../overrides/Slider.vue';
+    import slideMenuItems from '../data/SlideMenuItems';
 
     export default {
         data: () => {
