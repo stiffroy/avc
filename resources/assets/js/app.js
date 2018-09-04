@@ -69,7 +69,7 @@ const routes = [
     {path: '/clients/notified/:id', component: ClientNotified, name: 'notifiedClient', meta: { requiresAuth: true }},
 ];
 
-const router = new VueRouter({ routes });
+const router = new VueRouter({routes, linkActiveClass: '', linkExactActiveClass: 'active'});
 
 router.beforeEach((to, from, next) => {
     // Forward to home when an undefined route is given
