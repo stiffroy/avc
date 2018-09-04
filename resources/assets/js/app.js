@@ -86,7 +86,7 @@ router.beforeEach((to, from, next) => {
 
     // if logged in redirect to dashboard
     if(to.path === '/login' && store.state.isLoggedIn) {
-        next({ name: 'dashboard' });
+        next({ name: url });
         return;
     }
 

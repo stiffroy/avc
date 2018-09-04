@@ -1,22 +1,21 @@
 <template>
-    <aside id="slider" class="main-sidebar" v-if="$store.state.isLoggedIn">
+    <aside id="slider" class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel (optional) -->
-            <div class="user-panel">
+            <div class="user-panel" v-if="$store.state.isLoggedIn">
                 <div class="pull-left image">
                     <i class="fa fa-3x fa-user-circle"></i>
                 </div>
                 <div class="pull-left info">
                     <p>{{ $store.state.authUser.name }}</p>
-                    <!--<p>{{ user.name }}</p>-->
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
 
             <!-- Sidebar Menu -->
-            <ul data-widget="tree" class="sidebar-menu">
+            <ul data-widget="tree" class="sidebar-menu" v-show="$store.state.isLoggedIn">
                 <va-slide-item
                         v-for="(item,index) in slideMenuItems"
                         :data="item"
@@ -53,8 +52,6 @@
             'va-slide-item': VASlideItem
         },
         data: () => {
-            console.log('slider');
-            console.log(localStorage);
             return {
                 user: JSON.parse(localStorage.getItem('user')),
             }

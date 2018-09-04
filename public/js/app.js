@@ -42902,7 +42902,7 @@ router.beforeEach(function (to, from, next) {
 
     // if logged in redirect to dashboard
     if (to.path === '/login' && __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */].state.isLoggedIn) {
-        next({ name: 'dashboard' });
+        next({ name: url });
         return;
     }
 
@@ -88047,6 +88047,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {}
@@ -88067,18 +88080,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
+    return _c("div", [
+      _c("section", { staticClass: "content-header" }, [
+        _c("h1", [
+          _vm._v("\n            Dashboard\n            "),
+          _c("small", [_vm._v("Overview Mode")])
+        ]),
+        _vm._v(" "),
+        _c("ol", { staticClass: "breadcrumb" }, [_c("li", [_vm._v("Home")])])
+      ]),
+      _vm._v(" "),
+      _c("section", { staticClass: "content container-fluid" }, [
+        _c("div", { staticClass: "box" }, [
+          _c("div", { staticClass: "box-header" }, [
+            _c("h3", { staticClass: "box-title" }, [_vm._v("Dashboard")])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "box-body" }, [
+            _c("p", { staticClass: "text-center" }, [
+              _vm._v("Content coming up here")
             ])
           ])
         ])
@@ -88228,11 +88248,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 localStorage.setItem('token', response.data.access_token);
                 localStorage.setItem('user', JSON.stringify(response.data.user));
                 __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */].commit('loginUser');
-                _this.$router.push({ name: 'home' });
+                _this.$router.push({ name: _this.getUrl() });
             }).catch(function (error) {
                 _this.loginError = error;
                 console.log(_this.loginError);
             });
+        },
+        getUrl: function getUrl() {
+            var url = 'home';
+            if (this.$route.query.goto) {
+                url = this.$route.query.goto;
+            }
+            return url;
         }
     }
 });
@@ -88582,25 +88609,36 @@ module.exports = Component.exports
 
 /***/ }),
 /* 302 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
 //
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {};
-    },
-    mounted: function mounted() {
-        console.log('overview users');
-    },
-
-    methods: {}
-});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /***/ }),
 /* 303 */
@@ -88610,9 +88648,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _vm._m(0)
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("section", { staticClass: "content-header" }, [
+        _c("h1", [
+          _vm._v("\n            Users\n            "),
+          _c("small", [_vm._v("Overview Mode")])
+        ]),
+        _vm._v(" "),
+        _c("ol", { staticClass: "breadcrumb" }, [
+          _c("li", [_vm._v("Home")]),
+          _vm._v(" "),
+          _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Users")])]),
+          _vm._v(" "),
+          _c("li", { staticClass: "active" }, [
+            _c("a", { attrs: { href: "#" } }, [_vm._v("Overview")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("section", { staticClass: "content container-fluid" }, [
+        _c("div", { staticClass: "box" }, [
+          _c("div", { staticClass: "box-header" }, [
+            _c("h3", { staticClass: "box-title" }, [_vm._v("Users")])
+          ])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -95500,7 +95570,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -95516,8 +95585,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'va-slide-item': __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem___default.a
     },
     data: function data() {
-        console.log('slider');
-        console.log(localStorage);
         return {
             user: JSON.parse(localStorage.getItem('user'))
         };
@@ -95754,10 +95821,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.$store.state.isLoggedIn
-    ? _c("aside", { staticClass: "main-sidebar", attrs: { id: "slider" } }, [
-        _c("section", { staticClass: "sidebar" }, [
-          _c("div", { staticClass: "user-panel" }, [
+  return _c("aside", { staticClass: "main-sidebar", attrs: { id: "slider" } }, [
+    _c("section", { staticClass: "sidebar" }, [
+      _vm.$store.state.isLoggedIn
+        ? _c("div", { staticClass: "user-panel" }, [
             _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "pull-left info" }, [
@@ -95765,31 +95832,42 @@ var render = function() {
               _vm._v(" "),
               _vm._m(1)
             ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "ul",
-            { staticClass: "sidebar-menu", attrs: { "data-widget": "tree" } },
-            _vm._l(_vm.slideMenuItems, function(item, index) {
-              return _c("va-slide-item", {
-                key: index,
-                attrs: {
-                  data: item,
-                  type: item.type,
-                  isHeader: item.isHeader,
-                  icon: item.icon,
-                  name: item.name,
-                  badge: item.badge,
-                  items: item.items,
-                  router: item.router,
-                  link: item.link
-                }
-              })
-            })
-          )
-        ])
-      ])
-    : _vm._e()
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "ul",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.$store.state.isLoggedIn,
+              expression: "$store.state.isLoggedIn"
+            }
+          ],
+          staticClass: "sidebar-menu",
+          attrs: { "data-widget": "tree" }
+        },
+        _vm._l(_vm.slideMenuItems, function(item, index) {
+          return _c("va-slide-item", {
+            key: index,
+            attrs: {
+              data: item,
+              type: item.type,
+              isHeader: item.isHeader,
+              icon: item.icon,
+              name: item.name,
+              badge: item.badge,
+              items: item.items,
+              router: item.router,
+              link: item.link
+            }
+          })
+        })
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {

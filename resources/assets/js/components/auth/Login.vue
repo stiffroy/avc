@@ -74,11 +74,18 @@
                     localStorage.setItem('token', response.data.access_token);
                     localStorage.setItem('user', JSON.stringify(response.data.user));
                     store.commit('loginUser');
-                    this.$router.push({ name: 'home' })
+                    this.$router.push({ name: this.getUrl() })
                 }).catch(error => {
                     this.loginError = error;
                     console.log(this.loginError);
                 });
+            },
+            getUrl() {
+                let url = 'home';
+                if (this.$route.query.goto) {
+                    url = this.$route.query.goto;
+                }
+                return url;
             }
         }
     }
