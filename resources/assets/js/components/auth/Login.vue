@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="content-wrapper">
         <section class="content-header">
             <h1>
                 Login

@@ -46,6 +46,7 @@ window.Vue.use(Vue2Filters);
 
 Vue.component('side-menu', require('./components/includes/SideMenu'));
 Vue.component('main-header', require('./components/includes/MainHeader'));
+Vue.component('control-sidebar', require('./components/includes/ControlSidebar'));
 
 const routes = [
     {path: '/', component: Home, name: 'home', meta: { requiresAuth: true }},
