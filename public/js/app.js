@@ -42880,6 +42880,7 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue2_filters___default.a);
 
 Vue.component('side-menu', __webpack_require__(389));
 Vue.component('main-header', __webpack_require__(399));
+Vue.component('control-sidebar', __webpack_require__(410));
 
 var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_5__components_Home___default.a, name: 'home', meta: { requiresAuth: true } }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_6__components_auth_Login___default.a, name: 'login' }, { path: '/logout', component: __WEBPACK_IMPORTED_MODULE_7__components_auth_Logout___default.a, name: 'logout' }, { path: '/users', component: __WEBPACK_IMPORTED_MODULE_8__components_users_UsersOverview___default.a, name: 'users', meta: { requiresAuth: true } }, { path: '/users/list', component: __WEBPACK_IMPORTED_MODULE_9__components_users_UsersList___default.a, name: 'listUsers', meta: { requiresAuth: true } }, { path: '/users/create', component: __WEBPACK_IMPORTED_MODULE_10__components_users_UsersCreate___default.a, name: 'createUser', meta: { requiresAuth: true } }, { path: '/users/show/:id', component: __WEBPACK_IMPORTED_MODULE_11__components_users_UsersShow___default.a, name: 'showUser', meta: { requiresAuth: true } }, { path: '/users/edit/:id', component: __WEBPACK_IMPORTED_MODULE_12__components_users_UsersEdit___default.a, name: 'editUser', meta: { requiresAuth: true } }, { path: '/groups', component: __WEBPACK_IMPORTED_MODULE_13__components_groups_GroupsOverview___default.a, name: 'groups', meta: { requiresAuth: true } }, { path: '/groups/list', component: __WEBPACK_IMPORTED_MODULE_14__components_groups_GroupsList___default.a, name: 'listGroups', meta: { requiresAuth: true } }, { path: '/groups/create', component: __WEBPACK_IMPORTED_MODULE_15__components_groups_GroupsCreate___default.a, name: 'createGroup', meta: { requiresAuth: true } }, { path: '/groups/show/:id', component: __WEBPACK_IMPORTED_MODULE_16__components_groups_GroupsShow___default.a, name: 'showGroup', meta: { requiresAuth: true } }, { path: '/groups/edit/:id', component: __WEBPACK_IMPORTED_MODULE_17__components_groups_GroupsEdit___default.a, name: 'editGroup', meta: { requiresAuth: true } }, { path: '/clients', component: __WEBPACK_IMPORTED_MODULE_18__components_clients_ClientsOverview___default.a, name: 'clients', meta: { requiresAuth: true } }, { path: '/clients/list', component: __WEBPACK_IMPORTED_MODULE_19__components_clients_ClientsList___default.a, name: 'listClients', meta: { requiresAuth: true } }, { path: '/clients/create', component: __WEBPACK_IMPORTED_MODULE_20__components_clients_ClientsCreate___default.a, name: 'createClient', meta: { requiresAuth: true } }, { path: '/clients/show/:id', component: __WEBPACK_IMPORTED_MODULE_21__components_clients_ClientsShow___default.a, name: 'showClient', meta: { requiresAuth: true } }, { path: '/clients/edit/:id', component: __WEBPACK_IMPORTED_MODULE_22__components_clients_ClientsEdit___default.a, name: 'editClient', meta: { requiresAuth: true } }, { path: '/clients/notified/:id', component: __WEBPACK_IMPORTED_MODULE_23__components_clients_ClientsNotified___default.a, name: 'notifiedClient', meta: { requiresAuth: true } }];
 
@@ -88284,7 +88285,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -88887,7 +88888,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -89679,7 +89680,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -89919,7 +89920,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -90236,7 +90237,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -91326,7 +91327,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -91626,7 +91627,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -92386,7 +92387,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -92631,7 +92632,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -92969,7 +92970,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -93246,7 +93247,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -93681,7 +93682,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -94434,7 +94435,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -94674,7 +94675,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -94993,7 +94994,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -95228,7 +95229,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "content-wrapper" }, [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -96314,6 +96315,297 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-4345fc85", module.exports)
+  }
+}
+
+/***/ }),
+/* 410 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(411)
+/* template */
+var __vue_template__ = __webpack_require__(412)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/includes/ControlSidebar.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7ab49c48", Component.options)
+  } else {
+    hotAPI.reload("data-v-7ab49c48", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 411 */
+/***/ (function(module, exports) {
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+/* 412 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "aside",
+      { staticClass: "control-sidebar control-sidebar-dark" },
+      [
+        _c(
+          "ul",
+          { staticClass: "nav nav-tabs nav-justified control-sidebar-tabs" },
+          [
+            _c("li", { staticClass: "active" }, [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href: "#control-sidebar-home-tab",
+                    "data-toggle": "tab"
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-home" })]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href: "#control-sidebar-settings-tab",
+                    "data-toggle": "tab"
+                  }
+                },
+                [_c("i", { staticClass: "fa fa-gears" })]
+              )
+            ])
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "tab-content" }, [
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane active",
+              attrs: { id: "control-sidebar-home-tab" }
+            },
+            [
+              _c("h3", { staticClass: "control-sidebar-heading" }, [
+                _vm._v("Recent Activity")
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "control-sidebar-menu" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "javascript:;" } }, [
+                    _c("i", {
+                      staticClass: "menu-icon fa fa-birthday-cake bg-red"
+                    }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "menu-info" }, [
+                      _c("h4", { staticClass: "control-sidebar-subheading" }, [
+                        _vm._v("Langdon's Birthday")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [_vm._v("Will be 23 on April 24th")])
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("h3", { staticClass: "control-sidebar-heading" }, [
+                _vm._v("Tasks Progress")
+              ]),
+              _vm._v(" "),
+              _c("ul", { staticClass: "control-sidebar-menu" }, [
+                _c("li", [
+                  _c("a", { attrs: { href: "javascript:;" } }, [
+                    _c("h4", { staticClass: "control-sidebar-subheading" }, [
+                      _vm._v(
+                        "\n                            Custom Template Design\n                            "
+                      ),
+                      _c("span", { staticClass: "pull-right-container" }, [
+                        _c(
+                          "span",
+                          { staticClass: "label label-danger pull-right" },
+                          [_vm._v("70%")]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "progress progress-xxs" }, [
+                      _c("div", {
+                        staticClass: "progress-bar progress-bar-danger",
+                        staticStyle: { width: "70%" }
+                      })
+                    ])
+                  ])
+                ])
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane",
+              attrs: { id: "control-sidebar-stats-tab" }
+            },
+            [_vm._v("Stats Tab Content")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane",
+              attrs: { id: "control-sidebar-settings-tab" }
+            },
+            [
+              _c("form", { attrs: { method: "post" } }, [
+                _c("h3", { staticClass: "control-sidebar-heading" }, [
+                  _vm._v("General Settings")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { staticClass: "control-sidebar-subheading" }, [
+                    _vm._v(
+                      "\n                        Report panel usage\n                        "
+                    ),
+                    _c("input", {
+                      staticClass: "pull-right",
+                      attrs: { type: "checkbox", checked: "" }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "\n                        Some information about this general settings option\n                    "
+                    )
+                  ])
+                ])
+              ])
+            ]
+          )
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7ab49c48", module.exports)
   }
 }
 
