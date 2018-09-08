@@ -1,5 +1,5 @@
 <template>
-    <div class="content-wrapper">
+    <div>
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
