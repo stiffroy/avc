@@ -9,7 +9,6 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Notification;
 
 class HealthNotification extends Command
 {
@@ -65,7 +64,23 @@ class HealthNotification extends Command
         $users = $client->group_id ? $client->group->users : new Collection();
 
         if (count($users) > 0) {
-            Notification::send($users, new ClientHealth($client));
+            $this->sendNotificationByUser($client, $users);
+        }
+    }
+
+    /**
+     * @param $client
+     * @param $users
+     */
+    private function sendNotificationByUser($client, $users)
+    {
+        $slackUrl = [];
+
+        foreach ($users as $user) {
+            if ($user->preferred_method === 'slack' && !in_array($user->slack_webhook_url, $slackUrl)) {
+                $user->notify(new ClientHealth($client));
+                $slackUrl[] = $user->slack_webhook_url;
+            }
         }
     }
 }
