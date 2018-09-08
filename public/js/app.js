@@ -42779,7 +42779,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(171);
-module.exports = __webpack_require__(402);
+module.exports = __webpack_require__(405);
 
 
 /***/ }),
@@ -42880,7 +42880,7 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue2_filters___default.a);
 
 Vue.component('side-menu', __webpack_require__(389));
 Vue.component('main-header', __webpack_require__(399));
-Vue.component('control-sidebar', __webpack_require__(410));
+Vue.component('control-sidebar', __webpack_require__(402));
 
 var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_5__components_Home___default.a, name: 'home', meta: { requiresAuth: true } }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_6__components_auth_Login___default.a, name: 'login' }, { path: '/logout', component: __WEBPACK_IMPORTED_MODULE_7__components_auth_Logout___default.a, name: 'logout' }, { path: '/users', component: __WEBPACK_IMPORTED_MODULE_8__components_users_UsersOverview___default.a, name: 'users', meta: { requiresAuth: true } }, { path: '/users/list', component: __WEBPACK_IMPORTED_MODULE_9__components_users_UsersList___default.a, name: 'listUsers', meta: { requiresAuth: true } }, { path: '/users/create', component: __WEBPACK_IMPORTED_MODULE_10__components_users_UsersCreate___default.a, name: 'createUser', meta: { requiresAuth: true } }, { path: '/users/show/:id', component: __WEBPACK_IMPORTED_MODULE_11__components_users_UsersShow___default.a, name: 'showUser', meta: { requiresAuth: true } }, { path: '/users/edit/:id', component: __WEBPACK_IMPORTED_MODULE_12__components_users_UsersEdit___default.a, name: 'editUser', meta: { requiresAuth: true } }, { path: '/groups', component: __WEBPACK_IMPORTED_MODULE_13__components_groups_GroupsOverview___default.a, name: 'groups', meta: { requiresAuth: true } }, { path: '/groups/list', component: __WEBPACK_IMPORTED_MODULE_14__components_groups_GroupsList___default.a, name: 'listGroups', meta: { requiresAuth: true } }, { path: '/groups/create', component: __WEBPACK_IMPORTED_MODULE_15__components_groups_GroupsCreate___default.a, name: 'createGroup', meta: { requiresAuth: true } }, { path: '/groups/show/:id', component: __WEBPACK_IMPORTED_MODULE_16__components_groups_GroupsShow___default.a, name: 'showGroup', meta: { requiresAuth: true } }, { path: '/groups/edit/:id', component: __WEBPACK_IMPORTED_MODULE_17__components_groups_GroupsEdit___default.a, name: 'editGroup', meta: { requiresAuth: true } }, { path: '/clients', component: __WEBPACK_IMPORTED_MODULE_18__components_clients_ClientsOverview___default.a, name: 'clients', meta: { requiresAuth: true } }, { path: '/clients/list', component: __WEBPACK_IMPORTED_MODULE_19__components_clients_ClientsList___default.a, name: 'listClients', meta: { requiresAuth: true } }, { path: '/clients/create', component: __WEBPACK_IMPORTED_MODULE_20__components_clients_ClientsCreate___default.a, name: 'createClient', meta: { requiresAuth: true } }, { path: '/clients/show/:id', component: __WEBPACK_IMPORTED_MODULE_21__components_clients_ClientsShow___default.a, name: 'showClient', meta: { requiresAuth: true } }, { path: '/clients/edit/:id', component: __WEBPACK_IMPORTED_MODULE_22__components_clients_ClientsEdit___default.a, name: 'editClient', meta: { requiresAuth: true } }, { path: '/clients/notified/:id', component: __WEBPACK_IMPORTED_MODULE_23__components_clients_ClientsNotified___default.a, name: 'notifiedClient', meta: { requiresAuth: true } }];
 
@@ -88285,7 +88285,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -88888,7 +88888,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -89680,7 +89680,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -89920,7 +89920,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -90237,7 +90237,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -91327,7 +91327,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -91627,7 +91627,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -92387,7 +92387,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -92632,7 +92632,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -92970,7 +92970,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -93247,7 +93247,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -93682,7 +93682,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -94435,7 +94435,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -94675,7 +94675,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -94994,7 +94994,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _vm._m(0),
     _vm._v(" "),
     _c("section", { staticClass: "content container-fluid" }, [
@@ -95229,7 +95229,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "content-wrapper" }, [
+  return _c("div", [
     _c("section", { staticClass: "content-header" }, [
       _vm._m(0),
       _vm._v(" "),
@@ -95542,7 +95542,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem__ = __webpack_require__(407);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem__ = __webpack_require__(393);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem__);
 //
 //
@@ -95605,9 +95605,228 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 393 */,
-/* 394 */,
-/* 395 */,
+/* 393 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(394)
+/* template */
+var __vue_template__ = __webpack_require__(395)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "node_modules/vue2-admin-lte/src/components/VASlideItem.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4345fc85", Component.options)
+  } else {
+    hotAPI.reload("data-v-4345fc85", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 394 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'va-slide-item',
+  props: {
+    type: {
+      type: String,
+      default: 'item'
+    },
+    isHeader: {
+      type: Boolean,
+      default: false
+    },
+    icon: {
+      type: String,
+      default: ''
+    },
+    name: {
+      type: String
+    },
+    badge: {
+      type: Object,
+      default: function _default() {
+        return {};
+      }
+    },
+    items: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    router: {
+      type: Object,
+      default: function _default() {
+        return {
+          name: ''
+        };
+      }
+    },
+    link: {
+      type: String,
+      default: ''
+    }
+  },
+  created: function created() {},
+
+  computed: {
+    getType: function getType() {
+      if (this.isHeader) {
+        return 'header';
+      }
+      return this.type === 'item' ? '' : 'treeview';
+    }
+  }
+});
+
+/***/ }),
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm.router && _vm.router.name
+    ? _c("router-link", { attrs: { tag: "li", to: _vm.router } }, [
+        _c("a", { attrs: { href: "#" } }, [
+          _c("i", { class: _vm.icon }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.name))]),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.badge,
+                  expression: "badge"
+                }
+              ],
+              staticClass: "pull-right-container"
+            },
+            [
+              _c(
+                "small",
+                {
+                  staticClass: "label pull-right",
+                  class: [
+                    _vm.badge.type === "String" ? "bg-green" : "label-primary"
+                  ]
+                },
+                [_vm._v(_vm._s(_vm.badge.data))]
+              )
+            ]
+          )
+        ])
+      ])
+    : _c("li", { class: _vm.getType }, [
+        _vm._v("\n  " + _vm._s(_vm.isHeader ? _vm.name : "") + "\n  "),
+        !_vm.isHeader
+          ? _c("a", { attrs: { href: "#" } }, [
+              _c("i", { class: _vm.icon }),
+              _vm._v(" "),
+              _c("span", [_vm._v(_vm._s(_vm.name))]),
+              _vm._v(" "),
+              _c("span", { staticClass: "pull-right-container" }, [
+                _vm.badge && _vm.badge.data
+                  ? _c(
+                      "small",
+                      {
+                        staticClass: "label pull-right",
+                        class: [
+                          _vm.badge.type === "String"
+                            ? "bg-green"
+                            : "label-primary"
+                        ]
+                      },
+                      [_vm._v(_vm._s(_vm.badge.data))]
+                    )
+                  : _c("i", { staticClass: "fa fa-angle-left pull-right" })
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.items.length > 0
+          ? _c(
+              "ul",
+              { staticClass: "treeview-menu" },
+              _vm._l(_vm.items, function(item, index) {
+                return item.router && item.router.name
+                  ? _c(
+                      "router-link",
+                      {
+                        key: index,
+                        attrs: { tag: "li", data: item, to: item.router }
+                      },
+                      [
+                        _c("a", [
+                          _c("i", { class: item.icon }, [
+                            _vm._v(" " + _vm._s(item.name))
+                          ])
+                        ])
+                      ]
+                    )
+                  : _c("li", [
+                      _c("a", [
+                        _c("i", { class: item.icon }, [
+                          _vm._v(" " + _vm._s(item.name))
+                        ])
+                      ])
+                    ])
+              })
+            )
+          : _vm._e()
+      ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4345fc85", module.exports)
+  }
+}
+
+/***/ }),
 /* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -96088,246 +96307,14 @@ if (false) {
 
 /***/ }),
 /* 402 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(408)
+var __vue_script__ = __webpack_require__(403)
 /* template */
-var __vue_template__ = __webpack_require__(409)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "node_modules/vue2-admin-lte/src/components/VASlideItem.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4345fc85", Component.options)
-  } else {
-    hotAPI.reload("data-v-4345fc85", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 408 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'va-slide-item',
-  props: {
-    type: {
-      type: String,
-      default: 'item'
-    },
-    isHeader: {
-      type: Boolean,
-      default: false
-    },
-    icon: {
-      type: String,
-      default: ''
-    },
-    name: {
-      type: String
-    },
-    badge: {
-      type: Object,
-      default: function _default() {
-        return {};
-      }
-    },
-    items: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    router: {
-      type: Object,
-      default: function _default() {
-        return {
-          name: ''
-        };
-      }
-    },
-    link: {
-      type: String,
-      default: ''
-    }
-  },
-  created: function created() {},
-
-  computed: {
-    getType: function getType() {
-      if (this.isHeader) {
-        return 'header';
-      }
-      return this.type === 'item' ? '' : 'treeview';
-    }
-  }
-});
-
-/***/ }),
-/* 409 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm.router && _vm.router.name
-    ? _c("router-link", { attrs: { tag: "li", to: _vm.router } }, [
-        _c("a", { attrs: { href: "#" } }, [
-          _c("i", { class: _vm.icon }),
-          _vm._v(" "),
-          _c("span", [_vm._v(_vm._s(_vm.name))]),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.badge,
-                  expression: "badge"
-                }
-              ],
-              staticClass: "pull-right-container"
-            },
-            [
-              _c(
-                "small",
-                {
-                  staticClass: "label pull-right",
-                  class: [
-                    _vm.badge.type === "String" ? "bg-green" : "label-primary"
-                  ]
-                },
-                [_vm._v(_vm._s(_vm.badge.data))]
-              )
-            ]
-          )
-        ])
-      ])
-    : _c("li", { class: _vm.getType }, [
-        _vm._v("\n  " + _vm._s(_vm.isHeader ? _vm.name : "") + "\n  "),
-        !_vm.isHeader
-          ? _c("a", { attrs: { href: "#" } }, [
-              _c("i", { class: _vm.icon }),
-              _vm._v(" "),
-              _c("span", [_vm._v(_vm._s(_vm.name))]),
-              _vm._v(" "),
-              _c("span", { staticClass: "pull-right-container" }, [
-                _vm.badge && _vm.badge.data
-                  ? _c(
-                      "small",
-                      {
-                        staticClass: "label pull-right",
-                        class: [
-                          _vm.badge.type === "String"
-                            ? "bg-green"
-                            : "label-primary"
-                        ]
-                      },
-                      [_vm._v(_vm._s(_vm.badge.data))]
-                    )
-                  : _c("i", { staticClass: "fa fa-angle-left pull-right" })
-              ])
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.items.length > 0
-          ? _c(
-              "ul",
-              { staticClass: "treeview-menu" },
-              _vm._l(_vm.items, function(item, index) {
-                return item.router && item.router.name
-                  ? _c(
-                      "router-link",
-                      {
-                        key: index,
-                        attrs: { tag: "li", data: item, to: item.router }
-                      },
-                      [
-                        _c("a", [
-                          _c("i", { class: item.icon }, [
-                            _vm._v(" " + _vm._s(item.name))
-                          ])
-                        ])
-                      ]
-                    )
-                  : _c("li", [
-                      _c("a", [
-                        _c("i", { class: item.icon }, [
-                          _vm._v(" " + _vm._s(item.name))
-                        ])
-                      ])
-                    ])
-              })
-            )
-          : _vm._e()
-      ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4345fc85", module.exports)
-  }
-}
-
-/***/ }),
-/* 410 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(411)
-/* template */
-var __vue_template__ = __webpack_require__(412)
+var __vue_template__ = __webpack_require__(404)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -96366,7 +96353,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 411 */
+/* 403 */
 /***/ (function(module, exports) {
 
 //
@@ -96442,7 +96429,7 @@ module.exports = Component.exports
 //
 
 /***/ }),
-/* 412 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -96608,6 +96595,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-7ab49c48", module.exports)
   }
 }
+
+/***/ }),
+/* 405 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
