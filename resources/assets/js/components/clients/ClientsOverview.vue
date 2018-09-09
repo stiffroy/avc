@@ -112,7 +112,7 @@
         },
         methods: {
             mountData() {
-                let clientsLink = '/api/v1/clients';
+                let clientsLink = '/api/v1/clients/user/' + this.$store.state.authUser.id;
 
                 if (clientsLink !== null) {
                     axios.get(clientsLink)

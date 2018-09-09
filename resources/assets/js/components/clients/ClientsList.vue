@@ -73,7 +73,7 @@
                         </tr>
                         </tfoot>
                     </table>
-                    <div v-if="links.prev !== links.next" class="pull-right">
+                    <div v-if="links && links.prev !== links.next" class="pull-right">
                         <p class="btn btn-link" v-on:click="mountData(links.first)">First</p>
                         <p class="btn btn-link" v-on:click="mountData(links.prev)">Prev</p>
                         <p class="btn btn-link" v-on:click="mountData(links.next)">Next</p>
@@ -95,10 +95,11 @@
             }
         },
         mounted() {
-            this.mountData('/api/v1/clients');
+            this.mountData();
         },
         methods: {
-            mountData(link) {
+            mountData() {
+                let link = '/api/v1/clients/user/' + this.$store.state.authUser.id;
                 if (link !== null) {
                     axios.get(link)
                         .then((response) => {
@@ -112,7 +113,7 @@
             },
             refreshData(response) {
                 this.clients = response.data.data;
-                this.links = response.data.links;
+                this.links = response.data.link;
             },
             deleteEntry(id, index) {
                 if (confirm("Do you really want to delete it?")) {

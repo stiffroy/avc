@@ -61,14 +61,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function clients()
-    {
-        return $this->hasMany('App\Entity\Client');
-    }
-
-    /**
      * Route notifications for the Slack channel.
      *
      * @return mixed

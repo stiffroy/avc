@@ -13,6 +13,7 @@
 Route::prefix('v1/')->group(function () {
     Route::post('client/heartbeat', 'Api\ClientController@heartbeat')->name('heartbeat');
     Route::post('client/alive', 'Api\ClientController@makeAlive')->name('alive');
+    Route::get('clients/user/{userId}', 'Api\ClientController@clientsByUser')->name('clients.by.user');
 
     Route::apiResources([
         'clients'   => 'Api\ClientController',

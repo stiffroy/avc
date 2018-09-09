@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Entity\Client;
+use App\Entity\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClient;
 use App\Http\Resources\Client as ClientResource;
 use App\Services\ApiService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Input;
 
 class ClientController extends Controller
@@ -121,5 +123,21 @@ class ClientController extends Controller
         ]);
 
         return new ClientResource($client);
+    }
+
+    /**
+     * @param $userId
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function clientsByUser($userId)
+    {
+        $user = User::find($userId);
+        $clients = new Collection();
+
+        foreach ($user->groups as $group) {
+            $clients = $clients->merge($group->clients);
+        }
+
+        return ClientResource::collection($clients);
     }
 }
