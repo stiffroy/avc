@@ -88,12 +88,13 @@ class ClientHealth extends Notification
     public function toSlack($notifiable)
     {
         $url = url($this::BASE_URL . $this->client->id);
+        $client = $this->client;
 
         return (new SlackMessage)
             ->error()
-            ->content('VM ' . $this->client->name . '(' . $this->client->name . ')' . ' is in danger.')
-            ->attachment(function ($attachment) use ($url) {
-                $attachment->title('Client', $url)
+            ->content('VM ' . $client->name . ' (' . $client->external_id . ')' . ' is in danger.')
+            ->attachment(function ($attachment) use ($client, $url) {
+                $attachment->title($client->name, $url)
                     ->content('Click above link for the details of the client.');
             });
     }
