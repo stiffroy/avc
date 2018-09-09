@@ -14,7 +14,7 @@ class ClientHealth extends Notification
 {
     use Queueable;
 
-    const BASE_URL = 'http://www.dashboard.avc/#/clients/notified/';
+    const BASE_URL = 'http://www.dashboard.avc/#/clients/show/';
     private $client;
 
     /**
@@ -87,9 +87,15 @@ class ClientHealth extends Notification
      */
     public function toSlack($notifiable)
     {
+        $url = url($this::BASE_URL . $this->client->id);
+
         return (new SlackMessage)
             ->error()
-            ->content('VM ' . $this->client->name . '(' . $this->client->name . ')' . ' is in danger.');
+            ->content('VM ' . $this->client->name . '(' . $this->client->name . ')' . ' is in danger.')
+            ->attachment(function ($attachment) use ($url) {
+                $attachment->title('Client', $url)
+                    ->content('Click above link for the details of the client.');
+            });
     }
 
     /**

@@ -26,8 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('notifications:health')
             ->timezone('Europe/Vienna')
-            ->everyMinute()
-            ->between('4:00', '23:00');
+            ->everyMinute();
     }
 
     /**
