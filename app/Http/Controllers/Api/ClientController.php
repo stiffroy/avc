@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Entity\Client;
-use App\Entity\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreClient;
 use App\Http\Resources\Client as ClientResource;
@@ -122,25 +121,5 @@ class ClientController extends Controller
         ]);
 
         return new ClientResource($client);
-    }
-
-    /**
-     * @return null
-     */
-    public function notificationChecked()
-    {
-        $userId = Input::get('userId');
-        $clientId = Input::get('clientId');
-        $user = User::find($userId);
-        $targetNotification = null;
-
-        foreach ($user->unreadNotifications as $notification) {
-            if ($notification->data['client_id'] == $clientId) {
-                $notification->markAsRead();
-                $targetNotification = $notification;
-            }
-        }
-
-        return $targetNotification;
     }
 }
