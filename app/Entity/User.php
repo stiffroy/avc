@@ -7,10 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Ultraware\Roles\Traits\HasRoleAndPermission;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    use HasRoleAndPermission;
 
     /**
      * The attributes that are mass assignable.
