@@ -55,8 +55,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $group = User::with('groups')->findOrFail($id);
-        return new UserResource($group);
+        $user = User::with('groups')->findOrFail($id);
+        return new UserResource($user);
     }
 
     /**
