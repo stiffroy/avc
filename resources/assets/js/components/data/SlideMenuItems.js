@@ -104,5 +104,36 @@ module.exports = [
                 }
             }
         ]
+    },
+    {
+        type: 'tree',
+        icon: 'fa fa-line-chart',
+        name: 'Statistics',
+        items: [
+            {
+                type: 'item',
+                icon: 'fa fa-th',
+                name: 'Overview',
+                router: {
+                    name: 'statistics'
+                }
+            },
+            {
+                type: 'item',
+                icon: 'fa fa-list',
+                name: 'List Statistics',
+                router: {
+                    name: 'listStatistics'
+                }
+            },
+            {
+                type: 'item',
+                icon: 'fa fa-plus',
+                name: 'Add Statistics',
+                router: {
+                    name: 'createStatistics'
+                }
+            }
+        ]
     }
 ];
