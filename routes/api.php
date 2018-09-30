@@ -16,9 +16,10 @@ Route::prefix('v1/')->group(function () {
     Route::get('clients/user/{userId}', 'Api\ClientController@clientsByUser')->name('clients.by.user');
 
     Route::apiResources([
-        'clients'   => 'Api\ClientController',
-        'groups'    => 'Api\GroupController',
-        'users'     => 'Api\UserController',
+        'clients'       => 'Api\ClientController',
+        'groups'        => 'Api\GroupController',
+        'users'         => 'Api\UserController',
+        'statistics'    => 'Api\StatisticsController',
     ]);
 
     Route::group([
@@ -29,6 +30,5 @@ Route::prefix('v1/')->group(function () {
         Route::post('logout', 'Api\AuthController@logout');
         Route::post('refresh', 'Api\AuthController@refresh');
         Route::post('me', 'Api\AuthController@me');
-
     });
 });
