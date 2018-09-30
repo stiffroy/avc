@@ -113,7 +113,10 @@
             },
             refreshData(response) {
                 this.clients = response.data.data;
-                this.links = response.data.link;
+
+                if (response.data.link) {
+                    this.links = response.data.link;
+                }
             },
             deleteEntry(id, index) {
                 if (confirm("Do you really want to delete it?")) {

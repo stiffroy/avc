@@ -80,10 +80,11 @@
             }
         },
         mounted() {
-            this.mountData('/api/v1/groups');
+            this.mountData();
         },
         methods: {
-            mountData(link) {
+            mountData() {
+                let link = '/api/v1/groups/user/' + this.$store.state.authUser.id;
                 if (link !== null) {
                     axios.get(link)
                         .then((response) => {
