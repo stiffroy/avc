@@ -132,10 +132,15 @@ class ClientController extends Controller
     public function clientsByUser($userId)
     {
         $user = User::find($userId);
-        $clients = new Collection();
 
-        foreach ($user->groups as $group) {
-            $clients = $clients->merge($group->clients);
+        if ($user->isAdmin()) {
+            $clients = Client::paginate(self::PER_PAGE);
+        } else {
+            $clients = new Collection();
+
+            foreach ($user->groups as $group) {
+                $clients = $clients->merge($group->clients);
+            }
         }
 
         return ClientResource::collection($clients);

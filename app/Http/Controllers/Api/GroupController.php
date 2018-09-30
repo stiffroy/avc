@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Entity\Client;
 use App\Entity\Group;
+use App\Entity\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGroup;
 use App\Http\Resources\Group as GroupResource;
@@ -115,5 +116,22 @@ class GroupController extends Controller
             $client->group()->dissociate();
             $client->save();
         }
+    }
+
+    /**
+     * @param $userId
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function groupsByUser($userId)
+    {
+        $user = User::find($userId);
+
+        if ($user->isAdmin()) {
+            $groups = Group::paginate(self::PER_PAGE);
+        } else {
+            $groups = $user->groups()->paginate(self::PER_PAGE);
+        }
+
+        return GroupResource::collection($groups);
     }
 }
