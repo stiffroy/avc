@@ -21,7 +21,7 @@ class StatisticsController extends Controller
      */
     public function index()
     {
-        $statistics = Statistics::all()->paginate(self::PER_PAGE);
+        $statistics = Statistics::paginate(self::PER_PAGE);
         return StatisticsResource::collection($statistics);
     }
 
