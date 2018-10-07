@@ -127,9 +127,9 @@ class GroupController extends Controller
         $user = User::find($userId);
 
         if ($user->isAdmin()) {
-            $groups = Group::paginate(self::PER_PAGE);
+            $groups = Group::with('clients')->paginate(self::PER_PAGE);
         } else {
-            $groups = $user->groups()->paginate(self::PER_PAGE);
+            $groups = $user->groups()->with('clients')->paginate(self::PER_PAGE);
         }
 
         return GroupResource::collection($groups);
