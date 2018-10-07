@@ -88063,9 +88063,158 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {}
+    data: function data() {
+        return {
+            clients: [],
+            criticalClients: [],
+            warningClients: [],
+            healthyClients: [],
+            otherClients: [],
+            links: [],
+            intervalTime: 30000,
+            timer: null,
+            show: {
+                all: false,
+                critical: true,
+                warning: true,
+                healthy: false,
+                other: false
+            }
+        };
+    },
+    mounted: function mounted() {
+        this.mountData();
+        this.timer = setInterval(this.mountData, this.intervalTime);
+    },
+
+    methods: {
+        mountData: function mountData() {
+            var _this = this;
+
+            var clientsLink = '/api/v1/clients/user/' + this.$store.state.authUser.id;
+
+            if (clientsLink !== null) {
+                axios.get(clientsLink).then(function (response) {
+                    _this.refreshData(response);
+                }).catch(function (response) {
+                    console.log("Could not load clients");
+                    console.log(response);
+                });
+            }
+        },
+        refreshData: function refreshData(response) {
+            this.criticalClients = [];
+            this.warningClients = [];
+            this.healthyClients = [];
+            this.otherClients = [];
+            this.clients = response.data.data;
+            this.links = response.data.links;
+            this.sortClients();
+        },
+        sortClients: function sortClients() {
+            var _this2 = this;
+
+            this.clients.forEach(function (client) {
+                _this2.setClientInGroup(client);
+            });
+        },
+        setClientInGroup: function setClientInGroup(client) {
+            if (client.health === 'Critical') {
+                this.criticalClients.push(client);
+            } else if (client.health === 'Warning') {
+                this.warningClients.push(client);
+            } else if (client.health === 'Healthy') {
+                this.healthyClients.push(client);
+            } else {
+                this.otherClients.push(client);
+            }
+        },
+        checkboxToggle: function checkboxToggle(mode) {
+            if (mode === 'all') {
+                this.show.critical = false;
+                this.show.warning = false;
+                this.show.healthy = false;
+                this.show.other = false;
+            } else {
+                this.show.all = false;
+            }
+        }
+    },
+    beforeDestroy: function beforeDestroy() {
+        clearInterval(this.timer);
+    }
 });
 
 /***/ }),
@@ -88076,36 +88225,469 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "content container-fluid" }, [
+      _c("div", { staticClass: "box" }, [
+        _c("div", { staticClass: "box-header" }, [
+          _c("h3", { staticClass: "box-title" }, [_vm._v("Dashboard")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "pull-right" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.show.all,
+                  expression: "show.all"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { type: "checkbox", id: "show_all" },
+              domProps: {
+                checked: Array.isArray(_vm.show.all)
+                  ? _vm._i(_vm.show.all, null) > -1
+                  : _vm.show.all
+              },
+              on: {
+                click: function($event) {
+                  _vm.checkboxToggle("all")
+                },
+                change: function($event) {
+                  var $$a = _vm.show.all,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && _vm.$set(_vm.show, "all", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.show,
+                          "all",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.show, "all", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" All\n                    "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.show.critical,
+                  expression: "show.critical"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { type: "checkbox", id: "show_critical" },
+              domProps: {
+                checked: Array.isArray(_vm.show.critical)
+                  ? _vm._i(_vm.show.critical, null) > -1
+                  : _vm.show.critical
+              },
+              on: {
+                click: function($event) {
+                  _vm.checkboxToggle("critical")
+                },
+                change: function($event) {
+                  var $$a = _vm.show.critical,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(_vm.show, "critical", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.show,
+                          "critical",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.show, "critical", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" Critical\n                    "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.show.warning,
+                  expression: "show.warning"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { type: "checkbox", id: "show_warning" },
+              domProps: {
+                checked: Array.isArray(_vm.show.warning)
+                  ? _vm._i(_vm.show.warning, null) > -1
+                  : _vm.show.warning
+              },
+              on: {
+                click: function($event) {
+                  _vm.checkboxToggle("warning")
+                },
+                change: function($event) {
+                  var $$a = _vm.show.warning,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(_vm.show, "warning", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.show,
+                          "warning",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.show, "warning", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" Warning\n                    "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.show.healthy,
+                  expression: "show.healthy"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { type: "checkbox", id: "show_healthy" },
+              domProps: {
+                checked: Array.isArray(_vm.show.healthy)
+                  ? _vm._i(_vm.show.healthy, null) > -1
+                  : _vm.show.healthy
+              },
+              on: {
+                click: function($event) {
+                  _vm.checkboxToggle("healthy")
+                },
+                change: function($event) {
+                  var $$a = _vm.show.healthy,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(_vm.show, "healthy", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.show,
+                          "healthy",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.show, "healthy", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" Healthy\n                    "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.show.other,
+                  expression: "show.other"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { type: "checkbox", id: "show_other" },
+              domProps: {
+                checked: Array.isArray(_vm.show.other)
+                  ? _vm._i(_vm.show.other, null) > -1
+                  : _vm.show.other
+              },
+              on: {
+                click: function($event) {
+                  _vm.checkboxToggle("other")
+                },
+                change: function($event) {
+                  var $$a = _vm.show.other,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 && _vm.$set(_vm.show, "other", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.show,
+                          "other",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.show, "other", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" Others\n                ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "box-body" },
+          [
+            _vm._l(_vm.criticalClients, function(client) {
+              return _vm.show.critical || _vm.show.all
+                ? _c(
+                    "div",
+                    { key: client.id, staticClass: "col-lg-3 col-xs-6" },
+                    [
+                      _c(
+                        "div",
+                        { class: "small-box bg-" + client.bg },
+                        [
+                          _c("div", { staticClass: "inner" }, [
+                            _c("h3", [_vm._v(_vm._s(client.name))]),
+                            _vm._v(" "),
+                            _c("p", [_vm._v(_vm._s(client.external_id))]),
+                            _vm._v(" "),
+                            _c("p", [_vm._v(_vm._s(client.health))])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "icon" }, [
+                            _c("i", { class: "fa fa-" + client.bg_icon })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: {
+                                to: {
+                                  name: "showClient",
+                                  params: { id: client.id }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            More info "
+                              ),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                : _vm._e()
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.warningClients, function(client) {
+              return _vm.show.warning || _vm.show.all
+                ? _c(
+                    "div",
+                    {
+                      key: client.id,
+                      staticClass: "col-lg-3 col-xs-6 warning"
+                    },
+                    [
+                      _c(
+                        "div",
+                        { class: "small-box bg-" + client.bg },
+                        [
+                          _c("div", { staticClass: "inner" }, [
+                            _c("h3", [_vm._v(_vm._s(client.name))]),
+                            _vm._v(" "),
+                            _c("p", [_vm._v(_vm._s(client.external_id))]),
+                            _vm._v(" "),
+                            _c("p", [_vm._v(_vm._s(client.health))])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "icon" }, [
+                            _c("i", { class: "fa fa-" + client.bg_icon })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: {
+                                to: {
+                                  name: "showClient",
+                                  params: { id: client.id }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            More info "
+                              ),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                : _vm._e()
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.healthyClients, function(client) {
+              return _vm.show.healthy || _vm.show.all
+                ? _c(
+                    "div",
+                    {
+                      key: client.id,
+                      staticClass: "col-lg-3 col-xs-6 healthy"
+                    },
+                    [
+                      _c(
+                        "div",
+                        { class: "small-box bg-" + client.bg },
+                        [
+                          _c("div", { staticClass: "inner" }, [
+                            _c("h3", [_vm._v(_vm._s(client.name))]),
+                            _vm._v(" "),
+                            _c("p", [_vm._v(_vm._s(client.external_id))]),
+                            _vm._v(" "),
+                            _c("p", [_vm._v(_vm._s(client.health))])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "icon" }, [
+                            _c("i", { class: "fa fa-" + client.bg_icon })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: {
+                                to: {
+                                  name: "showClient",
+                                  params: { id: client.id }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            More info "
+                              ),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                : _vm._e()
+            }),
+            _vm._v(" "),
+            _vm._l(_vm.otherClients, function(client) {
+              return _vm.show.other || _vm.show.all
+                ? _c(
+                    "div",
+                    { key: client.id, staticClass: "col-lg-3 col-xs-6 others" },
+                    [
+                      _c(
+                        "div",
+                        { class: "small-box bg-" + client.bg },
+                        [
+                          _c("div", { staticClass: "inner" }, [
+                            _c("h3", [_vm._v(_vm._s(client.name))]),
+                            _vm._v(" "),
+                            _c("p", [_vm._v(_vm._s(client.external_id))]),
+                            _vm._v(" "),
+                            _c("p", [_vm._v(_vm._s(client.health))])
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "icon" }, [
+                            _c("i", { class: "fa fa-" + client.bg_icon })
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "small-box-footer",
+                              attrs: {
+                                to: {
+                                  name: "showClient",
+                                  params: { id: client.id }
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            More info "
+                              ),
+                              _c("i", {
+                                staticClass: "fa fa-arrow-circle-right"
+                              })
+                            ]
+                          )
+                        ],
+                        1
+                      )
+                    ]
+                  )
+                : _vm._e()
+            })
+          ],
+          2
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "content-header" }, [
-        _c("h1", [
-          _vm._v("\n            Dashboard\n            "),
-          _c("small", [_vm._v("Overview Mode")])
-        ]),
-        _vm._v(" "),
-        _c("ol", { staticClass: "breadcrumb" }, [_c("li", [_vm._v("Home")])])
+    return _c("section", { staticClass: "content-header" }, [
+      _c("h1", [
+        _vm._v("\n            Dashboard\n            "),
+        _c("small", [_vm._v("Overview Mode")])
       ]),
       _vm._v(" "),
-      _c("section", { staticClass: "content container-fluid" }, [
-        _c("div", { staticClass: "box" }, [
-          _c("div", { staticClass: "box-header" }, [
-            _c("h3", { staticClass: "box-title" }, [_vm._v("Dashboard")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "box-body" }, [
-            _c("p", { staticClass: "text-center" }, [
-              _vm._v("Content coming up here")
-            ])
-          ])
-        ])
-      ])
+      _c("ol", { staticClass: "breadcrumb" }, [_c("li", [_vm._v("Home")])])
     ])
   }
 ]
