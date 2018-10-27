@@ -2,137 +2,135 @@
 
 namespace App\Http\Controllers;
 
+use App\Entity\Client;
 use App\Entity\Group;
+use App\Entity\User;
 use App\Http\Requests\StoreGroup;
-use App\Utilities\GroupUtilities;
-use Softon\SweetAlert\Facades\SWAL;
+use App\Http\Resources\Group as GroupResource;
+use Illuminate\Support\Collection;
 
 class GroupController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * The number of items to show per page
      */
-    public function overview()
-    {
-        $groups = GroupUtilities::formatData(Group::all());
-
-        return view('group.pane', [
-            'groups' => $groups,
-        ]);
-    }
+    const PER_PAGE = 25;
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function listView()
+    public function index()
     {
-        $groups = Group::all();
-
-        return view('group.list', [
-            'groups' => $groups,
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $group = new Group();
-
-        return view('group.create', [
-            'group' => $group,
-        ]);
+        $groups = Group::with('clients', 'users')->paginate(self::PER_PAGE);
+        return GroupResource::collection($groups);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param StoreGroup $request
-     * @param Group $group
-     * @return \Illuminate\Http\RedirectResponse
+     * @return GroupResource
      */
-    public function store(StoreGroup $request, Group $group)
+    public function store(StoreGroup $request)
     {
-        try {
-            $group = $group->create($request->except('_token'));
-            SWAL::message('Group Created!', 'Successfully created a new group', 'success');
-        } catch (\Exception $exception) {
-            \Log::debug($exception->getMessage());
-            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
+        $clientIds = Collection::make($request->get('clients'))->pluck('value');
+        $userIds = Collection::make($request->get('users'))->pluck('value');
+        if ($request->id) {
+            $group = Group::findOrFail($request->id);
+            $group->update($request->except('_token', 'clients', 'users'));
+            $group->users()->sync($userIds);
+        } else {
+            $group = Group::create($request->except('_token', 'clients', 'users'));
+            $group->users()->sync($userIds);
         }
 
-        return redirect()->route('group.show', ['id' => $group->id]);
+        $this->updateClient($group, $clientIds);
+
+        return new GroupResource($group);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Group $group
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return GroupResource
      */
-    public function show(Group $group)
+    public function show($id)
     {
-        return view('group.show', [
-            'group' => $group,
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Entity\Group $group
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Group $group)
-    {
-        return view('group.edit', [
-            'group' => $group,
-        ]);
+        $group = Group::with('clients', 'users')->findOrFail($id);
+        return new GroupResource($group);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param StoreGroup $request
-     * @param Group $group
-     * @return \Illuminate\Http\RedirectResponse
+     * @param $id
+     * @return GroupResource
      */
-    public function update(StoreGroup $request, Group $group)
+    public function update(StoreGroup $request, $id)
     {
-        try {
-            $group->update($request->except('_token'));
-            SWAL::message('Group Updated!', 'Successfully updated the group', 'success');
-        } catch (\Exception $exception) {
-            \Log::debug($exception->getMessage());
-            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
-        }
+        $group = Group::findOrFail($id);
+        $group->update($request->except('_token'));
 
-        return redirect()->route('group.show', ['id' => $group->id]);
+        return new GroupResource($group);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Group $group
-     * @return \Illuminate\Http\RedirectResponse
+     * @param $id
+     * @return GroupResource
      */
-    public function delete(Group $group)
+    public function destroy($id)
     {
-        try {
-            $group->delete();
-            SWAL::message('Group Deleted!', 'Successfully deleted the group', 'success');
-        } catch (\Exception $exception) {
-            \Log::debug($exception->getMessage());
-            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
+        $group = Group::findOrFail($id);
+
+        if ($group->delete()) {
+            return new GroupResource($group);
+        }
+    }
+
+    /**
+     * @param $group
+     * @param $clientIds
+     */
+    private function updateClient($group, $clientIds)
+    {
+        $clients = $group->clients->keyBy('id');
+
+        foreach ($clientIds as $clientId) {
+            if ($clients->contains('id', $clientId)) {
+                $clients = $clients->forget($clientId);
+            } else {
+                $client = Client::findOrFail($clientId);
+                $client->group()->associate($group);
+                $client->save();
+            }
         }
 
-        return redirect()->route('group.list');
+        foreach ($clients as $client) {
+            $client->group()->dissociate();
+            $client->save();
+        }
+    }
+
+    /**
+     * @param $userId
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function groupsByUser($userId)
+    {
+        $user = User::find($userId);
+
+        if ($user->isAdmin()) {
+            $groups = Group::with('clients')->paginate(self::PER_PAGE);
+        } else {
+            $groups = $user->groups()->with('clients')->paginate(self::PER_PAGE);
+        }
+
+        return GroupResource::collection($groups);
     }
 }

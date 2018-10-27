@@ -2,144 +2,89 @@
 
 namespace App\Http\Controllers;
 
-use App\Entity\Group;
 use App\Entity\User;
 use App\Http\Requests\StoreUser;
-use Softon\SweetAlert\Facades\SWAL;
+use App\Http\Resources\User as UserResource;
+use Illuminate\Support\Collection;
 
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * The number of items to show per page
      */
-    public function overview()
-    {
-        $users = User::all();
-
-        return view('user.pane', [
-            'users' => $users,
-        ]);
-    }
+    const PER_PAGE = 25;
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function listView()
+    public function index()
     {
-        $users = User::all();
-
-        return view('user.list', [
-            'users' => $users,
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $user = new User();
-        $groups = Group::all();
-
-        return view('user.create', [
-            'user'      => $user,
-            'groups'    => $groups,
-        ]);
+        $groups = User::with('groups')->paginate(self::PER_PAGE);
+        return UserResource::collection($groups);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param StoreUser $request
-     * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @return UserResource
      */
-    public function store(StoreUser $request, User $user)
+    public function store(StoreUser $request)
     {
-        try {
-            $user = $user->create($request->except('_token'));
-            $user->groups()->sync($request->get('groups'));
-            SWAL::message('User Created!', 'Successfully created a new user', 'success');
-        } catch (\Exception $exception) {
-            \Log::debug($exception->getMessage());
-            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
+        $groupIds = Collection::make($request->get('groups'))->pluck('value');
+        if ($request->id) {
+            $user = User::findOrFail($request->id);
+            $user->update($request->except('_token', 'groups'));
+            $user->groups()->sync($groupIds);
+        } else {
+            $user = User::create($request->except('_token'));
+            $user->groups()->sync($groupIds);
         }
 
-        return redirect()->route('user.show', ['id' => $user->id]);
+        return new UserResource($user);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param User $user
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return UserResource
      */
-    public function show(User $user)
+    public function show($id)
     {
-        return view('user.show', [
-            'user' => $user,
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        $groups = Group::all();
-
-        return view('user.edit', [
-            'user'      => $user,
-            'groups'    => $groups,
-        ]);
+        $user = User::with('groups')->findOrFail($id);
+        return new UserResource($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param StoreUser $request
-     * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @param $id
+     * @return UserResource
      */
-    public function update(StoreUser $request, User $user)
+    public function update(StoreUser $request, $id)
     {
-        try {
-            $user->update($request->except('_token'));
-            $user->groups()->sync($request->get('groups'));
-            SWAL::message('User Updated!', 'Successfully updated the user', 'success');
-        } catch (\Exception $exception) {
-            \Log::debug($exception->getMessage());
-            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
-        }
+        $user = User::findOrFail($id);
+        $user->update($request->except('_token'));
 
-        return redirect()->route('user.show', ['id' => $user->id]);
+        return new UserResource($user);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param User $user
-     * @return \Illuminate\Http\RedirectResponse
+     * @param $id
+     * @return UserResource
      */
-    public function delete(User $user)
+    public function destroy($id)
     {
-        try {
-            $user->delete();
-            SWAL::message('User Deleted!', 'Successfully deleted the user', 'success');
-        } catch (\Exception $exception) {
-            \Log::debug($exception->getMessage());
-            SWAL::message('We are Sorry', $exception->getMessage(), 'error');
-        }
+        $user = User::findOrFail($id);
 
-        return redirect()->route('user.list');
+        if ($user->delete()) {
+            return new UserResource($user);
+        }
     }
 }

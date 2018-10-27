@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Entity\Statistics;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStatistics;
 use App\Http\Resources\Statistics as StatisticsResource;
 

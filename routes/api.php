@@ -11,25 +11,25 @@
 |
 */
 Route::prefix('v1/')->group(function () {
-    Route::post('client/heartbeat', 'Api\ClientController@heartbeat')->name('heartbeat');
-    Route::post('client/alive', 'Api\ClientController@makeAlive')->name('alive');
-    Route::get('clients/user/{userId}', 'Api\ClientController@clientsByUser')->name('clients.by.user');
-    Route::get('groups/user/{userId}', 'Api\GroupController@groupsByUser')->name('groups.by.user');
+    Route::post('client/heartbeat', 'ClientController@heartbeat')->name('heartbeat');
+    Route::post('client/alive', 'ClientController@makeAlive')->name('alive');
+    Route::get('clients/user/{userId}', 'ClientController@clientsByUser')->name('clients.by.user');
+    Route::get('groups/user/{userId}', 'GroupController@groupsByUser')->name('groups.by.user');
 
     Route::apiResources([
-        'clients'       => 'Api\ClientController',
-        'groups'        => 'Api\GroupController',
-        'users'         => 'Api\UserController',
-        'statistics'    => 'Api\StatisticsController',
+        'clients'       => 'ClientController',
+        'groups'        => 'GroupController',
+        'users'         => 'UserController',
+        'statistics'    => 'StatisticsController',
     ]);
 
     Route::group([
         'middleware' => 'api',
         'prefix' => 'auth'
     ], function ($router) {
-        Route::post('login', 'Api\AuthController@login');
-        Route::post('logout', 'Api\AuthController@logout');
-        Route::post('refresh', 'Api\AuthController@refresh');
-        Route::post('me', 'Api\AuthController@me');
+        Route::post('login', 'AuthController@login');
+        Route::post('logout', 'AuthController@logout');
+        Route::post('refresh', 'AuthController@refresh');
+        Route::post('me', 'AuthController@me');
     });
 });

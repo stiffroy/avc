@@ -3,141 +3,145 @@
 namespace App\Http\Controllers;
 
 use App\Entity\Client;
-use App\Entity\Group;
+use App\Entity\User;
 use App\Http\Requests\StoreClient;
-use Softon\SweetAlert\Facades\SWAL;
+use App\Http\Resources\Client as ClientResource;
+use App\Services\ApiService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Input;
 
 class ClientController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * The number of items to show per page
      */
-    public function overview()
-    {
-        $clients = Client::all();
-        $sortedClients = $clients->sortBy(function($client){
-            return $client->health;
-        });
-
-        return view('client.pane', [
-            'clients' => $sortedClients,
-        ]);
-    }
+    const PER_PAGE = 25;
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function listView()
+    public function index()
     {
-        $clients = Client::all();
-
-        return view('client.list', [
-            'clients' => $clients,
-        ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $client = new Client();
-        $groups = Group::all();
-
-        return view('client.create', [
-            'client' => $client,
-            'groups' => $groups,
-        ]);
+        $client = Client::with('group')->paginate(self::PER_PAGE);
+        return ClientResource::collection($client);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param StoreClient $request
-     * @param Client $client
-     * @return \Illuminate\Http\RedirectResponse
+     * @return ClientResource
      */
-    public function store(StoreClient $request, Client $client)
+    public function store(StoreClient $request)
     {
-        try {
-            $client = $client->create($request->except('_token'));
-            SWAL::message('Client Created!', 'Successfully created a new client', 'success');
-        } catch (\Exception $exception) {
-            SWAL::message('We are Sorry', $exception['message'], 'error');
+        $group = $request->get('group');
+        $groupId = $group['value'];
+        $request->merge(['group_id' => $groupId]);
+
+        if ($request->id) {
+            $client = Client::findOrFail($request->id);
+            $client->update($request->except('_token', 'group'));
+        } else {
+            $client = Client::create($request->except('_token', 'group'));
         }
 
-        return redirect()->route('client.show', ['id' => $client->id]);
+        return new ClientResource($client);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Entity\Client  $client
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return ClientResource
      */
-    public function show(Client $client)
+    public function show($id)
     {
-        return view('client.show', [
-            'client' => $client,
-        ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Entity\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Client $client)
-    {
-        $groups = Group::all();
-
-        return view('client.edit', [
-            'client' => $client,
-            'groups' => $groups,
-        ]);
+        $client = Client::with('group')->findOrFail($id);
+        return new ClientResource($client);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param StoreClient $request
-     * @param Client $client
-     * @return \Illuminate\Http\RedirectResponse
+     * @param $id
+     * @return mixed
      */
-    public function update(StoreClient $request, Client $client)
+    public function update(StoreClient $request, $id)
     {
-        try {
-            $client->update($request->except('_token'));
-            SWAL::message('Client Updated!', 'Successfully updated the client', 'success');
-        } catch (\Exception $exception) {
-            SWAL::message('We are Sorry', $exception['message'], 'error');
-        }
+        $client = Client::findOrFail($id);
+        $client->update($request->except('_token'));
 
-        return redirect()->route('client.show', ['id' => $client->id]);
+        return new ClientResource($client);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param Client $client
-     * @return \Illuminate\Http\RedirectResponse
+     * @param $id
+     * @return ClientResource
      */
-    public function delete(Client $client)
+    public function destroy($id)
     {
-        try {
-            $client->delete();
-            SWAL::message('Client Deleted!', 'Successfully deleted the client', 'success');
-        } catch (\Exception $exception) {
-            SWAL::message('We are Sorry', $exception['message'], 'error');
+        $client = Client::findOrFail($id);
+
+        if ($client->delete()) {
+            return new ClientResource($client);
+        }
+    }
+
+    /**
+     * The heartbeat of the clients is recorded here
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function heartbeat(Request $request)
+    {
+        $token = $request->get('token');
+        $externalId = $request->get('external-id');
+        $apiService = new ApiService();
+        $status = $apiService->updateLiveStatus($externalId, $token);
+
+        return response()->json($status);
+    }
+
+    /**
+     * @return ClientResource
+     */
+    public function makeAlive()
+    {
+        $id = Input::get('id');
+        $client = Client::findOrFail($id);
+        $client->update([
+            'alive' => true,
+            'heartbeat_at' => null,
+        ]);
+
+        return new ClientResource($client);
+    }
+
+    /**
+     * @param $userId
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function clientsByUser($userId)
+    {
+        $user = User::find($userId);
+
+        if ($user->isAdmin()) {
+            $clients = Client::paginate(self::PER_PAGE);
+        } else {
+            $clients = new Collection();
+
+            foreach ($user->groups as $group) {
+                $clients = $clients->merge($group->clients);
+            }
         }
 
-        return redirect()->route('client.list');
+        return ClientResource::collection($clients);
     }
 }
