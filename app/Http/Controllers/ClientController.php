@@ -6,8 +6,6 @@ use App\Entity\Client;
 use App\Entity\User;
 use App\Http\Requests\StoreClient;
 use App\Http\Resources\Client as ClientResource;
-use App\Services\ApiService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Input;
 
@@ -91,22 +89,6 @@ class ClientController extends Controller
         if ($client->delete()) {
             return new ClientResource($client);
         }
-    }
-
-    /**
-     * The heartbeat of the clients is recorded here
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function heartbeat(Request $request)
-    {
-        $token = $request->get('token');
-        $externalId = $request->get('external-id');
-        $apiService = new ApiService();
-        $status = $apiService->updateLiveStatus($externalId, $token);
-
-        return response()->json($status);
     }
 
     /**
