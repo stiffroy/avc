@@ -91,7 +91,6 @@
                             this.refreshData(response);
                         })
                         .catch((response) => {
-                            alert("Could not load clients");
                             console.log(response);
                         });
                 }
