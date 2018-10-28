@@ -18,7 +18,6 @@ class CreateStatisticsTable extends Migration
             $table->string('group_identifier');
             $table->string('subgroup_identifier');
             $table->json('data');
-            $table->date('date');
             $table->timestamps();
         });
     }

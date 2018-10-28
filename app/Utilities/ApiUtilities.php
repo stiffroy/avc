@@ -64,4 +64,14 @@ class ApiUtilities
 
         return $result;
     }
+
+    /**
+     * @param $user
+     * @param $groupIdentifier
+     * @return mixed
+     */
+    public static function checkGroupForUser($user, $groupIdentifier)
+    {
+        return $user->groups->contains('name', $groupIdentifier);
+    }
 }

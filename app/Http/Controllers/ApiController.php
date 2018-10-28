@@ -8,6 +8,19 @@ use Symfony\Component\HttpFoundation\Request;
 class ApiController extends Controller
 {
     /**
+     * @var ApiService
+     */
+    private $apiService;
+
+    /**
+     * ApiController constructor.
+     */
+    public function __construct()
+    {
+        $this->apiService = new ApiService();
+    }
+
+    /**
      * The heartbeat of the clients is recorded here
      *
      * @param Request $request
@@ -17,8 +30,20 @@ class ApiController extends Controller
     {
         $token = $request->get('token');
         $externalId = $request->get('external-id');
-        $apiService = new ApiService();
-        $status = $apiService->updateLiveStatus($externalId, $token);
+        $status = $this->apiService->updateLiveStatus($externalId, $token);
+
+        return response()->json($status);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function storeReport(Request $request)
+    {
+        $token = $request->get('token');
+        $data = json_decode($request->get('data'));
+        $status = $this->apiService->saveReport($token, $data);
 
         return response()->json($status);
     }

@@ -12,6 +12,7 @@
 */
 Route::prefix('v1/')->group(function () {
     Route::post('client/heartbeat', 'ApiController@heartbeat')->name('heartbeat');
+    Route::post('group/store-report', 'ApiController@storeReport')->name('storeReport');
 
     Route::post('client/alive', 'ClientController@makeAlive')->name('alive');
     Route::get('clients/user/{userId}', 'ClientController@clientsByUser')->name('clients.by.user');
