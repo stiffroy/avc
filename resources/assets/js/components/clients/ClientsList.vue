@@ -106,7 +106,7 @@
                             this.refreshData(response);
                         })
                         .catch((response) => {
-                            alert("Could not load clients");
+                            console.log("Could not load clients");
                             console.log(response);
                         });
                 }
@@ -125,7 +125,7 @@
                             this.clients.splice(index, 1);
                         })
                         .catch((response) => {
-                            alert("Could not delete company");
+                            console.log("Could not delete company");
                             console.log(response);
                         });
                 }
@@ -137,7 +137,7 @@
                         client.alive = response.data.data.alive;
                     })
                     .catch((response) => {
-                        alert("Could not make the client alive");
+                        console.log("Could not make the client alive");
                         console.log(response);
                     });
             }

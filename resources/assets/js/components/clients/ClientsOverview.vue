@@ -120,7 +120,7 @@
                             this.refreshData(response);
                         })
                         .catch((response) => {
-                            alert("Could not load clients");
+                            console.log("Could not load clients");
                             console.log(response);
                         });
                 }

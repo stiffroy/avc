@@ -76,7 +76,7 @@
                         this.refreshClients(response);
                     })
                     .catch((response) => {
-                        alert("Could not load clients");
+                        console.log("Could not load clients");
                         console.dir(response);
                     });
             },
@@ -86,7 +86,7 @@
                         this.refreshUsers(response);
                     })
                     .catch((response) => {
-                        alert("Could not load users");
+                        console.log("Could not load users");
                         console.dir(response);
                     });
             },

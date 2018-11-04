@@ -52,6 +52,7 @@
                             this.refreshData(response);
                         })
                         .catch((response) => {
+                            console.log("Could not load group");
                             console.dir(response);
                         });
                 }

@@ -99,7 +99,7 @@
                         this.client = response.data.data;
                     })
                     .catch((response) => {
-                        alert("Could not load clients");
+                        console.log("Could not load clients");
                         console.log(response);
                     });
             },
@@ -111,7 +111,7 @@
                         console.log('Notification has been marked as read');
                     })
                     .catch((response) => {
-                        alert("Could not make the notification read");
+                        console.log("Could not make the notification read");
                         console.log(response);
                     });
             }

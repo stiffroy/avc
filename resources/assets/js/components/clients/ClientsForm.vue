@@ -66,7 +66,7 @@
                             this.refreshData(response);
                         })
                         .catch((response) => {
-                            alert("Could not load groups");
+                            console.log("Could not load groups");
                             console.dir(response);
                         });
                 }

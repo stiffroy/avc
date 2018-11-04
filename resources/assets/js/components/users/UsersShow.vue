@@ -96,7 +96,7 @@
                     this.user = response.data.data;
                 })
                 .catch((response) => {
-                    alert("Could not load clients");
+                    console.log("Could not load clients");
                     console.dir(response);
                 });
         },
@@ -109,7 +109,7 @@
                             console.log(response);
                         })
                         .catch((response) => {
-                            alert("Could not delete company");
+                            console.log("Could not delete company");
                             console.dir(response);
                         });
                 }

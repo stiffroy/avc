@@ -95,7 +95,7 @@
                             this.refreshData(response);
                         })
                         .catch((response) => {
-                            alert("Could not load clients");
+                            console.log("Could not load clients");
                             console.dir(response);
                         });
                 }
@@ -111,7 +111,7 @@
                             this.users.splice(index, 1);
                         })
                         .catch((response) => {
-                            alert("Could not delete company");
+                            console.log("Could not delete company");
                             console.dir(response);
                         });
                 }
