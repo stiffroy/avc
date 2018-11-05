@@ -57,7 +57,7 @@ class ApiService
                 if ($data->mode === 'create') {
                     $status = $this->createNewStatistics($data);
                 } elseif ($data->mode === 'update') {
-                    $status = $this->createExistingStatistics($data);
+                    $status = $this->updateExistingStatistics($data);
                 }
             }
         }
@@ -155,7 +155,7 @@ class ApiService
      * @param $data
      * @return array
      */
-    private function createExistingStatistics($data)
+    private function updateExistingStatistics($data)
     {
         $status = [
             'code'      => 401,
