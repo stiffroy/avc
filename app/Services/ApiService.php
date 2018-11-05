@@ -124,7 +124,7 @@ class ApiService
         ];
         $user = User::where('api_token', $token)->first();
 
-        if (ApiUtilities::checkGroupForUser($user, $groupIdentifier)) {
+        if ($user && ApiUtilities::checkGroupForUser($user, $groupIdentifier)) {
             $status = [
                 'code'  => 200,
             ];
