@@ -46,4 +46,9 @@ class Group extends Model
     {
         return $this->belongsToMany('App\Entity\User')->withTimestamps();
     }
+
+    public function statistics()
+    {
+        return $this->hasMany('App\Entity\Statistics', 'group_identifier', 'name');
+    }
 }

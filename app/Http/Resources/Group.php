@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\Client as ClientResource;
+use App\Http\Resources\Statistics as StatisticsResource;
 use App\Http\Resources\User as UserResource;
 use App\Utilities\GroupUtilities;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -25,6 +26,7 @@ class Group extends JsonResource
             'warning' => $this->warning,
             'clients' => ClientResource::collection($this->whenLoaded('clients')),
             'users' => UserResource::collection($this->whenLoaded('users')),
+            'statistics' => StatisticsResource::collection($this->statistics),
             'created_at' => Carbon::parse($this->created_at)->format('d.m.Y H:i'),
             'updated_at' => Carbon::parse($this->updated_at)->format('d.m.Y H:i'),
         ];
