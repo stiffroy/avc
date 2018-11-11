@@ -166,7 +166,9 @@ class ApiService
             ->whereDate('created_at', '=', Carbon::today()->toDateString())
             ->get();
 
-        if (count($statistics) == 1) {
+        if (count($statistics) == 0) {
+            $status = $this->createNewStatistics($data);
+        } elseif (count($statistics) == 1) {
             $newData = $this->newUpdatedData($statistics[0]->data, $data->data);
             $statistics[0]->update(['data' => $newData]);
             $status = [
