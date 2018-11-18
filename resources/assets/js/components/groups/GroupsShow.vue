@@ -68,6 +68,7 @@
                         <router-link :to="{name: 'listGroups'}" class="btn btn-warning btn-flat">List</router-link>
                         <router-link :to="{name: 'createGroup'}" class="btn btn-success btn-flat">Create</router-link>
                         <router-link :to="{name: 'editGroup', params: {id: group.id}}" class="btn btn-primary btn-flat">Edit</router-link>
+                        <router-link :to="{name: 'chartGroup', params: {id: group.id}}" class="btn btn-info btn-flat">Chart</router-link>
                         <p class="btn btn-danger btn-flat" v-on:click="deleteEntry(group.id)">Delete</p>
                     </div>
                 </div>

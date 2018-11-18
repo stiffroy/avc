@@ -42734,9 +42734,9 @@ module.exports = Component.exports
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(376)
+var __vue_script__ = __webpack_require__(379)
 /* template */
-var __vue_template__ = __webpack_require__(377)
+var __vue_template__ = __webpack_require__(380)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -42779,7 +42779,7 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(171);
-module.exports = __webpack_require__(401);
+module.exports = __webpack_require__(404);
 
 
 /***/ }),
@@ -42818,18 +42818,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_groups_GroupsCreate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__components_groups_GroupsCreate__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_groups_GroupsShow__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_groups_GroupsShow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16__components_groups_GroupsShow__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_groups_GroupsEdit__ = __webpack_require__(365);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_groups_GroupsEdit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__components_groups_GroupsEdit__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_clients_ClientsOverview__ = __webpack_require__(368);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_clients_ClientsOverview___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__components_clients_ClientsOverview__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_clients_ClientsList__ = __webpack_require__(371);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_clients_ClientsList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__components_clients_ClientsList__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_clients_ClientsCreate__ = __webpack_require__(374);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_clients_ClientsCreate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__components_clients_ClientsCreate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_clients_ClientsShow__ = __webpack_require__(379);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_clients_ClientsShow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__components_clients_ClientsShow__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_clients_ClientsEdit__ = __webpack_require__(382);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_clients_ClientsEdit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22__components_clients_ClientsEdit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_groups_GroupsChart__ = __webpack_require__(365);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_groups_GroupsChart___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17__components_groups_GroupsChart__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_groups_GroupsEdit__ = __webpack_require__(368);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_groups_GroupsEdit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18__components_groups_GroupsEdit__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_clients_ClientsOverview__ = __webpack_require__(371);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_clients_ClientsOverview___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19__components_clients_ClientsOverview__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_clients_ClientsList__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_clients_ClientsList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_20__components_clients_ClientsList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_clients_ClientsCreate__ = __webpack_require__(377);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_clients_ClientsCreate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21__components_clients_ClientsCreate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_clients_ClientsShow__ = __webpack_require__(382);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_clients_ClientsShow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_22__components_clients_ClientsShow__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_clients_ClientsEdit__ = __webpack_require__(385);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__components_clients_ClientsEdit___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23__components_clients_ClientsEdit__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -42866,6 +42868,7 @@ window.Vue = __webpack_require__(17);
 
 
 
+
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]);
 window.Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue2_filters___default.a);
 
@@ -42875,11 +42878,11 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_1_vue2_filters___default.a);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('side-menu', __webpack_require__(385));
-Vue.component('main-header', __webpack_require__(395));
-Vue.component('control-sidebar', __webpack_require__(398));
+Vue.component('side-menu', __webpack_require__(388));
+Vue.component('main-header', __webpack_require__(398));
+Vue.component('control-sidebar', __webpack_require__(401));
 
-var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_5__components_Home___default.a, name: 'home', meta: { requiresAuth: true } }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_6__components_auth_Login___default.a, name: 'login' }, { path: '/logout', component: __WEBPACK_IMPORTED_MODULE_7__components_auth_Logout___default.a, name: 'logout' }, { path: '/users', component: __WEBPACK_IMPORTED_MODULE_8__components_users_UsersOverview___default.a, name: 'users', meta: { requiresAuth: true } }, { path: '/users/list', component: __WEBPACK_IMPORTED_MODULE_9__components_users_UsersList___default.a, name: 'listUsers', meta: { requiresAuth: true } }, { path: '/users/create', component: __WEBPACK_IMPORTED_MODULE_10__components_users_UsersCreate___default.a, name: 'createUser', meta: { requiresAuth: true } }, { path: '/users/show/:id', component: __WEBPACK_IMPORTED_MODULE_11__components_users_UsersShow___default.a, name: 'showUser', meta: { requiresAuth: true } }, { path: '/users/edit/:id', component: __WEBPACK_IMPORTED_MODULE_12__components_users_UsersEdit___default.a, name: 'editUser', meta: { requiresAuth: true } }, { path: '/groups', component: __WEBPACK_IMPORTED_MODULE_13__components_groups_GroupsOverview___default.a, name: 'groups', meta: { requiresAuth: true } }, { path: '/groups/list', component: __WEBPACK_IMPORTED_MODULE_14__components_groups_GroupsList___default.a, name: 'listGroups', meta: { requiresAuth: true } }, { path: '/groups/create', component: __WEBPACK_IMPORTED_MODULE_15__components_groups_GroupsCreate___default.a, name: 'createGroup', meta: { requiresAuth: true } }, { path: '/groups/show/:id', component: __WEBPACK_IMPORTED_MODULE_16__components_groups_GroupsShow___default.a, name: 'showGroup', meta: { requiresAuth: true } }, { path: '/groups/edit/:id', component: __WEBPACK_IMPORTED_MODULE_17__components_groups_GroupsEdit___default.a, name: 'editGroup', meta: { requiresAuth: true } }, { path: '/clients', component: __WEBPACK_IMPORTED_MODULE_18__components_clients_ClientsOverview___default.a, name: 'clients', meta: { requiresAuth: true } }, { path: '/clients/list', component: __WEBPACK_IMPORTED_MODULE_19__components_clients_ClientsList___default.a, name: 'listClients', meta: { requiresAuth: true } }, { path: '/clients/create', component: __WEBPACK_IMPORTED_MODULE_20__components_clients_ClientsCreate___default.a, name: 'createClient', meta: { requiresAuth: true } }, { path: '/clients/show/:id', component: __WEBPACK_IMPORTED_MODULE_21__components_clients_ClientsShow___default.a, name: 'showClient', meta: { requiresAuth: true } }, { path: '/clients/edit/:id', component: __WEBPACK_IMPORTED_MODULE_22__components_clients_ClientsEdit___default.a, name: 'editClient', meta: { requiresAuth: true } }];
+var routes = [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_5__components_Home___default.a, name: 'home', meta: { requiresAuth: true } }, { path: '/login', component: __WEBPACK_IMPORTED_MODULE_6__components_auth_Login___default.a, name: 'login' }, { path: '/logout', component: __WEBPACK_IMPORTED_MODULE_7__components_auth_Logout___default.a, name: 'logout' }, { path: '/users', component: __WEBPACK_IMPORTED_MODULE_8__components_users_UsersOverview___default.a, name: 'users', meta: { requiresAuth: true } }, { path: '/users/list', component: __WEBPACK_IMPORTED_MODULE_9__components_users_UsersList___default.a, name: 'listUsers', meta: { requiresAuth: true } }, { path: '/users/create', component: __WEBPACK_IMPORTED_MODULE_10__components_users_UsersCreate___default.a, name: 'createUser', meta: { requiresAuth: true } }, { path: '/users/show/:id', component: __WEBPACK_IMPORTED_MODULE_11__components_users_UsersShow___default.a, name: 'showUser', meta: { requiresAuth: true } }, { path: '/users/edit/:id', component: __WEBPACK_IMPORTED_MODULE_12__components_users_UsersEdit___default.a, name: 'editUser', meta: { requiresAuth: true } }, { path: '/groups', component: __WEBPACK_IMPORTED_MODULE_13__components_groups_GroupsOverview___default.a, name: 'groups', meta: { requiresAuth: true } }, { path: '/groups/list', component: __WEBPACK_IMPORTED_MODULE_14__components_groups_GroupsList___default.a, name: 'listGroups', meta: { requiresAuth: true } }, { path: '/groups/create', component: __WEBPACK_IMPORTED_MODULE_15__components_groups_GroupsCreate___default.a, name: 'createGroup', meta: { requiresAuth: true } }, { path: '/groups/show/:id', component: __WEBPACK_IMPORTED_MODULE_16__components_groups_GroupsShow___default.a, name: 'showGroup', meta: { requiresAuth: true } }, { path: '/groups/edit/:id', component: __WEBPACK_IMPORTED_MODULE_18__components_groups_GroupsEdit___default.a, name: 'editGroup', meta: { requiresAuth: true } }, { path: '/groups/chart/:id', component: __WEBPACK_IMPORTED_MODULE_17__components_groups_GroupsChart___default.a, name: 'chartGroup', meta: { requiresAuth: true } }, { path: '/clients', component: __WEBPACK_IMPORTED_MODULE_19__components_clients_ClientsOverview___default.a, name: 'clients', meta: { requiresAuth: true } }, { path: '/clients/list', component: __WEBPACK_IMPORTED_MODULE_20__components_clients_ClientsList___default.a, name: 'listClients', meta: { requiresAuth: true } }, { path: '/clients/create', component: __WEBPACK_IMPORTED_MODULE_21__components_clients_ClientsCreate___default.a, name: 'createClient', meta: { requiresAuth: true } }, { path: '/clients/show/:id', component: __WEBPACK_IMPORTED_MODULE_22__components_clients_ClientsShow___default.a, name: 'showClient', meta: { requiresAuth: true } }, { path: '/clients/edit/:id', component: __WEBPACK_IMPORTED_MODULE_23__components_clients_ClientsEdit___default.a, name: 'editClient', meta: { requiresAuth: true } }];
 
 var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({ routes: routes, linkActiveClass: '', linkExactActiveClass: 'active' });
 
@@ -89430,7 +89433,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.get(link).then(function (response) {
                     _this.refreshData(response);
                 }).catch(function (response) {
-                    alert("Could not load clients");
+                    console.log("Could not load clients");
                     console.dir(response);
                 });
             }
@@ -89446,7 +89449,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.delete('/api/v1/users/' + id).then(function (response) {
                     _this2.users.splice(index, 1);
                 }).catch(function (response) {
-                    alert("Could not delete company");
+                    console.log("Could not delete company");
                     console.dir(response);
                 });
             }
@@ -89898,7 +89901,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.get(link).then(function (response) {
                     _this.refreshData(response);
                 }).catch(function (response) {
-                    alert("Could not load groups");
+                    console.log("Could not load groups");
                     console.log(response);
                 });
             }
@@ -90464,7 +90467,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.get('/api/v1/users/' + id).then(function (response) {
             _this.user = response.data.data;
         }).catch(function (response) {
-            alert("Could not load clients");
+            console.log("Could not load clients");
             console.dir(response);
         });
     },
@@ -90478,7 +90481,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this2.$router.push({ name: "listUsers" });
                     console.log(response);
                 }).catch(function (response) {
-                    alert("Could not delete company");
+                    console.log("Could not delete company");
                     console.dir(response);
                 });
             }
@@ -92170,7 +92173,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.get(link).then(function (response) {
                     _this.refreshData(response);
                 }).catch(function (response) {
-                    alert("Could not load clients");
+                    console.log("Could not load clients");
                     console.log(response);
                 });
             }
@@ -92186,7 +92189,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.delete('/api/v1/groups/' + id).then(function (response) {
                     _this2.groups.splice(index, 1);
                 }).catch(function (response) {
-                    alert("Could not delete company");
+                    console.log("Could not delete company");
                     console.log(response);
                 });
             }
@@ -92636,7 +92639,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post(link).then(function (response) {
                 _this.refreshClients(response);
             }).catch(function (response) {
-                alert("Could not load clients");
+                console.log("Could not load clients");
                 console.dir(response);
             });
         },
@@ -92646,7 +92649,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post(link).then(function (response) {
                 _this2.refreshUsers(response);
             }).catch(function (response) {
-                alert("Could not load users");
+                console.log("Could not load users");
                 console.dir(response);
             });
         },
@@ -93153,6 +93156,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -93180,7 +93184,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get(link + id).then(function (response) {
                 _this.group = response.data.data;
             }).catch(function (response) {
-                alert("Could not load clients");
+                console.log("Could not load clients");
                 console.log(response);
             });
         },
@@ -93191,7 +93195,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.delete('/api/v1/groups/' + id).then(function (response) {
                     _this2.$router.push({ name: "listGroups" });
                 }).catch(function (response) {
-                    alert("Could not delete company");
+                    console.log("Could not delete company");
                     console.log(response);
                 });
             }
@@ -93359,6 +93363,17 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-info btn-flat",
+                  attrs: {
+                    to: { name: "chartGroup", params: { id: _vm.group.id } }
+                  }
+                },
+                [_vm._v("Chart")]
+              ),
+              _vm._v(" "),
+              _c(
                 "p",
                 {
                   staticClass: "btn btn-danger btn-flat",
@@ -93430,6 +93445,251 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
+Component.options.__file = "resources/assets/js/components/groups/GroupsChart.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-52f77534", Component.options)
+  } else {
+    hotAPI.reload("data-v-52f77534", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 366 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart__ = __webpack_require__(319);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            group: {},
+            chartConfig: {
+                type: '',
+                data: {
+                    labels: ['No records yet', 'Warning', 'Critical', 'Healthy'],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: ['#00c0ef', '#f39c12', '#dd4b39', '#00a65a'],
+                        hoverBackgroundColor: ['#00a7d0', '#db8b0b', '#d33724', '#008d4c']
+                    }]
+                }
+            }
+        };
+    },
+    mounted: function mounted() {
+        this.mountData();
+    },
+
+    methods: {
+        mountData: function mountData() {
+            var _this = this;
+
+            var link = '/api/v1/groups/' + this.$route.params.id;
+            if (link !== null) {
+                axios.get(link).then(function (response) {
+                    _this.refreshData(response);
+                }).catch(function (response) {
+                    console.log("Could not load group statistics");
+                    console.log(response);
+                });
+            }
+        },
+        refreshData: function refreshData(response) {
+            this.group = response.data.data;
+            var dataArray = this.makeDataArray(this.group.statistics);
+            // @TODO make the data set accordingly
+            this.makeDataSets(dataArray);
+            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(this.chartConfig, 'type', this.determineChartType());
+        },
+        makeDataArray: function makeDataArray(statistics) {
+            var dataArray = [];
+
+            var _loop = function _loop(i, len) {
+                var stats = statistics[i];
+                var data = stats.data;
+                var dataKeyArray = Object.keys(data);
+
+                dataKeyArray.forEach(function (value, index) {
+                    if (!dataArray.hasOwnProperty(index)) {
+                        dataArray[index] = [];
+                    }
+                    dataArray[index].push({
+                        x: stats.created_at,
+                        y: data[value]
+                    });
+                });
+            };
+
+            for (var i = 0, len = statistics.length; i < len; i++) {
+                _loop(i, len);
+            }
+
+            return dataArray;
+        },
+        determineChartType: function determineChartType() {
+            return 'line';
+        },
+        makeDataSets: function makeDataSets(dataArray) {
+            console.log(dataArray);
+        },
+        populateChart: function populateChart(data) {
+            var chart = _.cloneDeep(this.chartConfig);
+            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(chart.data.datasets[0], 'data', data);
+            return chart;
+        }
+    },
+    components: {
+        'va-chart': __WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart___default.a
+    }
+});
+
+/***/ }),
+/* 367 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("section", { staticClass: "content container-fluid" }, [
+      _c("div", { staticClass: "box" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "box-body" }, [
+          _c(
+            "div",
+            { staticClass: "col-sm-8 col-sm-offset-2" },
+            [_c("va-chart", { attrs: { "chart-config": _vm.chartConfig } })],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "content-header" }, [
+      _c("h1", [
+        _vm._v("\n            Groups\n            "),
+        _c("small", [_vm._v("Create")])
+      ]),
+      _vm._v(" "),
+      _c("ol", { staticClass: "breadcrumb" }, [
+        _c("li", [_vm._v("Home")]),
+        _vm._v(" "),
+        _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Group")])]),
+        _vm._v(" "),
+        _c("li", { staticClass: "active" }, [
+          _c("a", { attrs: { href: "#" } }, [_vm._v("Create")])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "box-header" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Create New Group")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-52f77534", module.exports)
+  }
+}
+
+/***/ }),
+/* 368 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(369)
+/* template */
+var __vue_template__ = __webpack_require__(370)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 Component.options.__file = "resources/assets/js/components/groups/GroupsEdit.vue"
 
 /* hot reload */
@@ -93452,7 +93712,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 366 */
+/* 369 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93514,6 +93774,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.get(link + id).then(function (response) {
                     _this.refreshData(response);
                 }).catch(function (response) {
+                    console.log("Could not load group");
                     console.dir(response);
                 });
             }
@@ -93538,7 +93799,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 367 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -93601,15 +93862,15 @@ if (false) {
 }
 
 /***/ }),
-/* 368 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(369)
+var __vue_script__ = __webpack_require__(372)
 /* template */
-var __vue_template__ = __webpack_require__(370)
+var __vue_template__ = __webpack_require__(373)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -93648,7 +93909,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 369 */
+/* 372 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93776,7 +94037,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.get(clientsLink).then(function (response) {
                     _this.refreshData(response);
                 }).catch(function (response) {
-                    alert("Could not load clients");
+                    console.log("Could not load clients");
                     console.log(response);
                 });
             }
@@ -93815,7 +94076,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 370 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -94056,15 +94317,15 @@ if (false) {
 }
 
 /***/ }),
-/* 371 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(372)
+var __vue_script__ = __webpack_require__(375)
 /* template */
-var __vue_template__ = __webpack_require__(373)
+var __vue_template__ = __webpack_require__(376)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -94103,7 +94364,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 372 */
+/* 375 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94217,7 +94478,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.get(link).then(function (response) {
                     _this.refreshData(response);
                 }).catch(function (response) {
-                    alert("Could not load clients");
+                    console.log("Could not load clients");
                     console.log(response);
                 });
             }
@@ -94236,7 +94497,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.delete('/api/v1/clients/' + id).then(function (response) {
                     _this2.clients.splice(index, 1);
                 }).catch(function (response) {
-                    alert("Could not delete company");
+                    console.log("Could not delete company");
                     console.log(response);
                 });
             }
@@ -94246,7 +94507,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/api/v1/client/alive', { id: client.id }).then(function (response) {
                 client.alive = response.data.data.alive;
             }).catch(function (response) {
-                alert("Could not make the client alive");
+                console.log("Could not make the client alive");
                 console.log(response);
             });
         }
@@ -94254,7 +94515,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 373 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -94558,15 +94819,15 @@ if (false) {
 }
 
 /***/ }),
-/* 374 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(375)
+var __vue_script__ = __webpack_require__(378)
 /* template */
-var __vue_template__ = __webpack_require__(378)
+var __vue_template__ = __webpack_require__(381)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -94605,7 +94866,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 375 */
+/* 378 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94666,7 +94927,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 376 */
+/* 379 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -94742,7 +95003,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.get(link).then(function (response) {
                     _this.refreshData(response);
                 }).catch(function (response) {
-                    alert("Could not load groups");
+                    console.log("Could not load groups");
                     console.dir(response);
                 });
             }
@@ -94776,7 +95037,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 377 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -95007,7 +95268,7 @@ if (false) {
 }
 
 /***/ }),
-/* 378 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -95074,15 +95335,15 @@ if (false) {
 }
 
 /***/ }),
-/* 379 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(380)
+var __vue_script__ = __webpack_require__(383)
 /* template */
-var __vue_template__ = __webpack_require__(381)
+var __vue_template__ = __webpack_require__(384)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -95121,7 +95382,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 380 */
+/* 383 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95227,7 +95488,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get(link + id).then(function (response) {
                 _this.client = response.data.data;
             }).catch(function (response) {
-                alert("Could not load clients");
+                console.log("Could not load clients");
                 console.log(response);
             });
         },
@@ -95238,7 +95499,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 axios.delete('/api/v1/clients/' + id).then(function (response) {
                     _this2.$router.push({ name: "listClients" });
                 }).catch(function (response) {
-                    alert("Could not delete company");
+                    console.log("Could not delete company");
                     console.log(response);
                 });
             }
@@ -95247,7 +95508,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 381 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -95439,15 +95700,15 @@ if (false) {
 }
 
 /***/ }),
-/* 382 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(383)
+var __vue_script__ = __webpack_require__(386)
 /* template */
-var __vue_template__ = __webpack_require__(384)
+var __vue_template__ = __webpack_require__(387)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -95486,7 +95747,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 383 */
+/* 386 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95566,7 +95827,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 384 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -95629,15 +95890,15 @@ if (false) {
 }
 
 /***/ }),
-/* 385 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(386)
+var __vue_script__ = __webpack_require__(389)
 /* template */
-var __vue_template__ = __webpack_require__(394)
+var __vue_template__ = __webpack_require__(397)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -95676,14 +95937,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 386 */
+/* 389 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overrides_Slider_vue__ = __webpack_require__(387);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overrides_Slider_vue__ = __webpack_require__(390);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__overrides_Slider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__overrides_Slider_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__data_SlideMenuItems__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__data_SlideMenuItems__ = __webpack_require__(396);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__data_SlideMenuItems___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__data_SlideMenuItems__);
 //
 //
@@ -95705,15 +95966,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 387 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(388)
+var __vue_script__ = __webpack_require__(391)
 /* template */
-var __vue_template__ = __webpack_require__(392)
+var __vue_template__ = __webpack_require__(395)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -95752,12 +96013,12 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 388 */
+/* 391 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem__ = __webpack_require__(389);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem__ = __webpack_require__(392);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VASlideItem__);
 //
 //
@@ -95820,15 +96081,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 389 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(390)
+var __vue_script__ = __webpack_require__(393)
 /* template */
-var __vue_template__ = __webpack_require__(391)
+var __vue_template__ = __webpack_require__(394)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -95867,7 +96128,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 390 */
+/* 393 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -95930,7 +96191,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 391 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -96042,7 +96303,7 @@ if (false) {
 }
 
 /***/ }),
-/* 392 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -96126,7 +96387,7 @@ if (false) {
 }
 
 /***/ }),
-/* 393 */
+/* 396 */
 /***/ (function(module, exports) {
 
 module.exports = [{
@@ -96247,7 +96508,7 @@ module.exports = [{
 }];
 
 /***/ }),
-/* 394 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -96267,15 +96528,15 @@ if (false) {
 }
 
 /***/ }),
-/* 395 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(396)
+var __vue_script__ = __webpack_require__(399)
 /* template */
-var __vue_template__ = __webpack_require__(397)
+var __vue_template__ = __webpack_require__(400)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -96314,7 +96575,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 396 */
+/* 399 */
 /***/ (function(module, exports) {
 
 //
@@ -96385,7 +96646,7 @@ module.exports = Component.exports
 //
 
 /***/ }),
-/* 397 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -96547,15 +96808,15 @@ if (false) {
 }
 
 /***/ }),
-/* 398 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(399)
+var __vue_script__ = __webpack_require__(402)
 /* template */
-var __vue_template__ = __webpack_require__(400)
+var __vue_template__ = __webpack_require__(403)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -96594,7 +96855,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 399 */
+/* 402 */
 /***/ (function(module, exports) {
 
 //
@@ -96670,7 +96931,7 @@ module.exports = Component.exports
 //
 
 /***/ }),
-/* 400 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -96838,7 +97099,7 @@ if (false) {
 }
 
 /***/ }),
-/* 401 */
+/* 404 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

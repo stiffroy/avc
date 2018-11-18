@@ -27,6 +27,7 @@ import Groups from './components/groups/GroupsOverview';
 import GroupsList from './components/groups/GroupsList';
 import GroupCreate from './components/groups/GroupsCreate';
 import GroupShow from './components/groups/GroupsShow';
+import GroupChart from './components/groups/GroupsChart';
 import GroupEdit from './components/groups/GroupsEdit';
 import Clients from './components/clients/ClientsOverview';
 import ClientsList from './components/clients/ClientsList';
@@ -61,6 +62,7 @@ const routes = [
     {path: '/groups/create', component: GroupCreate, name: 'createGroup', meta: { requiresAuth: true }},
     {path: '/groups/show/:id', component: GroupShow, name: 'showGroup', meta: { requiresAuth: true }},
     {path: '/groups/edit/:id', component: GroupEdit, name: 'editGroup', meta: { requiresAuth: true }},
+    {path: '/groups/chart/:id', component: GroupChart, name: 'chartGroup', meta: { requiresAuth: true }},
     {path: '/clients', component: Clients, name: 'clients', meta: { requiresAuth: true }},
     {path: '/clients/list', component: ClientsList, name: 'listClients', meta: { requiresAuth: true }},
     {path: '/clients/create', component: ClientCreate, name: 'createClient', meta: { requiresAuth: true }},
