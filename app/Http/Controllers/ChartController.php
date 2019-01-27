@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Entity\Group;
+use App\Http\Resources\Statistics as StatisticsResource;
 
 class ChartController extends Controller
 {
-    public function getChart(Group $group)
+    public function getChart($groupId)
     {
-        dump($group);
+        $group = Group::find($groupId);
+        return StatisticsResource::collection($group->statistics);
     }
 }

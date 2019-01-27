@@ -19,9 +19,9 @@ class Statistics extends JsonResource
             'id' => $this->id,
             'group_identifier' => $this->group_identifier,
             'subgroup_identifier' => $this->subgroup_identifier,
-            'data' => json_decode($this->data),
-            'created_at' => Carbon::parse($this->created_at)->format('d.m.Y H:i'),
-            'updated_at' => Carbon::parse($this->updated_at)->format('d.m.Y H:i'),
+            'stats' => json_decode($this->data),
+            'created_at' => Carbon::parse($this->created_at)->format('d.m.Y'),
+            'updated_at' => Carbon::parse($this->updated_at)->format('d.m.Y'),
         ];
     }
 }

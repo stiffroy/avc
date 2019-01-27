@@ -4,12 +4,12 @@
         <section class="content-header">
             <h1>
                 Groups
-                <small>Create</small>
+                <small>Chart</small>
             </h1>
             <ol class="breadcrumb">
                 <li>Home</li>
                 <li><a href="#">Group</a></li>
-                <li class="active"><a href="#">Create</a></li>
+                <li class="active"><a href="#">Chart</a></li>
             </ol>
         </section>
 
@@ -17,12 +17,12 @@
         <section class="content container-fluid">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Create New Group</h3>
+                    <h3 class="box-title">Group Statistics</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
                     <div class="col-sm-8 col-sm-offset-2">
-                        <va-chart :chart-config="chartConfig"></va-chart>
+                        <va-chart v-if="loaded" :chart-config="chartConfig"></va-chart>
                     </div>
                 </div>
             </div>
@@ -40,16 +40,51 @@
             return {
                 group: {},
                 chartConfig: {
-                    type: '',
+                    type: 'line',
                     data: {
-                        labels: ['No records yet', 'Warning', 'Critical', 'Healthy'],
-                        datasets: [{
-                            data: [],
-                            backgroundColor: ['#00c0ef', '#f39c12', '#dd4b39', '#00a65a'],
-                            hoverBackgroundColor: ['#00a7d0', '#db8b0b', '#d33724', '#008d4c']
-                        }]
+                        labels: [1, 2, 3, 4, 5],
+                        datasets: []
+                    },
+                    options: {
+                        responsive: true,
+                        title: {
+                            display: true,
+                            text: 'Chart.js Line Chart'
+                        },
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true,
+                            // animationDuration: 0
+                        },
+                        // animation: {
+                        //     duration: 0
+                        // },
+                        // responsiveAnimationDuration: 0,
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Month'
+                                }
+                            }],
+                            yAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Value'
+                                }
+                            }]
+                        }
                     }
                 },
+                tempData: [],
+                tempDataSets: [],
+                loaded: false
             }
         },
         mounted() {
@@ -57,11 +92,11 @@
         },
         methods: {
             mountData() {
-                let link = '/api/v1/groups/' + this.$route.params.id;
+                let link = '/api/v1/group/chart/' + this.$route.params.id;
                 if (link !== null) {
                     axios.get(link)
                         .then((response) => {
-                            this.refreshData(response);
+                            this.refreshData(response.data);
                         })
                         .catch((response) => {
                             console.log("Could not load group statistics");
@@ -70,42 +105,54 @@
                 }
             },
             refreshData(response) {
-                this.group = response.data.data;
-                let dataArray = this.makeDataArray(this.group.statistics);
-                // @TODO make the data set accordingly
-                this.makeDataSets(dataArray);
-                Vue.set(this.chartConfig, 'type', this.determineChartType());
-            },
-            makeDataArray(statistics) {
-                let dataArray = [];
-                for (let i = 0, len = statistics.length; i < len; i++) {
-                    let stats = statistics[i];
-                    let data = stats.data;
-                    let dataKeyArray = Object.keys(data);
-
-                    dataKeyArray.forEach((value, index) => {
-                        if (!dataArray.hasOwnProperty(index)) {
-                            dataArray[index] = [];
-                        }
-                        dataArray[index].push({
-                            x: stats.created_at,
-                            y: data[value]
-                        });
-                    });
-                }
-
-                return dataArray;
+                this.makeDataLabel(response.data);
+                this.makeDataSet();
             },
             determineChartType() {
                 return 'line';
-            },
-            makeDataSets(dataArray) {
-                console.log(dataArray);
             },
             populateChart(data) {
                 let chart = _.cloneDeep(this.chartConfig);
                 Vue.set(chart.data.datasets[0], 'data', data);
                 return chart;
+            },
+            makeDataLabel(data) {
+                this.chartConfig.data.labels = [];
+                if (this.chartConfig.type === 'line') {
+                    data.forEach(value => {
+                        this.chartConfig.data.labels.push(value.created_at);
+                        this.tempData.push(value.stats);
+                    });
+                }
+            },
+            makeDataSet() {
+                if (this.chartConfig.type === 'line') {
+                    this.makeLineDataSet();
+                }
+                this.loaded = true;
+            },
+            makeLineDataSet() {
+                Object.keys(this.tempData[0]).map((value, index) => {
+                    let colorList = ['#00c0ef', '#f39c12', '#dd4b39', '#00a65a'];
+                    this.tempDataSets[value] = {
+                        'label': value,
+                        'fill': false,
+                        'data': [],
+                        'backgroundColor': colorList[index],
+                        'borderColor': colorList[index],
+                    };
+
+                    this.tempData.forEach(data => {
+                        this.tempDataSets[value].data.push(data[value]);
+                    });
+                });
+
+                this.chartConfig.data.datasets = [];
+                let dataset = [];
+                Object.keys(this.tempDataSets).map(key => {
+                    dataset.push(this.tempDataSets[key]);
+                });
+                this.chartConfig.data.datasets = dataset;
             }
         },
         components: {
