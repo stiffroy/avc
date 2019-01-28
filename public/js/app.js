@@ -93472,10 +93472,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart__ = __webpack_require__(164);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VAChart__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VAChart___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VAChart__);
 //
 //
 //
@@ -93509,7 +93507,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -93517,51 +93514,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             group: {},
-            chartConfig: {
-                type: 'line',
-                data: {
-                    labels: [1, 2, 3, 4, 5],
-                    datasets: []
-                },
-                options: {
-                    responsive: true,
-                    title: {
-                        display: true,
-                        text: 'Chart.js Line Chart'
-                    },
-                    tooltips: {
-                        mode: 'index',
-                        intersect: false
-                    },
-                    hover: {
-                        mode: 'nearest',
-                        intersect: true
-                        // animationDuration: 0
-                    },
-                    // animation: {
-                    //     duration: 0
-                    // },
-                    // responsiveAnimationDuration: 0,
-                    scales: {
-                        xAxes: [{
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Month'
-                            }
-                        }],
-                        yAxes: [{
-                            display: true,
-                            scaleLabel: {
-                                display: true,
-                                labelString: 'Value'
-                            }
-                        }]
-                    }
-                }
-            },
-            tempData: [],
-            tempDataSets: [],
+            chartConfig: {},
             loaded: false
         };
     },
@@ -93584,62 +93537,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         refreshData: function refreshData(response) {
-            this.makeDataLabel(response.data);
-            this.makeDataSet();
-        },
-        determineChartType: function determineChartType() {
-            return 'line';
-        },
-        populateChart: function populateChart(data) {
-            var chart = _.cloneDeep(this.chartConfig);
-            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.set(chart.data.datasets[0], 'data', data);
-            return chart;
-        },
-        makeDataLabel: function makeDataLabel(data) {
-            var _this2 = this;
-
-            this.chartConfig.data.labels = [];
-            if (this.chartConfig.type === 'line') {
-                data.forEach(function (value) {
-                    _this2.chartConfig.data.labels.push(value.created_at);
-                    _this2.tempData.push(value.stats);
-                });
-            }
-        },
-        makeDataSet: function makeDataSet() {
-            if (this.chartConfig.type === 'line') {
-                this.makeLineDataSet();
-            }
+            this.chartConfig = response;
             this.loaded = true;
-        },
-        makeLineDataSet: function makeLineDataSet() {
-            var _this3 = this;
-
-            Object.keys(this.tempData[0]).map(function (value, index) {
-                var colorList = ['#00c0ef', '#f39c12', '#dd4b39', '#00a65a'];
-                _this3.tempDataSets[value] = {
-                    'label': value,
-                    'fill': false,
-                    'data': [],
-                    'backgroundColor': colorList[index],
-                    'borderColor': colorList[index]
-                };
-
-                _this3.tempData.forEach(function (data) {
-                    _this3.tempDataSets[value].data.push(data[value]);
-                });
-            });
-
-            this.chartConfig.data.datasets = [];
-            var dataset = [];
-            Object.keys(this.tempDataSets).map(function (key) {
-                dataset.push(_this3.tempDataSets[key]);
-            });
-            this.chartConfig.data.datasets = dataset;
         }
     },
     components: {
-        'va-chart': __WEBPACK_IMPORTED_MODULE_1_vue2_admin_lte_src_components_VAChart___default.a
+        'va-chart': __WEBPACK_IMPORTED_MODULE_0_vue2_admin_lte_src_components_VAChart___default.a
     }
 });
 
