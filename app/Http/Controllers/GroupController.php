@@ -7,6 +7,7 @@ use App\Entity\Group;
 use App\Entity\User;
 use App\Http\Requests\StoreGroup;
 use App\Http\Resources\Group as GroupResource;
+use App\Services\ChartService;
 use Illuminate\Support\Collection;
 
 class GroupController extends Controller
@@ -132,5 +133,17 @@ class GroupController extends Controller
         }
 
         return GroupResource::collection($groups);
+    }
+
+    /**
+     * @param $groupId
+     * @return mixed
+     */
+    public function getChart($groupId)
+    {
+        $group = Group::find($groupId);
+        $chartService = new ChartService();
+
+        return $chartService->getChart($group);
     }
 }
