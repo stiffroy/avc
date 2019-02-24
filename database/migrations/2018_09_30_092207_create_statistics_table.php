@@ -16,7 +16,7 @@ class CreateStatisticsTable extends Migration
         Schema::create('statistics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('group_identifier');
-            $table->string('subgroup_identifier');
+            $table->string('subgroup_identifier')->nullable();
             $table->json('data');
             $table->timestamps();
         });
