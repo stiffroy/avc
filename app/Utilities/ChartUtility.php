@@ -2,6 +2,8 @@
 
 namespace App\Utilities;
 
+use App\Entity\ColorCode;
+
 class ChartUtility
 {
     const COLOR_LIST = [
@@ -48,7 +50,8 @@ class ChartUtility
 
     public static function getColor($index)
     {
-        return self::COLOR_LIST[$index];
+        $color = ColorCode::where(['type' => $index])->firstOrFail();
+        return $color->color_code ?: self::generateRandomColor();
     }
 
     public static function getChartOptions($type, $title)
@@ -68,5 +71,10 @@ class ChartUtility
     public static function getLineChartOptions()
     {
         return self::LINE_CHART_OPTIONS;
+    }
+
+    public static function generateRandomColor()
+    {
+        return '#' . substr(md5(rand()), 0, 6);
     }
 }
