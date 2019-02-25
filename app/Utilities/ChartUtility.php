@@ -77,4 +77,15 @@ class ChartUtility
     {
         return '#' . substr(md5(rand()), 0, 6);
     }
+
+    public static function hasSubGroup($statistics)
+    {
+        return !!($statistics->sub_group);
+    }
+
+    public static function hasMultipleData($statistics)
+    {
+        $data = json_decode($statistics->data, true);
+        return !!($data[1]);
+    }
 }

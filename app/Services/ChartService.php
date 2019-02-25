@@ -27,9 +27,8 @@ class ChartService
     private function determineChartType(Statistics $statistics)
     {
         $type = null;
-        $data = json_decode($statistics->data, true);
-        $multipleData = !!($data[1]);
-        $subGroup = !!($statistics->sub_group);
+        $subGroup = ChartUtility::hasSubGroup($statistics);
+        $multipleData = ChartUtility::hasMultipleData($statistics);
         if ($this->lineOrBarType($subGroup, $multipleData)) {
             $type = 'line';
         } elseif ($this->stackedBarType($subGroup, $multipleData)) {
