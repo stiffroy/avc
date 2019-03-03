@@ -3,6 +3,7 @@
 namespace App\Utilities;
 
 use App\Entity\ColorCode;
+use App\Entity\Statistics;
 
 class ChartUtility
 {
@@ -48,10 +49,11 @@ class ChartUtility
         ],
     ];
 
-    public static function getColor($index)
+    public static function getColor($index = null)
     {
-        $color = ColorCode::where(['type' => $index])->firstOrFail();
-        return $color->color_code ?: self::generateRandomColor();
+        $color = $index ? ColorCode::where(['type' => $index])->firstOrFail() : null;
+
+        return $color ? $color->color_code : self::generateRandomColor();
     }
 
     public static function getChartOptions($type, $title)
@@ -64,6 +66,7 @@ class ChartUtility
         }
 
         $options['title']['text'] = $type . ' chart for ' . $title;
+//        $options['legend']['position'] = 'right';
 
         return $options;
     }
@@ -80,12 +83,47 @@ class ChartUtility
 
     public static function hasSubGroup($statistics)
     {
-        return !!($statistics->sub_group);
+        return !!($statistics->subgroup_identifier);
     }
 
-    public static function hasMultipleData($statistics)
+    public static function hasMultipleData(Statistics $statistics)
     {
         $data = json_decode($statistics->data, true);
-        return !!($data[1]);
+        return count($data) > 1;
+    }
+
+    public static function getLineDataSet($dataSet)
+    {
+        $chartData = [];
+        foreach ($dataSet as $key => $data) {
+            $color = ChartUtility::getColor($key);
+            $chartData[] = [
+                'fill' => false,
+                'label' => $key,
+                'borderColor' => $color,
+                'backgroundColor' => $color,
+                'data' => $data,
+            ];
+        }
+
+        return $chartData;
+    }
+
+    public static function getLineDataSetWithSubGroup($dataSet)
+    {
+        $chartData = [];
+        foreach ($dataSet as $key => $data) {
+            $color = ChartUtility::getColor();
+            $chartData[] = [
+                'fill' => false,
+                'label' => $key,
+                'borderColor' => $color,
+                'backgroundColor' => $color,
+                'data' => $data,
+                'hidden' => count($chartData) >= 10 ? true : false,
+            ];
+        }
+
+        return $chartData;
     }
 }

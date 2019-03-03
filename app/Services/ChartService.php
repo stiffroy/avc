@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Collection;
 
 class ChartService
 {
+    const LINE = 'line';
+    const BAR = 'bar';
+    const STACKED_BAR = 'stacked_bar';
+
     public function getChart(Group $group, $chartType = 'line')
     {
         if (!$chartType) {
@@ -28,11 +32,11 @@ class ChartService
     {
         $type = null;
         $subGroup = ChartUtility::hasSubGroup($statistics);
-        $multipleData = ChartUtility::hasMultipleData($statistics);
+        $multipleData = ChartUtility::hasMultipleData($statistics[0]);
         if ($this->lineOrBarType($subGroup, $multipleData)) {
-            $type = 'line';
+            $type = self::LINE;
         } elseif ($this->stackedBarType($subGroup, $multipleData)) {
-            $type = 'stacked_bar';
+            $type = self::STACKED_BAR;
         }
 
         return $type;
@@ -52,16 +56,23 @@ class ChartService
     {
         $chart = null;
 
-        if ('line' == $type || 'bar' == $type) {
+        if (self::LINE == $type || self::BAR == $type) {
             $chart = $this->generateLineChart($statistics);
-        } elseif ('stacked_bar' == $type) {
-            $chart = null;
+        } elseif (self::STACKED_BAR == $type) {
+            $chart = $this->generateStackedBarChart($statistics);
         }
 
         return $chart;
     }
 
     private function generateLineChart(Collection $statistics)
+    {
+        return ChartUtility::hasMultipleData($statistics[0]) ?
+            $this->generateLineChartWithMultipleData($statistics) :
+            $this->generateLineChartWithSubGroup($statistics);
+    }
+
+    private function generateLineChartWithMultipleData(Collection $statistics)
     {
         $chartData = [];
         $tempData = [];
@@ -72,24 +83,32 @@ class ChartService
                 $tempData[$key][] = $item;
             }
         }
-        $chartData['datasets'] = $this->getLineDataSet($tempData);
+        $chartData['labels'] = array_values(array_unique($chartData['labels']));
+        $chartData['datasets'] = ChartUtility::getLineDataSet($tempData);
 
         return $chartData;
     }
 
-    private function getLineDataSet($dataSet)
+    private function generateLineChartWithSubGroup(Collection $statistics)
     {
         $chartData = [];
-        foreach ($dataSet as $key => $data) {
-            $chartData[] = [
-                'fill' => false,
-                'label' => $key,
-                'borderColor' => ChartUtility::getColor($key),
-                'backgroundColor' => ChartUtility::getColor($key),
-                'data' => $data,
+        $tempData = [];
+        foreach ($statistics as $statistic) {
+            $data = json_decode($statistic->data, true);
+            $chartData['labels'][] = $statistic->created_at->format('d-m-Y');
+            $tempData[$statistic->subgroup_identifier][] = [
+                'x' => $statistic->created_at->format('d-m-Y'),
+                'y' => $data['count'],
             ];
         }
+        $chartData['labels'] = array_values(array_unique($chartData['labels']));
+        $chartData['datasets'] = ChartUtility::getLineDataSetWithSubGroup($tempData);
 
         return $chartData;
+    }
+
+    private function generateStackedBarChart(Collection $statistics)
+    {
+        return true;
     }
 }

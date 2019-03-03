@@ -144,6 +144,6 @@ class GroupController extends Controller
         $group = Group::find($groupId);
         $chartService = new ChartService();
 
-        return $chartService->getChart($group);
+        return $chartService->getChart($group, ChartService::LINE);
     }
 }
