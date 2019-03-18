@@ -141,9 +141,20 @@ class GroupController extends Controller
      */
     public function getChart($groupId)
     {
+        $response = null;
+        $type = request()->type;
+        $from = request()->from;
+        $till = request()->till;
         $group = Group::find($groupId);
-        $chartService = new ChartService();
+        $statistics = $group->statistics
+            ->where('created_at', '>', $from . ' 00:00:00')
+            ->where('created_at', '<', $till . ' 23:59:59');
 
-        return $chartService->getChart($group, ChartService::LINE);
+        if (!$statistics->isEmpty()) {
+            $chartService = new ChartService();
+            $response = $chartService->getChart($statistics, $type);
+        }
+
+        return $response;
     }
 }

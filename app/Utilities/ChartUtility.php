@@ -66,6 +66,7 @@ class ChartUtility
         }
 
         $options['title']['text'] = $type . ' chart for ' . $title;
+//        $options['legend']['display'] = false;
 //        $options['legend']['position'] = 'right';
 
         return $options;

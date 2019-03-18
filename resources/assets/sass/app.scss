@@ -4,6 +4,7 @@
 
 // Variables
 @import "variables";
+@import "~vue2-daterange-picker/src/assets/daterangepicker.css";
 
 .navbar-laravel {
   background-color: #fff;
@@ -12,4 +13,22 @@
 
 .label-as-badge {
   border-radius: 1em;
+}
+
+.daterangepicker {
+  display: block !important;
+  top: 35px !important;
+  left: 0 !important;
+
+  .ranges {
+    ul {
+      padding: 0 20px !important;
+    }
+  }
+}
+
+@media (min-width: 564px) {
+  .daterangepicker {
+    width: 610px !important;
+  }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Entity\Group;
 use App\Entity\Statistics;
 use App\Utilities\ChartUtility;
 use Illuminate\Database\Eloquent\Collection;
@@ -13,16 +12,22 @@ class ChartService
     const BAR = 'bar';
     const STACKED_BAR = 'stacked_bar';
 
-    public function getChart(Group $group, $chartType = 'line')
+    public function getChart(Collection $statistics, $chartType = 'line')
     {
         if (!$chartType) {
-            $chartType = $this->determineChartType($group->statistics[0]);
+            $chartType = $this->determineChartType($statistics->first());
         }
 
         $chartData = [
             'type' => $chartType,
-            'data' => $this->generateChartData($group->statistics, $chartType),
-            'options' => ChartUtility::getChartOptions($chartType, $group->name),
+            'data' => $this->generateChartData($statistics, $chartType),
+            'options' => ChartUtility::getChartOptions($chartType, $statistics->first()->group_identifier),
+            'defaults' => [
+                'global' => [
+                    'maintainAspectRatio' => false,
+                ],
+//                'line'
+            ],
         ];
 
         return $chartData;
@@ -32,7 +37,7 @@ class ChartService
     {
         $type = null;
         $subGroup = ChartUtility::hasSubGroup($statistics);
-        $multipleData = ChartUtility::hasMultipleData($statistics[0]);
+        $multipleData = ChartUtility::hasMultipleData($statistics->first());
         if ($this->lineOrBarType($subGroup, $multipleData)) {
             $type = self::LINE;
         } elseif ($this->stackedBarType($subGroup, $multipleData)) {
@@ -67,7 +72,7 @@ class ChartService
 
     private function generateLineChart(Collection $statistics)
     {
-        return ChartUtility::hasMultipleData($statistics[0]) ?
+        return ChartUtility::hasMultipleData($statistics->first()) ?
             $this->generateLineChartWithMultipleData($statistics) :
             $this->generateLineChartWithSubGroup($statistics);
     }
@@ -103,6 +108,7 @@ class ChartService
         }
         $chartData['labels'] = array_values(array_unique($chartData['labels']));
         $chartData['datasets'] = ChartUtility::getLineDataSetWithSubGroup($tempData);
+        $chartData['canvas']['parentNode']['style']['height'] = '480px';
 
         return $chartData;
     }
