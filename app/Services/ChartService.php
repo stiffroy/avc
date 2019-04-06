@@ -100,10 +100,11 @@ class ChartService
         $tempData = [];
         foreach ($statistics as $statistic) {
             $data = json_decode($statistic->data, true);
+            $key = $statistic->subgroup_identifier ?: key($data);
             $chartData['labels'][] = $statistic->created_at->format('d-m-Y');
-            $tempData[$statistic->subgroup_identifier][] = [
+            $tempData[$key][] = [
                 'x' => $statistic->created_at->format('d-m-Y'),
-                'y' => $data['count'],
+                'y' => $data[key($data)],
             ];
         }
         $chartData['labels'] = array_values(array_unique($chartData['labels']));
