@@ -7,6 +7,10 @@ use App\Entity\Statistics;
 
 class ChartUtility
 {
+    const LINE = 'line';
+    const BAR = 'bar';
+    const STACKED_BAR = 'stacked_bar';
+
     const COLOR_LIST = [
         'queueCount' => '#00a65a',
         'messageCount' => '#36A2EB',
@@ -66,8 +70,13 @@ class ChartUtility
         }
 
         $options['title']['text'] = $type . ' chart for ' . $title;
-//        $options['legend']['display'] = false;
-//        $options['legend']['position'] = 'right';
+        $options['scales']['xAxis'][] = [
+            'ticks' => [
+                'autoSkip' => false,
+                'maxRotation' => 90,
+                'minRotation' => 90,
+            ],
+        ];
 
         return $options;
     }
@@ -110,6 +119,30 @@ class ChartUtility
         return $chartData;
     }
 
+    public static function getStackedBarDataSet($dataSet)
+    {
+        $chartData = [];
+        foreach ($dataSet as $key => $data) {
+            list($stack, $label) = self::splitLabelAndStack($key);
+            $color = ChartUtility::getColor($label);
+            $chartData[] = [
+                'fill' => false,
+                'label' => $label,
+                'stack' => $stack,
+                'borderColor' => $color,
+                'backgroundColor' => $color,
+                'data' => $data,
+            ];
+        }
+
+        return $chartData;
+    }
+
+    public static function splitLabelAndStack($name)
+    {
+        return explode('-and-', $name);
+    }
+
     public static function getLineDataSetWithSubGroup($dataSet)
     {
         $chartData = [];
@@ -122,6 +155,28 @@ class ChartUtility
                 'backgroundColor' => $color,
                 'data' => $data,
                 'hidden' => count($chartData) >= 10 ? true : false,
+            ];
+        }
+
+        return $chartData;
+    }
+
+    public static function getChartType($type)
+    {
+        return $type == self::LINE ? self::LINE : self::BAR;
+    }
+
+    public static function getStackedBarWithGroup($dataSet)
+    {
+        $chartData = [];
+        foreach ($dataSet as $key => $data) {
+            $color = ChartUtility::getColor($key);
+            $chartData[] = [
+                'fill' => false,
+                'label' => $key,
+                'borderColor' => $color,
+                'backgroundColor' => $color,
+                'data' => $data,
             ];
         }
 

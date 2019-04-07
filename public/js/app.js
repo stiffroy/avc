@@ -93602,7 +93602,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             group: {},
             chartConfig: {},
             loaded: false,
-            chartType: 'line',
+            chartType: false,
             error: false,
             startDate: __WEBPACK_IMPORTED_MODULE_2_moment___default()().startOf('week').format('YYYY-MM-DD'),
             endDate: __WEBPACK_IMPORTED_MODULE_2_moment___default()().endOf('week').format('YYYY-MM-DD'),
@@ -93724,46 +93724,50 @@ var render = function() {
                 staticStyle: { "padding-right": "20px" }
               },
               [
-                _c(
-                  "select",
-                  {
-                    directives: [
+                _vm.chartType === "line" || _vm.chartType === "bar"
+                  ? _c(
+                      "select",
                       {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.chartType,
-                        expression: "chartType"
-                      }
-                    ],
-                    staticClass: "pull-right",
-                    attrs: { name: "chart_type", id: "chart_type" },
-                    on: {
-                      change: [
-                        function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.chartType = $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        },
-                        _vm.mountData
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.chartType,
+                            expression: "chartType"
+                          }
+                        ],
+                        staticClass: "pull-right",
+                        attrs: { name: "chart_type", id: "chart_type" },
+                        on: {
+                          change: [
+                            function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.chartType = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
+                            _vm.mountData
+                          ]
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "line" } }, [
+                          _vm._v("Line")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "bar" } }, [
+                          _vm._v("Bar")
+                        ])
                       ]
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "line" } }, [
-                      _vm._v("Line")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "bar" } }, [_vm._v("Bar")])
-                  ]
-                )
+                    )
+                  : _vm._e()
               ]
             )
           ]),

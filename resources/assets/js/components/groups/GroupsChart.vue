@@ -31,7 +31,7 @@
                             </date-range-picker>
                         </div>
                         <div class="col-sm-1 col-sm-offset-3" style="padding-right: 20px;">
-                            <select class="pull-right" name="chart_type" id="chart_type" v-model="chartType" @change="mountData">
+                            <select v-if="chartType === 'line' || chartType === 'bar'" class="pull-right" name="chart_type" id="chart_type" v-model="chartType" @change="mountData">
                                 <option value="line">Line</option>
                                 <option value="bar">Bar</option>
                             </select>
@@ -64,7 +64,7 @@
                 group: {},
                 chartConfig: {},
                 loaded: false,
-                chartType: 'line',
+                chartType: false,
                 error: false,
                 startDate: moment().startOf('week').format('YYYY-MM-DD'),
                 endDate: moment().endOf('week').format('YYYY-MM-DD'),
