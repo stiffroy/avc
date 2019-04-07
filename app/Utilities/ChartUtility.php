@@ -125,7 +125,7 @@ class ChartUtility
         $colorList = [];
         foreach ($dataSet as $key => $data) {
             list($stack, $label) = self::splitLabelAndStack($key);
-            $colorList[$label] = array_key_exists($label, $colorList) ? $colorList[$label] : ChartUtility::getColor($label);
+            $colorList[$label] = array_key_exists($label, $colorList) ? $colorList[$label] : self::getColor($label);
             $chartData[] = [
                 'fill' => false,
                 'label' => $label,
