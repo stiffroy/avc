@@ -122,15 +122,16 @@ class ChartUtility
     public static function getStackedBarDataSet($dataSet)
     {
         $chartData = [];
+        $colorList = [];
         foreach ($dataSet as $key => $data) {
             list($stack, $label) = self::splitLabelAndStack($key);
-            $color = ChartUtility::getColor($label);
+            $colorList[$label] = array_key_exists($label, $colorList) ? $colorList[$label] : ChartUtility::getColor($label);
             $chartData[] = [
                 'fill' => false,
                 'label' => $label,
                 'stack' => $stack,
-                'borderColor' => $color,
-                'backgroundColor' => $color,
+                'borderColor' => $colorList[$label],
+                'backgroundColor' => $colorList[$label],
                 'data' => $data,
             ];
         }
