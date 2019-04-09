@@ -55,7 +55,7 @@ class ChartUtility
 
     public static function getColor($index = null)
     {
-        $color = $index ? ColorCode::where(['type' => $index])->firstOrFail() : null;
+        $color = $index ? ColorCode::where(['type' => $index])->first() : null;
 
         return $color ? $color->color_code : self::generateRandomColor();
     }
