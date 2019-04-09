@@ -163,6 +163,7 @@ class ApiService
         ];
 
         $statistics = Statistics::where('group_identifier', $data->group_identifier)
+            ->where('subgroup_identifier', $data->subgroup_identifier)
             ->whereDate('created_at', '=', Carbon::today()->toDateString())
             ->get();
 
