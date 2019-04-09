@@ -93604,8 +93604,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             loaded: false,
             chartType: false,
             error: false,
-            startDate: __WEBPACK_IMPORTED_MODULE_2_moment___default()().startOf('week').format('YYYY-MM-DD'),
-            endDate: __WEBPACK_IMPORTED_MODULE_2_moment___default()().endOf('week').format('YYYY-MM-DD'),
+            startDate: __WEBPACK_IMPORTED_MODULE_2_moment___default()().subtract(7, "days").format('YYYY-MM-DD'),
+            endDate: __WEBPACK_IMPORTED_MODULE_2_moment___default()().format('YYYY-MM-DD'),
             locale: {
                 direction: 'ltr', //direction of text
                 format: 'DD-MM-YYYY', //fomart of the dates displayed

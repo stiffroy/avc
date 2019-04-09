@@ -66,8 +66,8 @@
                 loaded: false,
                 chartType: false,
                 error: false,
-                startDate: moment().startOf('week').format('YYYY-MM-DD'),
-                endDate: moment().endOf('week').format('YYYY-MM-DD'),
+                startDate: moment().subtract(7, "days").format('YYYY-MM-DD'),
+                endDate: moment().format('YYYY-MM-DD'),
                 locale: {
                     direction: 'ltr', //direction of text
                     format: 'DD-MM-YYYY', //fomart of the dates displayed
