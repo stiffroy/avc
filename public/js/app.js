@@ -93684,6 +93684,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         refreshData: function refreshData(response) {
             if (response) {
                 this.chartConfig = response;
+                this.chartType = response.chart_type;
                 this.loaded = true;
                 this.error = false;
             } else {

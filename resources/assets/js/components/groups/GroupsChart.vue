@@ -109,6 +109,7 @@
             refreshData(response) {
                 if (response) {
                     this.chartConfig = response;
+                    this.chartType = response.chart_type;
                     this.loaded = true;
                     this.error = false;
                 } else {

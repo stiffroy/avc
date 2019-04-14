@@ -15,6 +15,7 @@ class ChartService
         }
 
         $chartData = [
+            'chart_type' => $chartType,
             'type' => ChartUtility::getChartType($chartType),
             'data' => $this->generateChartData($statistics, $chartType),
             'options' => ChartUtility::getChartOptions($chartType, $statistics->first()->group_identifier),
